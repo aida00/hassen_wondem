@@ -1,0 +1,37 @@
+uuid: 6a1da69f-8afd-499e-ba15-29161580a71d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_mechanism
+    - node.type.product_
+    - taxonomy.vocabulary.mechanism
+    - taxonomy.vocabulary.process
+    - taxonomy.vocabulary.product_mechanism
+    - taxonomy.vocabulary.product_portability
+    - taxonomy.vocabulary.product_process
+id: node.product_.field_product_mechanism
+field_name: field_product_mechanism
+entity_type: node
+bundle: product_
+label: product_mechanism
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      mechanism: mechanism
+      product_mechanism: product_mechanism
+      product_portability: product_portability
+      process: process
+      product_process: product_process
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: mechanism
+field_type: entity_reference

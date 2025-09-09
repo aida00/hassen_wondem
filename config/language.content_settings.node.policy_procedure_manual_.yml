@@ -1,0 +1,18 @@
+uuid: c6598eab-9662-4f30-aa8f-a6b25cf81eed
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.policy_procedure_manual_
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: node.policy_procedure_manual_
+target_entity_type_id: node
+target_bundle: policy_procedure_manual_
+default_langcode: am
+language_alterable: true

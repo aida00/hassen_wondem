@@ -1,0 +1,20 @@
+uuid: 4a301740-c458-400c-89d7-b1e0f5b6aa5c
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.compliance_program
+id: node.compliance_program.uid
+field_name: uid
+entity_type: node
+bundle: compliance_program
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

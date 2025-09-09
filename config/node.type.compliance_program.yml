@@ -1,0 +1,17 @@
+uuid: 3ff815db-39ba-4795-b813-fb3fe0d74a20
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'compliance Program'
+type: compliance_program
+description: 'this section states about the compliance '
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

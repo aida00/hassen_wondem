@@ -1,0 +1,22 @@
+uuid: 72651d53-6d2f-4d3e-9450-a00ad0b68378
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.forums
+id: taxonomy_term.forums.status
+field_name: status
+entity_type: taxonomy_term
+bundle: forums
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

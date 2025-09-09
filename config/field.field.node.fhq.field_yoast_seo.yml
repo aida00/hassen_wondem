@@ -1,0 +1,21 @@
+uuid: 59854898-3549-462d-8000-adf790dca86c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_yoast_seo
+    - node.type.fhq
+  module:
+    - yoast_seo
+id: node.fhq.field_yoast_seo
+field_name: field_yoast_seo
+entity_type: node
+bundle: fhq
+label: 'Real-time SEO'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: yoast_seo

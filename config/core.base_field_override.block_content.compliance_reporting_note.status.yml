@@ -1,0 +1,22 @@
+uuid: ab8fd35c-ddf7-4f26-82b9-91937a65b5ec
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type.compliance_reporting_note
+id: block_content.compliance_reporting_note.status
+field_name: status
+entity_type: block_content
+bundle: compliance_reporting_note
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

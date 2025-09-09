@@ -1,0 +1,20 @@
+uuid: 4378ce1b-a5a0-474a-84a7-d15877d5594e
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.compliance_program
+  module:
+    - path
+id: node.compliance_program.path
+field_name: path
+entity_type: node
+bundle: compliance_program
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

@@ -1,0 +1,13 @@
+services:
+
+  plugin.manager.simple_sitemap_auth.url_generator:
+    class: Drupal\simple_sitemap_auth\Plugin\simple_sitemap\UrlGenerator\UrlGeneratorManager
+    parent: default_plugin_manager
+
+  plugin.manager.simple_sitemap_auth.sitemap_generator:
+    class: Drupal\simple_sitemap_auth\Plugin\simple_sitemap\SitemapGenerator\SitemapGeneratorManager
+    parent: default_plugin_manager
+
+  plugin.manager.simple_sitemap_auth.sitemap_type:
+    class: Drupal\simple_sitemap_auth\Plugin\simple_sitemap\SitemapType\SitemapTypeManager
+    parent: default_plugin_manager

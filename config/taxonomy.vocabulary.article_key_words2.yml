@@ -1,0 +1,9 @@
+uuid: 7064be05-7fea-4f21-bd22-2a78bb7fce80
+langcode: en
+status: true
+dependencies: {  }
+name: 'Article Key words2'
+vid: article_key_words2
+description: null
+weight: 0
+new_revision: false

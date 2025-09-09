@@ -1,0 +1,18 @@
+uuid: 351665d0-3eeb-4cd3-b03b-be0cc0012aea
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type.legal_disclaimer_
+id: block_content.legal_disclaimer_.changed
+field_name: changed
+entity_type: block_content
+bundle: legal_disclaimer_
+label: Changed
+description: 'The time that the custom block was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

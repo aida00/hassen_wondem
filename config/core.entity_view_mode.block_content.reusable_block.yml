@@ -1,0 +1,16 @@
+uuid: 45a8c299-e8f9-491b-96e9-a4857fbeb5d3
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+  enforced:
+    module:
+      - gutenberg
+_core:
+  default_config_hash: 0nRdlyXwWiWvI4FdhHFKcKfOGaW3sirwqY0dUr5JIlg
+id: block_content.reusable_block
+label: 'Reusable block'
+description: ''
+targetEntityType: block_content
+cache: true

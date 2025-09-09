@@ -1,0 +1,7 @@
+uuid: 2e9e10a5-2a5c-41fd-8975-4591f1ff64bd
+langcode: en
+status: true
+dependencies: {  }
+name: sky_opt
+label: sky_opt
+processors: {  }

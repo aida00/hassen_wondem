@@ -1,0 +1,21 @@
+uuid: f143019f-44d1-4678-a13a-d51e43df8d2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tags
+    - node.type.policy_procedure_manual_
+  module:
+    - metatag
+id: node.policy_procedure_manual_.field_meta_tags
+field_name: field_meta_tags
+entity_type: node
+bundle: policy_procedure_manual_
+label: 'Meta tags'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag

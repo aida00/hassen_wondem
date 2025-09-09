@@ -1,0 +1,23 @@
+uuid: dee481cd-2c7a-46e5-beac-d23c7719fe21
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_complaint_
+    - node.type.compliance_program
+  module:
+    - text
+id: node.compliance_program.field_complaint_
+field_name: field_complaint_
+entity_type: node
+bundle: compliance_program
+label: 'Complaint '
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

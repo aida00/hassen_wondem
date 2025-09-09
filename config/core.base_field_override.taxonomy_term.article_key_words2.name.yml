@@ -1,0 +1,18 @@
+uuid: 5b70e1ed-7143-4fff-8b80-cb4385f83925
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.article_key_words2
+id: taxonomy_term.article_key_words2.name
+field_name: name
+entity_type: taxonomy_term
+bundle: article_key_words2
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

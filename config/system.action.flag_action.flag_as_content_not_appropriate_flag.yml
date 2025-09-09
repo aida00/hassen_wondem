@@ -1,0 +1,15 @@
+uuid: 494424ac-9987-40df-9e89-98cdc39b733d
+langcode: en
+status: true
+dependencies:
+  config:
+    - flag.flag.flag_as_content_not_appropriate
+  module:
+    - flag
+id: flag_action.flag_as_content_not_appropriate_flag
+label: Flaged
+type: node
+plugin: 'flag_action:flag_as_content_not_appropriate_flag'
+configuration:
+  flag_id: flag_as_content_not_appropriate
+  flag_action: flag

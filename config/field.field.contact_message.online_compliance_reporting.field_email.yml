@@ -1,0 +1,19 @@
+uuid: 0dd3539f-11bd-4453-afef-a1cb18a78084
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.online_compliance_reporting
+    - field.storage.contact_message.field_email
+id: contact_message.online_compliance_reporting.field_email
+field_name: field_email
+entity_type: contact_message
+bundle: online_compliance_reporting
+label: 'Email Address (Optional)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

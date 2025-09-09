@@ -1,0 +1,18 @@
+uuid: 61be2e48-1bd8-41dd-b095-25788626e18d
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.terms_of_use
+id: node.terms_of_use.changed
+field_name: changed
+entity_type: node
+bundle: terms_of_use
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

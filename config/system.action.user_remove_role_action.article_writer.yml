@@ -1,0 +1,14 @@
+uuid: 44abd61b-47f6-4ab9-b57f-d9fd63908003
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.article_writer
+  module:
+    - user
+id: user_remove_role_action.article_writer
+label: 'Remove the article-writer role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: article_writer

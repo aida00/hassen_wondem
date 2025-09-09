@@ -1,0 +1,18 @@
+uuid: 2698c41a-22de-457a-a39e-e2f408e72cb7
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.fhq
+id: node.fhq.title
+field_name: title
+entity_type: node
+bundle: fhq
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,20 @@
+uuid: 13dad3a2-5608-41f6-9d68-1a91da366b8c
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.process
+  module:
+    - text
+id: taxonomy_term.process.description
+field_name: description
+entity_type: taxonomy_term
+bundle: process
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

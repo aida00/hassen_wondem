@@ -1,0 +1,23 @@
+uuid: 1ba84172-cfe7-4643-8df1-d517337acbe6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: hide_compliance
+label: 'hide compliance'
+type: 'canonical_entities:node'
+pattern: '[node:original:book:parent]/[node:book:title]'
+selection_criteria:
+  59193f0a-ed60-4f87-b6ab-57ad6829fd93:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 59193f0a-ed60-4f87-b6ab-57ad6829fd93
+    context_mapping:
+      node: node
+    bundles:
+      compliance_program: compliance_program
+      policy_procedure_manual_: policy_procedure_manual_
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,0 +1,18 @@
+uuid: 1a6f7678-3801-4b0d-b04a-e896c064c46c
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.policy_procedure_manual_
+id: node.policy_procedure_manual_.title
+field_name: title
+entity_type: node
+bundle: policy_procedure_manual_
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

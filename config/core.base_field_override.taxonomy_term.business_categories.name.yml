@@ -1,0 +1,18 @@
+uuid: 8c474e66-f64f-4533-95b7-7939a26393fb
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.business_categories
+id: taxonomy_term.business_categories.name
+field_name: name
+entity_type: taxonomy_term
+bundle: business_categories
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

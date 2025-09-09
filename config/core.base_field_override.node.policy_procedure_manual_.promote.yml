@@ -1,0 +1,22 @@
+uuid: bf26cee4-c207-4027-8760-3de9ca16f6ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.policy_procedure_manual_
+id: node.policy_procedure_manual_.promote
+field_name: promote
+entity_type: node
+bundle: policy_procedure_manual_
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

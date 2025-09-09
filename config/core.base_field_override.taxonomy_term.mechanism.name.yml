@@ -1,0 +1,18 @@
+uuid: 1fb49191-4392-452f-81c0-e67e878fd1b6
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.mechanism
+id: taxonomy_term.mechanism.name
+field_name: name
+entity_type: taxonomy_term
+bundle: mechanism
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

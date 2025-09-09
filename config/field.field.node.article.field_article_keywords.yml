@@ -1,0 +1,31 @@
+uuid: 20307d8e-6dda-447d-a2ca-5f47174f7ed8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_article_keywords
+    - node.type.article
+    - taxonomy.vocabulary.article_key_words
+    - taxonomy.vocabulary.article_key_words2
+id: node.article.field_article_keywords
+field_name: field_article_keywords
+entity_type: node
+bundle: article
+label: 'Article Keywords'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      article_key_words: article_key_words
+      article_key_words2: article_key_words2
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: article_key_words
+field_type: entity_reference

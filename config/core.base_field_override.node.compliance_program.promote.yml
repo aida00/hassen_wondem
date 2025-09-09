@@ -1,0 +1,22 @@
+uuid: 95a53930-a3c5-4be8-a835-ace5881c163d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.compliance_program
+id: node.compliance_program.promote
+field_name: promote
+entity_type: node
+bundle: compliance_program
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

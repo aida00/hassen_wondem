@@ -1,0 +1,22 @@
+uuid: 32b300d4-ba62-47bc-8fa1-3678fe7f82e9
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.amenities_
+id: taxonomy_term.amenities_.status
+field_name: status
+entity_type: taxonomy_term
+bundle: amenities_
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

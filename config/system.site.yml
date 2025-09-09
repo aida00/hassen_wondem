@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE
+langcode: en
+uuid: 5200e03a-7d74-4ea6-8387-8753a2bd37a2
+name: 'Info Sky Medical Supplies LLC'
+mail: contact@oype.com
+slogan: 'We strive to Create a Better  Version for all of us. '
+page:
+  403: ''
+  404: /node/421
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: en
+mail_notification: ''

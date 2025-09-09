@@ -1,0 +1,21 @@
+uuid: dff73660-a880-49fa-b29b-d8d7750f766d
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.link2
+    - field.storage.block_content.field_aadress
+id: block_content.link2.field_aadress
+field_name: field_aadress
+entity_type: block_content
+bundle: link2
+label: '8340 Northfield Blvd. 1680, Denver co 80249'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: '8340 Northfield Blvd. 1680, Denver co 80249'
+default_value_callback: ''
+settings: {  }
+field_type: string

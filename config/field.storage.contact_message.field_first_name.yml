@@ -1,0 +1,20 @@
+uuid: b936e3d3-a244-4f68-8c30-099ff74925d0
+langcode: en
+status: true
+dependencies:
+  module:
+    - contact
+    - text
+id: contact_message.field_first_name
+field_name: field_first_name
+entity_type: contact_message
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 2
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

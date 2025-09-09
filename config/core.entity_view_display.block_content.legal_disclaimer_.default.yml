@@ -1,0 +1,149 @@
+uuid: 8c2dc9bb-622a-4acb-ab8b-0a456928ae5e
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.legal_disclaimer_
+    - field.field.block_content.legal_disclaimer_.body
+    - field.field.block_content.legal_disclaimer_.field_help
+    - field.field.block_content.legal_disclaimer_.field_privacy
+    - field.field.block_content.legal_disclaimer_.field_terms_of_use
+    - field.field.block_content.legal_disclaimer_.layout_builder__layout
+  module:
+    - layout_builder
+    - link
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: true
+    sections:
+      -
+        layout_id: layout_threecol_section
+        layout_settings:
+          label: 'legal desclaimer'
+          context_mapping: {  }
+          column_widths: 33-34-33
+        components:
+          90b23038-b90d-4181-ab81-eed1966c6187:
+            uuid: 90b23038-b90d-4181-ab81-eed1966c6187
+            region: first
+            configuration:
+              id: 'field_block:block_content:legal_disclaimer_:field_privacy'
+              label: privacy
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: above
+                settings:
+                  trim_length: 80
+                  url_only: true
+                  url_plain: false
+                  rel: '0'
+                  target: _blank
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          03da28b7-f070-4482-a785-4a9123af0e59:
+            uuid: 03da28b7-f070-4482-a785-4a9123af0e59
+            region: second
+            configuration:
+              id: 'field_block:block_content:legal_disclaimer_:field_terms_of_use'
+              label: 'Terms of Use'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: above
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: _blank
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          76eac1cc-dae3-4a9d-8b68-99c5e3afa8a4:
+            uuid: 76eac1cc-dae3-4a9d-8b68-99c5e3afa8a4
+            region: third
+            configuration:
+              id: 'field_block:block_content:legal_disclaimer_:field_help'
+              label: Help
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: above
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: '0'
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: block_content.legal_disclaimer_.default
+targetEntityType: block_content
+bundle: legal_disclaimer_
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_help:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_privacy:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_terms_of_use:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  langcode: true
+  layout_builder__layout: true
+  search_api_excerpt: true

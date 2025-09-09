@@ -1,0 +1,11 @@
+uuid: e9071612-89b4-46f0-b52f-f656455c63c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.drop_us_a_line
+id: contact_message.drop_us_a_line
+target_entity_type_id: contact_message
+target_bundle: drop_us_a_line
+default_langcode: site_default
+language_alterable: false

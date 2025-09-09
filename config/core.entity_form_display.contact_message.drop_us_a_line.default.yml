@@ -1,0 +1,75 @@
+uuid: c6ef99db-4d45-47f4-b178-ceb6dcaff8d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.drop_us_a_line
+    - field.field.contact_message.drop_us_a_line.field_f
+    - field.field.contact_message.drop_us_a_line.field_l
+    - field.field.contact_message.drop_us_a_line.field_phone_no
+  module:
+    - telephone
+id: contact_message.drop_us_a_line.default
+targetEntityType: contact_message
+bundle: drop_us_a_line
+mode: default
+content:
+  copy:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_f:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 25
+      placeholder: 'First Name'
+    third_party_settings: {  }
+  field_l:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 25
+      placeholder: 'Last Name'
+    third_party_settings: {  }
+  field_phone_no:
+    type: telephone_default
+    weight: 2
+    region: content
+    settings:
+      placeholder: 'Best Number to reach'
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  mail:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  message:
+    type: string_textarea
+    weight: 5
+    region: content
+    settings:
+      rows: 12
+      placeholder: ''
+    third_party_settings: {  }
+  subject:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: 'the reason to contacting us'
+    third_party_settings: {  }
+hidden:
+  name: true
+  preview: true

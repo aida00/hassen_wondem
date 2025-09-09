@@ -1,0 +1,11 @@
+uuid: 5deb49df-a853-4201-8d0d-6db7dcef7883
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.invitation_
+id: contact_message.invitation_
+target_entity_type_id: contact_message
+target_bundle: invitation_
+default_langcode: site_default
+language_alterable: false

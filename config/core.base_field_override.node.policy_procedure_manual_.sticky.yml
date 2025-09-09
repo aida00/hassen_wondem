@@ -1,0 +1,22 @@
+uuid: df4f06f4-3889-4a80-9f11-f427bd4a80d8
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.policy_procedure_manual_
+id: node.policy_procedure_manual_.sticky
+field_name: sticky
+entity_type: node
+bundle: policy_procedure_manual_
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

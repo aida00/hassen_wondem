@@ -1,0 +1,20 @@
+uuid: 6c58f28c-f790-41db-b84a-d97810213619
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.product_mechanism
+  module:
+    - text
+id: taxonomy_term.product_mechanism.description
+field_name: description
+entity_type: taxonomy_term
+bundle: product_mechanism
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

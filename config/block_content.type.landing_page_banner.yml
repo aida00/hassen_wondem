@@ -1,0 +1,8 @@
+uuid: 262b9d39-d479-4daf-9fd8-5061656be323
+langcode: en
+status: true
+dependencies: {  }
+id: landing_page_banner
+label: 'landing page banner'
+revision: false
+description: ''

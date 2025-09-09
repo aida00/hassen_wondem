@@ -1,0 +1,19 @@
+uuid: 56646980-608c-4d5f-8a14-367452beec00
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type._ya_amaarenyaa_kefele
+    - field.storage.block_content.field_submissions_discription
+id: block_content._ya_amaarenyaa_kefele.field_submissions_discription
+field_name: field_submissions_discription
+entity_type: block_content
+bundle: _ya_amaarenyaa_kefele
+label: submissions-discription
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

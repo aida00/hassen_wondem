@@ -1,0 +1,11 @@
+uuid: 4e238d7c-06dc-44e2-84bb-b67ae0c45124
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type.cms_disclaimer_block
+id: block_content.cms_disclaimer_block
+target_entity_type_id: block_content
+target_bundle: cms_disclaimer_block
+default_langcode: site_default
+language_alterable: false

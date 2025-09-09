@@ -1,0 +1,30 @@
+uuid: ab381b75-3c6b-478d-9dc5-974ee987c793
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:1d37916a-ace7-4dbf-a596-0de69cde191b'
+  module:
+    - block_content
+    - system
+  theme:
+    - bootstrap5
+id: contactusland
+theme: bootstrap5
+region: breadcrumb
+weight: -7
+provider: null
+plugin: 'block_content:1d37916a-ace7-4dbf-a596-0de69cde191b'
+settings:
+  id: 'block_content:1d37916a-ace7-4dbf-a596-0de69cde191b'
+  label: 'Contact us land'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /node

@@ -1,0 +1,18 @@
+uuid: aeca2062-13ef-493f-9954-dfc8785e1b70
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.product_process
+id: taxonomy_term.product_process.name
+field_name: name
+entity_type: taxonomy_term
+bundle: product_process
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

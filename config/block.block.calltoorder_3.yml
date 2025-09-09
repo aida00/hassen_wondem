@@ -1,0 +1,30 @@
+uuid: 4351f047-e4f3-40b4-9c3e-ee2e379e5458
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:8612970b-64c7-46f6-92ee-2af9b9174d17'
+  module:
+    - block_content
+    - system
+  theme:
+    - olivero
+id: calltoorder_3
+theme: olivero
+region: social
+weight: 0
+provider: null
+plugin: 'block_content:8612970b-64c7-46f6-92ee-2af9b9174d17'
+settings:
+  id: 'block_content:8612970b-64c7-46f6-92ee-2af9b9174d17'
+  label: 'call to order'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

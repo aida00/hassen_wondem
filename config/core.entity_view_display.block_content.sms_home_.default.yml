@@ -1,0 +1,38 @@
+uuid: 09fee838-fbbd-4dc7-b3c3-59d530c02594
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.sms_home_
+    - field.field.block_content.sms_home_.body
+    - field.field.block_content.sms_home_.field_sms_home
+  module:
+    - link
+    - text
+id: block_content.sms_home_.default
+targetEntityType: block_content
+bundle: sms_home_
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_sms_home:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

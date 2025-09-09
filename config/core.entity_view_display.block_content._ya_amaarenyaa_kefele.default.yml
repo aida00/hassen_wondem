@@ -1,0 +1,43 @@
+uuid: 5b5c8287-79d7-496b-9873-907afd6c0d84
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type._ya_amaarenyaa_kefele
+    - field.field.block_content._ya_amaarenyaa_kefele.body
+    - field.field.block_content._ya_amaarenyaa_kefele.field_media_view_to_displace_in_
+    - field.field.block_content._ya_amaarenyaa_kefele.field_submissions_discription
+  module:
+    - text
+id: block_content._ya_amaarenyaa_kefele.default
+targetEntityType: block_content
+bundle: _ya_amaarenyaa_kefele
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_media_view_to_displace_in_:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_submissions_discription:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

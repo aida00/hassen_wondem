@@ -1,0 +1,26 @@
+uuid: 3ef1d2cb-dbda-4937-b201-113dec7bd0be
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_faq
+    - node.type.fhq
+  module:
+    - faqfield
+id: node.fhq.field_faq
+field_name: field_faq
+entity_type: node
+bundle: fhq
+label: FAQ
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    answer: 'Sky Medical Supplies LLC  is a  Medical suppl,  Medical equipment, and Medical consumables sales and service company founded in 2021 to deliver a timely and appropriate product and service to the Denver and surrounding community. '
+    question: 'What Does Sky Medical Supplies Do?'
+    answer_format: plain_text
+default_value_callback: ''
+settings:
+  default_format: plain_text
+field_type: faqfield

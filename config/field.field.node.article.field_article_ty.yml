@@ -1,0 +1,29 @@
+uuid: 19b65a8e-6f8e-48c5-bef0-65e887c71398
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_article_ty
+    - node.type.article
+    - taxonomy.vocabulary.article_type
+id: node.article.field_article_ty
+field_name: field_article_ty
+entity_type: node
+bundle: article
+label: 'Article Type'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      article_type: article_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

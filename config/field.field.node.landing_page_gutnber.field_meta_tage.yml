@@ -1,0 +1,21 @@
+uuid: 4173692c-77cb-4f60-b827-7991cf40832d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tage
+    - node.type.landing_page_gutnber
+  module:
+    - metatag
+id: node.landing_page_gutnber.field_meta_tage
+field_name: field_meta_tage
+entity_type: node
+bundle: landing_page_gutnber
+label: meta_tage
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag

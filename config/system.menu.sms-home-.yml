@@ -1,0 +1,8 @@
+uuid: dd8b9702-e923-49cd-8946-90cbc37528bc
+langcode: en
+status: true
+dependencies: {  }
+id: sms-home-
+label: 'sms home '
+description: 'skymedical home page'
+locked: false

@@ -1,0 +1,20 @@
+uuid: 4eeb0b16-7b57-4cda-8e96-ee911ceae892
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.fhq
+  module:
+    - path
+id: node.fhq.path
+field_name: path
+entity_type: node
+bundle: fhq
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

@@ -1,0 +1,13 @@
+name: HHass
+type: theme
+base theme: false
+
+core_version_requirement: ^10
+
+libraries:
+  - hhass/global
+description: 'A custom theme for HHass.'
+regions:
+  header: Header
+  content: Content
+  footer: Footer

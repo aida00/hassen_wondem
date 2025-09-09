@@ -1,0 +1,27 @@
+uuid: 4055311b-4bf5-4d88-8442-fe270fec565e
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.personal
+    - field.storage.contact_message.field_first_name
+  module:
+    - text
+id: contact_message.personal.field_first_name
+field_name: field_first_name
+entity_type: contact_message
+bundle: personal
+label: 'First Name'
+description: 'First and Last Name'
+required: true
+translatable: false
+default_value:
+  -
+    value: 'First Name'
+    format: basic_html
+  -
+    value: 'Last Name'
+    format: basic_html
+default_value_callback: ''
+settings: {  }
+field_type: text

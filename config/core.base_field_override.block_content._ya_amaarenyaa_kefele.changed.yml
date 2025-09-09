@@ -1,0 +1,18 @@
+uuid: f86f6e58-766b-4914-a9fa-4f239dacde88
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type._ya_amaarenyaa_kefele
+id: block_content._ya_amaarenyaa_kefele.changed
+field_name: changed
+entity_type: block_content
+bundle: _ya_amaarenyaa_kefele
+label: Changed
+description: 'The time that the custom block was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

@@ -1,0 +1,22 @@
+uuid: 87b5abb3-4faf-422e-8b4c-1bc5021f87ec
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.help_topic
+id: node.help_topic.status
+field_name: status
+entity_type: node
+bundle: help_topic
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

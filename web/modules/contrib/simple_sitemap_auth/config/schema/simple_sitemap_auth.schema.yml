@@ -1,0 +1,6 @@
+simple_sitemap_auth.settings:
+  type: config_object
+  mapping:
+    user:
+      label: 'User'
+      type: integer

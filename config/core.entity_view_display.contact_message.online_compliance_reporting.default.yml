@@ -1,0 +1,198 @@
+uuid: 671fb0ec-e33c-4a0d-867e-dae4c73b0217
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.online_compliance_reporting
+    - field.field.contact_message.online_compliance_reporting.field_department
+    - field.field.contact_message.online_compliance_reporting.field_email
+    - field.field.contact_message.online_compliance_reporting.field_f
+    - field.field.contact_message.online_compliance_reporting.field_l
+    - field.field.contact_message.online_compliance_reporting.field_phone_no
+    - field.field.contact_message.online_compliance_reporting.layout_builder__layout
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: true
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: 'top of contact'
+          context_mapping: {  }
+          column_widths: 67-33
+        components:
+          980226ec-6411-4880-a384-889c52ae5295:
+            uuid: 980226ec-6411-4880-a384-889c52ae5295
+            region: first
+            configuration:
+              id: 'field_block:contact_message:online_compliance_reporting:field_l'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          2fd2786d-31fa-49c3-958a-0ac7261eb9ec:
+            uuid: 2fd2786d-31fa-49c3-958a-0ac7261eb9ec
+            region: first
+            configuration:
+              id: 'field_block:contact_message:online_compliance_reporting:field_f'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          bb875b60-44db-4aa0-b81a-380b95a0e261:
+            uuid: bb875b60-44db-4aa0-b81a-380b95a0e261
+            region: first
+            configuration:
+              id: 'field_block:contact_message:online_compliance_reporting:field_email'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: basic_string
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          9835fd82-1ebd-45b8-9187-e2d10a340cf2:
+            uuid: 9835fd82-1ebd-45b8-9187-e2d10a340cf2
+            region: first
+            configuration:
+              id: 'field_block:contact_message:online_compliance_reporting:field_phone_no'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: basic_string
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          735c8cf3-83a9-49d6-af41-017a6dbc8702:
+            uuid: 735c8cf3-83a9-49d6-af41-017a6dbc8702
+            region: second
+            configuration:
+              id: 'block_content:174e8d50-3621-447d-a1b4-67db7ef487d6'
+              label: 'Compliance Report Form'
+              label_display: visible
+              provider: block_content
+              status: true
+              info: ''
+              view_mode: full
+              context_mapping: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: content
+          context_mapping: {  }
+          column_widths: 67-33
+        components:
+          2a5e9068-2bac-49e6-b8da-ee72756cb83a:
+            uuid: 2a5e9068-2bac-49e6-b8da-ee72756cb83a
+            region: first
+            configuration:
+              id: 'field_block:contact_message:online_compliance_reporting:message'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          7a17fb5f-8c54-44cd-8f14-77450d4e6f58:
+            uuid: 7a17fb5f-8c54-44cd-8f14-77450d4e6f58
+            region: second
+            configuration:
+              id: 'field_block:contact_message:online_compliance_reporting:field_department'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
+        third_party_settings: {  }
+id: contact_message.online_compliance_reporting.default
+targetEntityType: contact_message
+bundle: online_compliance_reporting
+mode: default
+content:
+  field_department:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_email:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_f:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_l:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_phone_no:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  message:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  layout_builder__layout: true
+  search_api_excerpt: true

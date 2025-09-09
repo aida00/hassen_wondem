@@ -1,0 +1,17 @@
+uuid: 415efa9e-048a-4e0a-8811-8983a62bdad1
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Help Topic'
+type: help_topic
+description: 'describes help for uses of the site'
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: true

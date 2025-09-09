@@ -1,0 +1,5 @@
+simple_sitemap_auth.settings:
+  route_name: simple_sitemap_auth.settings
+  title: 'User'
+  base_route: simple_sitemap.sitemaps
+  weight: 2

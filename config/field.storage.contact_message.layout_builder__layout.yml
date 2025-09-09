@@ -1,0 +1,19 @@
+uuid: bb7142be-3fec-4402-8ec1-e1738b1419e1
+langcode: en
+status: true
+dependencies:
+  module:
+    - contact
+    - layout_builder
+id: contact_message.layout_builder__layout
+field_name: layout_builder__layout
+entity_type: contact_message
+type: layout_section
+settings: {  }
+module: layout_builder
+locked: true
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

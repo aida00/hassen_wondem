@@ -1,0 +1,22 @@
+uuid: 1c9571df-2192-4e94-b992-cd998cd21150
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.compliance_program
+id: node.compliance_program.status
+field_name: status
+entity_type: node
+bundle: compliance_program
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,18 @@
+uuid: 940bd42c-74cb-47c4-9423-8c2a6b396304
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.article_key_words2
+id: taxonomy_term.article_key_words2.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: article_key_words2
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

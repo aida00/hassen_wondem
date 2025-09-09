@@ -1,0 +1,60 @@
+uuid: 91a83b4a-b109-4337-8202-cf18d7380130
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type._ya_amaarenyaa_kefele
+    - field.field.block_content._ya_amaarenyaa_kefele.body
+    - field.field.block_content._ya_amaarenyaa_kefele.field_media_view_to_displace_in_
+    - field.field.block_content._ya_amaarenyaa_kefele.field_submissions_discription
+  module:
+    - text
+id: block_content._ya_amaarenyaa_kefele.default
+targetEntityType: block_content
+bundle: _ya_amaarenyaa_kefele
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 26
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_media_view_to_displace_in_:
+    type: entity_reference_autocomplete
+    weight: 27
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_submissions_discription:
+    type: string_textfield
+    weight: 28
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

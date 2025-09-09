@@ -1,0 +1,21 @@
+uuid: 2a90ffa4-048c-41da-861c-18be1b5e899e
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.landing_page_banner
+    - field.storage.block_content.field_text_align
+  module:
+    - options
+id: block_content.landing_page_banner.field_text_align
+field_name: field_text_align
+entity_type: block_content
+bundle: landing_page_banner
+label: 'text align'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

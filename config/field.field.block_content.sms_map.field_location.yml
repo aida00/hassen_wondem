@@ -1,0 +1,21 @@
+uuid: 9a147831-6693-456d-a1b5-10c8af902a78
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.sms_map
+    - field.storage.block_content.field_location
+id: block_content.sms_map.field_location
+field_name: field_location
+entity_type: block_content
+bundle: sms_map
+label: 'Location Description'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: '8340 Northfield Blvd unit 1680, Denver, CO 80238'
+default_value_callback: ''
+settings: {  }
+field_type: string

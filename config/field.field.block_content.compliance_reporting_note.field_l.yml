@@ -1,0 +1,19 @@
+uuid: 375f7c88-0382-44c8-8b08-1eda45122955
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.compliance_reporting_note
+    - field.storage.block_content.field_l
+id: block_content.compliance_reporting_note.field_l
+field_name: field_l
+entity_type: block_content
+bundle: compliance_reporting_note
+label: 'Last Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

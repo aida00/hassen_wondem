@@ -1,0 +1,20 @@
+uuid: 223123fb-fcc8-4b54-8111-08b48e1a9e02
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.policy_procedure_manual_
+id: node.policy_procedure_manual_.menu_link
+field_name: menu_link
+entity_type: node
+bundle: policy_procedure_manual_
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

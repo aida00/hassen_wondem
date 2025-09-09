@@ -1,0 +1,9 @@
+uuid: ff1410af-d590-4a85-ba63-c2f9c0d8b95a
+langcode: en
+status: true
+dependencies: {  }
+name: 'Event Categories'
+vid: event_categories
+description: null
+weight: 0
+new_revision: false

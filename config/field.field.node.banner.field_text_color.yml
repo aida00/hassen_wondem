@@ -1,0 +1,21 @@
+uuid: 5c93d05f-2fbf-44c3-9f95-9a086774e4e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_text_color
+    - node.type.banner
+  module:
+    - options
+id: node.banner.field_text_color
+field_name: field_text_color
+entity_type: node
+bundle: banner
+label: 'Text Color'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,22 @@
+uuid: ee780c65-8d2b-44e0-8ac3-79f97311aea8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.fhq
+id: node.fhq.promote
+field_name: promote
+entity_type: node
+bundle: fhq
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

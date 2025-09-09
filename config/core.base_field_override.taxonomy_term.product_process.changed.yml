@@ -1,0 +1,18 @@
+uuid: 5c420fdf-dbd7-4648-a26b-4ddc29eb8607
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.product_process
+id: taxonomy_term.product_process.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: product_process
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

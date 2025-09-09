@@ -1,0 +1,20 @@
+uuid: b8c38670-5b31-454d-a598-67de5d4ab0a4
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.compliance_program
+id: node.compliance_program.menu_link
+field_name: menu_link
+entity_type: node
+bundle: compliance_program
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

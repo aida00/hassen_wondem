@@ -1,0 +1,13 @@
+uuid: 5b55d05a-7a20-4bd5-90d8-21765d070e75
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 92bXZdyYJ5xqukdfmGRr_CYcwm1vfuS8b8aJ7X_G7E0
+id: taxonomy_term
+label: 'Taxonomy term'
+tags:
+  canonical_url: '[term:url]'
+  description: '[term:description]'
+  keywords: 'Medical Supplies,  lift chair, wheelchair, commode, compression socks, brace, knee scooter rental in denver, golden lift chair, wound care products, wound dressing, manual wheelchair, transport chair, reclining wheelchair, tens unit, ice therapy machine, compression socks, power chair, power scooter, nebulizer, portable oxygen concentrator, sky medical supplies '
+  title: '[term:name] | [site:name]'

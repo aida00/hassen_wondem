@@ -1,0 +1,20 @@
+uuid: d3102043-94c2-4ba5-a819-f372f1535c00
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.policy_procedure_manual_
+  module:
+    - path
+id: node.policy_procedure_manual_.path
+field_name: path
+entity_type: node
+bundle: policy_procedure_manual_
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

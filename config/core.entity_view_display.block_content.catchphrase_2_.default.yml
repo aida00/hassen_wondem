@@ -1,0 +1,24 @@
+uuid: 97c7a1ff-251b-41fd-9c7e-d90ae1e33099
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.catchphrase_2_
+    - field.field.block_content.catchphrase_2_.body
+  module:
+    - text
+id: block_content.catchphrase_2_.default
+targetEntityType: block_content
+bundle: catchphrase_2_
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

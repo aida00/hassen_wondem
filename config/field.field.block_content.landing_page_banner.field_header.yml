@@ -1,0 +1,19 @@
+uuid: d60feb15-98f1-4d43-883f-7889167dd5b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.landing_page_banner
+    - field.storage.block_content.field_header
+id: block_content.landing_page_banner.field_header
+field_name: field_header
+entity_type: block_content
+bundle: landing_page_banner
+label: header
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

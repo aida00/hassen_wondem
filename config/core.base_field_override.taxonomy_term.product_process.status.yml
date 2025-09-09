@@ -1,0 +1,22 @@
+uuid: 92874218-be29-4080-94bc-e2a1e6371345
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.product_process
+id: taxonomy_term.product_process.status
+field_name: status
+entity_type: taxonomy_term
+bundle: product_process
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

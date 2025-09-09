@@ -1,0 +1,86 @@
+uuid: 0921cdc2-a828-4680-b29e-cb19907b4f5c
+langcode: en
+status: true
+dependencies:
+  module:
+    - blazy
+    - editor
+    - gutenberg
+    - token_filter
+_core:
+  default_config_hash: P8ddpAIKtawJDi5SzOwCzVnnNYqONewSTJ6Xn0dW_aQ
+name: 'Basic HTML'
+format: basic_html
+weight: 0
+filters:
+  blazy_filter:
+    id: blazy_filter
+    provider: blazy
+    status: false
+    weight: 3
+    settings:
+      media_switch: ''
+      hybrid_style: ''
+      box_style: ''
+      box_media_style: ''
+      box_caption: ''
+      filter_tags:
+        img: img
+        iframe: iframe
+      use_data_uri: '0'
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: true
+    weight: 11
+    settings: {  }
+  filter_align:
+    id: filter_align
+    provider: filter
+    status: true
+    weight: 7
+    settings: {  }
+  filter_caption:
+    id: filter_caption
+    provider: filter
+    status: true
+    weight: 8
+    settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<br> <p> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <cite> <dl> <dt> <dd> <span> <a hreflang href> <blockquote cite> <ul type> <ol type start> <img src alt height width data-entity-type data-entity-uuid data-align data-caption> <strong> <em> <code> <li> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption>'
+      filter_html_help: false
+      filter_html_nofollow: false
+  filter_html_image_secure:
+    id: filter_html_image_secure
+    provider: filter
+    status: true
+    weight: 9
+    settings: {  }
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: 12
+    settings: {  }
+  gutenberg:
+    id: gutenberg
+    provider: gutenberg
+    status: false
+    weight: 0
+    settings:
+      processor_settings:
+        oembed:
+          maxwidth: 800
+          providers: "#https?://(www\\.)?youtube.com/watch.*#i | https://www.youtube.com/oembed | true\r\n#https?://youtu\\.be/\\w*#i | https://www.youtube.com/oembed | true\r\n#https?://(www\\.)?vimeo\\.com/\\w*#i | http://vimeo.com/api/oembed.json | true\r\n#http://(www\\.)?hulu\\.com/watch/.*#i | http://www.hulu.com/api/oembed.json | true\r\n#https?://(www\\.)?twitter.com/.+?/status(es)?/.*#i | https://api.twitter.com/1/statuses/oembed.json | true\r\n#https?:\\/\\/(www\\.)?google\\.com\\/maps\\/embed\\?pb\\=.*#i | http://open.iframe.ly/api/oembed | true\r\n#https?://maps.google.com/maps.*#i | google-maps | LOCAL\r\n#https?://docs.google.com/(document|spreadsheet)/.*#i | google-docs | LOCAL"
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: false
+    weight: 0
+    settings:
+      replace_empty: false

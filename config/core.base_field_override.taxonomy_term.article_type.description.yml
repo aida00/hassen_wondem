@@ -1,0 +1,20 @@
+uuid: cd347aee-f01c-4bb3-9c9d-9f7ecf5eeb2a
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.article_type
+  module:
+    - text
+id: taxonomy_term.article_type.description
+field_name: description
+entity_type: taxonomy_term
+bundle: article_type
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,23 @@
+uuid: 28420205-d62b-4b64-823a-91056b630982
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.article
+  module:
+    - comment
+    - file
+    - node
+id: articles_editor
+label: articles-editor
+weight: 4
+is_admin: null
+permissions:
+  - 'create article content'
+  - 'delete article revisions'
+  - 'delete own files'
+  - 'edit any article content'
+  - 'edit own article content'
+  - 'edit own comments'
+  - 'revert article revisions'
+  - 'view article revisions'

@@ -1,0 +1,20 @@
+uuid: 88f97a51-340d-48b3-a995-8706a2b42b68
+langcode: en
+status: false
+dependencies:
+  theme:
+    - hhass
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: hhass_page_title
+theme: hhass
+region: header
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

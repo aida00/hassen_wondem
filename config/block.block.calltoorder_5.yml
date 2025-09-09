@@ -1,0 +1,30 @@
+uuid: a6f033a6-e9e3-4054-8da8-511213100328
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:8612970b-64c7-46f6-92ee-2af9b9174d17'
+  module:
+    - block_content
+    - system
+  theme:
+    - bootstrap5
+id: calltoorder_5
+theme: bootstrap5
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'block_content:8612970b-64c7-46f6-92ee-2af9b9174d17'
+settings:
+  id: 'block_content:8612970b-64c7-46f6-92ee-2af9b9174d17'
+  label: 'call to order'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

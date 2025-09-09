@@ -1,0 +1,20 @@
+uuid: ddee2313-964c-4868-891e-7e44335d446f
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+    - media
+id: block_content.field_media_view_to_displace_in_
+field_name: field_media_view_to_displace_in_
+entity_type: block_content
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,25 @@
+uuid: 48c5ff39-5b23-4e3c-bf04-b1404ddf6639
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.personal
+    - field.storage.contact_message.field_telephone_number
+id: contact_message.personal.field_telephone_number
+field_name: field_telephone_number
+entity_type: contact_message
+bundle: personal
+label: 'Telephone Number'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 5555555555
+default_value_callback: ''
+settings:
+  min: 6
+  max: 6
+  prefix: 'tel:'
+  suffix: ''
+field_type: integer

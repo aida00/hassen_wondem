@@ -1,0 +1,39 @@
+uuid: 67e6fc22-aa76-471a-9c8f-6bdeb5001716
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: sL588ui1E_8-2c_UupwyYxcqX2OVyMFp3HTLbbFqvPc
+id: global
+label: Global
+tags:
+  abstract: '[node:summary]'
+  canonical_url: '[current-page:url]'
+  description: '[node:summary] sky medical supplies Access a wide range of medical supplies in Denver, Colorado, at affordable prices. Shop rent a lift chair, knee scooter, hospital bed portable oxygen concentrator, and mobility scooter to make your recovery easy and quick.'
+  generator: Drupal
+  keywords: 'Medical Supplies,  lift chair, wheelchair, commode, compression socks, brace, knee scooter rental in denver, golden lift chair, wound care products, wound dressing, manual wheelchair, transport chair, reclining wheelchair, tens unit, ice therapy machine, compression socks, power chair, power scooter, nebulizer, portable oxygen concentrator, sky medical supplies '
+  og_description: '[current-page:title]'
+  og_site_name: '[site:name]'
+  og_title: '[current-page:title]'
+  og_url: '[current-page:url:absolute]'
+  robots: 'index, follow'
+  schema_organization_additional_type: MedicalBusiness
+  schema_organization_description: '[site:name]'
+  schema_organization_id: '[site:url]'
+  schema_organization_name: 'Sky Medical'
+  schema_organization_type: Organization
+  schema_organization_url: '[site:url]'
+  schema_product_category: 'Medical Items'
+  schema_product_id: '[site:url]'
+  schema_product_name: '[site:name]'
+  schema_product_type: Product
+  schema_web_page_breadcrumb: 'Yes'
+  schema_web_page_description: '[node:summary]'
+  schema_web_page_id: '[site:url]'
+  schema_web_page_in_language: English
+  schema_web_page_type: WebPage
+  schema_web_site_id: '[site:url]'
+  schema_web_site_name: 'Sky Medical Supplies'
+  schema_web_site_url: 'https://simplyrenting.com/en'
+  shortlink: '[current-page:url:unaliased]'
+  title: '[current-page:title] | [site:name]'

@@ -1,0 +1,21 @@
+uuid: d6525af2-d6a2-4f87-a85b-913108695d46
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+id: block_content.field_submissions_discription
+field_name: field_submissions_discription
+entity_type: block_content
+type: string
+settings:
+  max_length: 33
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

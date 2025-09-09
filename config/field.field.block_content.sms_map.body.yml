@@ -1,0 +1,23 @@
+uuid: bdf1bf2c-af4d-4214-9862-73256891fae5
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.sms_map
+    - field.storage.block_content.body
+  module:
+    - text
+id: block_content.sms_map.body
+field_name: body
+entity_type: block_content
+bundle: sms_map
+label: discription
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

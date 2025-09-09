@@ -1,0 +1,8 @@
+uuid: 20a55a56-f3ad-4356-ae4f-6965fb23dcb1
+langcode: am
+status: true
+dependencies: {  }
+id: disclaimer_cms
+label: 'Disclaimer CMS'
+revision: true
+description: 'states the cms desclaimer'

@@ -1,0 +1,20 @@
+uuid: ec08357c-03fb-486c-a9f5-a1cce02ff62b
+langcode: am
+status: true
+dependencies:
+  config:
+    - media.type.image
+id: media.image.name
+field_name: name
+entity_type: media
+bundle: image
+label: Name
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings: {  }
+field_type: string

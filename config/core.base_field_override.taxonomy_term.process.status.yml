@@ -1,0 +1,22 @@
+uuid: fb25c65f-c717-4998-8f8c-432906818ba1
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.process
+id: taxonomy_term.process.status
+field_name: status
+entity_type: taxonomy_term
+bundle: process
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,20 @@
+uuid: cba19b75-fd4b-4a59-81d3-c906af8c658e
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.article_key_words2
+  module:
+    - path
+id: taxonomy_term.article_key_words2.path
+field_name: path
+entity_type: taxonomy_term
+bundle: article_key_words2
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

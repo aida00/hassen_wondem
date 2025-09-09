@@ -1,0 +1,11 @@
+uuid: 842ddae0-1cf0-4492-91e3-d9cc088e8a17
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.online_compliance_reporting
+id: contact_message.online_compliance_reporting
+target_entity_type_id: contact_message
+target_bundle: online_compliance_reporting
+default_langcode: site_default
+language_alterable: false

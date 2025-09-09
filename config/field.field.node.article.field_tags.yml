@@ -1,0 +1,19 @@
+uuid: 902bff85-20df-4605-97f5-73c9c5b7ea09
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tags
+    - node.type.article
+id: node.article.field_tags
+field_name: field_tags
+entity_type: node
+bundle: article
+label: tags
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

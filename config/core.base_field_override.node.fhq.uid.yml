@@ -1,0 +1,20 @@
+uuid: 32e882a2-8daf-4244-8570-b99f5069b7f5
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.fhq
+id: node.fhq.uid
+field_name: uid
+entity_type: node
+bundle: fhq
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

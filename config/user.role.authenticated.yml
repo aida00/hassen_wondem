@@ -1,0 +1,58 @@
+uuid: 3992d94f-b517-47e2-b457-acc4c86652d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+    - node.type.compliance_program
+    - node.type.forum
+    - node.type.help_topic
+    - node.type.page
+    - node.type.policy_procedure_manual_
+    - node.type.product_
+    - node.type.terms_of_use
+    - taxonomy.vocabulary.forums
+  module:
+    - book
+    - comment
+    - contact
+    - file
+    - filter
+    - google_analytics
+    - media
+    - node
+    - search
+    - shortcut
+    - system
+    - taxonomy
+_core:
+  default_config_hash: btW6TFHajhy7Eo6YUvdFiPh4TcPggo8GBXYctjV6zag
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access content overview'
+  - 'access printer-friendly version'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'create forum content'
+  - 'create terms in forums'
+  - 'delete own files'
+  - 'opt-in or out of google analytics tracking'
+  - 'post comments'
+  - 'search content'
+  - 'skip comment approval'
+  - 'use text format basic_html'
+  - 'view compliance_program revisions'
+  - 'view forum revisions'
+  - 'view help_topic revisions'
+  - 'view media'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view page revisions'
+  - 'view policy_procedure_manual_ revisions'
+  - 'view product_ revisions'
+  - 'view terms_of_use revisions'

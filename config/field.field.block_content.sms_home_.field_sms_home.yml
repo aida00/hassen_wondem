@@ -1,0 +1,28 @@
+uuid: 35c24e3b-7226-42be-a228-96c3e7fac9ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.sms_home_
+    - field.storage.block_content.field_sms_home
+  module:
+    - link
+id: block_content.sms_home_.field_sms_home
+field_name: field_sms_home
+entity_type: block_content
+bundle: sms_home_
+label: 'sms home '
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    attributes: {  }
+    uri: 'https://skymedicalsupplies.net/'
+    title: 'sms home'
+    options: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

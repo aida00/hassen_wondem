@@ -1,0 +1,18 @@
+uuid: 8222a404-6647-4bf1-9bcc-5bfe0726acbc
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.catchphrase_2_
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: block_content.catchphrase_2_
+target_entity_type_id: block_content
+target_bundle: catchphrase_2_
+default_langcode: site_default
+language_alterable: false

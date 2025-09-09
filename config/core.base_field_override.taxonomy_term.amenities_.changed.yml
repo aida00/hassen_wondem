@@ -1,0 +1,18 @@
+uuid: 5121d9e4-0383-43a7-8799-f0fbb0b5bc53
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.amenities_
+id: taxonomy_term.amenities_.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: amenities_
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

@@ -1,0 +1,9 @@
+uuid: 12ddb7da-f5cb-48ff-af1c-63302a5f3a04
+langcode: en
+status: true
+dependencies: {  }
+name: Mechanism
+vid: mechanism
+description: null
+weight: 0
+new_revision: false

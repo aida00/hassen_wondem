@@ -1,0 +1,30 @@
+uuid: 4db2824c-f189-4105-8a03-8b87b14d4ba8
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:banner:1bb17023-9bbf-4f39-8f38-dbc62d834a2c'
+  module:
+    - block_content
+    - system
+  theme:
+    - olivero
+id: home03banner1
+theme: olivero
+region: hero
+weight: 0
+provider: null
+plugin: 'block_content:1bb17023-9bbf-4f39-8f38-dbc62d834a2c'
+settings:
+  id: 'block_content:1bb17023-9bbf-4f39-8f38-dbc62d834a2c'
+  label: 'Home 03 Banner 1'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

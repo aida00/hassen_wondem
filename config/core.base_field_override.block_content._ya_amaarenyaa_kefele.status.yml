@@ -1,0 +1,22 @@
+uuid: 0544080e-b694-4f02-941b-d0b86fafc24e
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type._ya_amaarenyaa_kefele
+id: block_content._ya_amaarenyaa_kefele.status
+field_name: status
+entity_type: block_content
+bundle: _ya_amaarenyaa_kefele
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

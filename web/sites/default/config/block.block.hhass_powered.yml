@@ -1,0 +1,22 @@
+uuid: 89467d4c-ae3c-425b-93ad-6cbf9a9ccfc4
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - hhass
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: hhass_powered
+theme: hhass
+region: header
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

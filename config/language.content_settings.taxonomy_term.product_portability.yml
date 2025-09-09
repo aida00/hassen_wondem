@@ -1,0 +1,18 @@
+uuid: 22794ee9-a0d8-4424-999e-af249c64a9c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.product_portability
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: taxonomy_term.product_portability
+target_entity_type_id: taxonomy_term
+target_bundle: product_portability
+default_langcode: site_default
+language_alterable: false

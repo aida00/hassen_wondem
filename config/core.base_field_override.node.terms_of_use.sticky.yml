@@ -1,0 +1,22 @@
+uuid: b74ec219-be88-4c17-887e-24d55293fb20
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.terms_of_use
+id: node.terms_of_use.sticky
+field_name: sticky
+entity_type: node
+bundle: terms_of_use
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

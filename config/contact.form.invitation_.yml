@@ -1,0 +1,12 @@
+uuid: 683dcfd3-20f9-4e87-8fef-dcb4941858cb
+langcode: en
+status: true
+dependencies: {  }
+id: invitation_
+label: 'invitation '
+recipients:
+  - agarorun@gmail.com
+reply: 'thank you so much that is very kind'
+weight: 0
+message: 'what doe it look like to write for sky medical supplies'
+redirect: /about

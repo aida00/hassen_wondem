@@ -1,0 +1,20 @@
+uuid: 9ba50702-ba76-45fa-b100-f9aab9b2c101
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.forums
+  module:
+    - text
+id: taxonomy_term.forums.description
+field_name: description
+entity_type: taxonomy_term
+bundle: forums
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

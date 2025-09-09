@@ -1,0 +1,51 @@
+uuid: 17205fd2-6cb9-4f27-86d5-44e879076b3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.compliance_reporting_note
+    - field.field.block_content.compliance_reporting_note.body
+    - field.field.block_content.compliance_reporting_note.field_f
+    - field.field.block_content.compliance_reporting_note.field_l
+    - field.field.block_content.compliance_reporting_note.field_title
+  module:
+    - text
+id: block_content.compliance_reporting_note.default
+targetEntityType: block_content
+bundle: compliance_reporting_note
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_f:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_l:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

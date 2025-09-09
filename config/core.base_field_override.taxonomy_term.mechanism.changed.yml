@@ -1,0 +1,18 @@
+uuid: b21e93bb-53d5-4c13-aeef-3f58ae1382d6
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.mechanism
+id: taxonomy_term.mechanism.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: mechanism
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

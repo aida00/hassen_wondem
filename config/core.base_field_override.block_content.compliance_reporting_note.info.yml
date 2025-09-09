@@ -1,0 +1,18 @@
+uuid: 30745e10-bbbb-4836-be65-74ddcf87aba6
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type.compliance_reporting_note
+id: block_content.compliance_reporting_note.info
+field_name: info
+entity_type: block_content
+bundle: compliance_reporting_note
+label: 'Block description'
+description: 'A brief description of your block.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

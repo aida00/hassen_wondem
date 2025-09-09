@@ -1,0 +1,8 @@
+uuid: 07123362-4438-4873-b64a-c54dc65c0572
+langcode: en
+status: true
+dependencies: {  }
+id: landing_pageblock_upper
+label: 'landing pageBlock upper'
+revision: false
+description: 'a Block covering upper part of the landing page'

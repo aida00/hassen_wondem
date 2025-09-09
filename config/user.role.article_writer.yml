@@ -1,0 +1,23 @@
+uuid: bd270109-f072-4449-a8d5-1bb2dd4f634c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.article
+  module:
+    - comment
+    - file
+    - node
+id: article_writer
+label: article-writer
+weight: 3
+is_admin: null
+permissions:
+  - 'create article content'
+  - 'delete article revisions'
+  - 'delete own files'
+  - 'edit any article content'
+  - 'edit own article content'
+  - 'edit own comments'
+  - 'revert article revisions'
+  - 'view article revisions'

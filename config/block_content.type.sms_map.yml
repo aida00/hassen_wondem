@@ -1,0 +1,8 @@
+uuid: 2223977e-3fe8-49c9-908f-aaaaa9c1987d
+langcode: en
+status: true
+dependencies: {  }
+id: sms_map
+label: SMS-map
+revision: true
+description: 'a block to display with contact form'

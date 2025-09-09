@@ -1,0 +1,20 @@
+uuid: 11cccdb2-6cea-4c13-bb24-c2bdf153ca34
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.terms_of_use
+  module:
+    - path
+id: node.terms_of_use.path
+field_name: path
+entity_type: node
+bundle: terms_of_use
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

@@ -1,0 +1,26 @@
+.wp-block {
+  max-width: 720px;
+
+  &[data-align="wide"],
+  &[data-align="full"] {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.reusable-block {
+  &__message {
+    width: 320px;
+    padding: 10px;
+    font-size: 12px;
+    background-color: $reuse-block-message-bg-color;
+  }
+
+  &__popover.components-popover:not(.is-without-arrow) {
+    z-index: 99999;
+    &:after {
+      border-bottom-color: $reuse-block-message-bg-color !important;
+    }
+  }
+}

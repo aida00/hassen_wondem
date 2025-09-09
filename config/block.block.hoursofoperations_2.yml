@@ -1,0 +1,30 @@
+uuid: 33cd2131-dfa8-4812-a57e-c01d8a0b72f5
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:4c4893f4-777e-4780-b9f2-2c8bc5c81d62'
+  module:
+    - block_content
+    - system
+  theme:
+    - olivero
+id: hoursofoperations_2
+theme: olivero
+region: content
+weight: -15
+provider: null
+plugin: 'block_content:4c4893f4-777e-4780-b9f2-2c8bc5c81d62'
+settings:
+  id: 'block_content:4c4893f4-777e-4780-b9f2-2c8bc5c81d62'
+  label: 'Hours of operations'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: ' <front>'

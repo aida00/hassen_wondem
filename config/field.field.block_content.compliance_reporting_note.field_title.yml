@@ -1,0 +1,21 @@
+uuid: 895279e3-f8dc-4c9a-8f85-d1641c2b2dc1
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.compliance_reporting_note
+    - field.storage.block_content.field_title
+id: block_content.compliance_reporting_note.field_title
+field_name: field_title
+entity_type: block_content
+bundle: compliance_reporting_note
+label: title
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'Compliance Report Form'
+default_value_callback: ''
+settings: {  }
+field_type: string

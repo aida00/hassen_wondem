@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * Theme hooks.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function hhass_page_attachments(array &$attachments) {
+  $path_matcher = \Drupal::service('path.matcher');
+
+  // Front page
+  if ($path_matcher->isFrontPage()) {
+    $attachments['#attached']['library'][] = 'hhass/frontpage';
+  }
+
+  // Your portfolio view
+  $route = \Drupal::routeMatch()->getRouteName();
+  if ($route === 'view.portfolio.page_1') {
+    $attachments['#attached']['library'][] = 'hhass/portfolio';
+  }
+}
+/**
+ * Implements hook_preprocess_page().
+ */
+function hhass_preprocess_page(array &$variables) {
+  // Add example content for the front page.
+  if (\Drupal::routeMatch()->getRouteName() === '<front>') {
+    $variables['front_projects'] = [
+      [
+        'title' => 'Project One',
+        'summary' => 'A summary of project one.',
+        'image' => '/themes/custom/hhass/images/project-1.jpg',
+        'url' => '/project/1',
+      ],
+      [
+        'title' => 'Project Two',
+        'summary' => 'A summary of project two.',
+        'image' => '/themes/custom/hhass/images/project-2.jpg',
+        'url' => '/project/2',
+      ],
+      [
+        'title' => 'Project Three',
+        'summary' => 'A summary of project three.',
+        'image' => '/themes/custom/hhass/images/project-3.jpg',
+        'url' => '/project/3',
+      ],
+    ];
+  }
+}

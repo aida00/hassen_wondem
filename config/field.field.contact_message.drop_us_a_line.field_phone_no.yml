@@ -1,0 +1,21 @@
+uuid: 176cb2bb-a629-42d3-baec-9458ec1b9d9f
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.drop_us_a_line
+    - field.storage.contact_message.field_phone_no
+  module:
+    - telephone
+id: contact_message.drop_us_a_line.field_phone_no
+field_name: field_phone_no
+entity_type: contact_message
+bundle: drop_us_a_line
+label: 'Phone Number '
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

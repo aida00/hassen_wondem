@@ -1,0 +1,30 @@
+uuid: 34f7f5a0-8fe6-41d1-95bb-77e33cce5859
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:87a33a39-2276-4cd7-841a-8e27e10f8d9f'
+  module:
+    - block_content
+    - system
+  theme:
+    - olivero
+id: serviceproductskeywords_2
+theme: olivero
+region: content
+weight: -8
+provider: null
+plugin: 'block_content:87a33a39-2276-4cd7-841a-8e27e10f8d9f'
+settings:
+  id: 'block_content:87a33a39-2276-4cd7-841a-8e27e10f8d9f'
+  label: 'service & products key words'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: /node

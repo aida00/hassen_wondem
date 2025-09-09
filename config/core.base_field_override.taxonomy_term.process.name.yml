@@ -1,0 +1,18 @@
+uuid: cf2e75fc-51c7-4f40-952c-4e8582b1483a
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.process
+id: taxonomy_term.process.name
+field_name: name
+entity_type: taxonomy_term
+bundle: process
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

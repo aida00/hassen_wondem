@@ -1,0 +1,20 @@
+uuid: c7e33fa4-1410-42dc-b832-ce4172ae0fa3
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.product_portability
+  module:
+    - path
+id: taxonomy_term.product_portability.path
+field_name: path
+entity_type: taxonomy_term
+bundle: product_portability
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

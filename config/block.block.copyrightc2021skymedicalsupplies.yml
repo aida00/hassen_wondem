@@ -1,0 +1,25 @@
+uuid: 38a22483-7446-4940-abde-ac81c2e432ed
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:3d2d28b2-350f-4559-bcc4-6ca234752830'
+  module:
+    - block_content
+  theme:
+    - olivero
+id: copyrightc2021skymedicalsupplies
+theme: olivero
+region: footer_bottom
+weight: 0
+provider: null
+plugin: 'block_content:3d2d28b2-350f-4559-bcc4-6ca234752830'
+settings:
+  id: 'block_content:3d2d28b2-350f-4559-bcc4-6ca234752830'
+  label: 'copyright © 2021 Sky Medical Supplies'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

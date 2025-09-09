@@ -1,0 +1,22 @@
+uuid: aed266c5-c0e0-46bd-96cf-3d190bbfdf8e
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.policy_procedure_manual_
+id: node.policy_procedure_manual_.status
+field_name: status
+entity_type: node
+bundle: policy_procedure_manual_
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,17 @@
+uuid: bd2a0e2b-35c6-47c2-a086-fd67c4172842
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Terms of Use'
+type: terms_of_use
+description: 'describes a type of contents used in terms of use'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

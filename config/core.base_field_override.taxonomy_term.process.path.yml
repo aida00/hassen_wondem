@@ -1,0 +1,20 @@
+uuid: a94e9c65-d7b0-4589-b576-ec0d72b80b44
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.process
+  module:
+    - path
+id: taxonomy_term.process.path
+field_name: path
+entity_type: taxonomy_term
+bundle: process
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

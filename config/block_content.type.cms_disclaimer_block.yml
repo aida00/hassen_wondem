@@ -1,0 +1,8 @@
+uuid: 6c72bc0d-9abd-4d4f-99db-77325a109047
+langcode: am
+status: true
+dependencies: {  }
+id: cms_disclaimer_block
+label: 'CMS disclaimer block'
+revision: true
+description: 'legal declaimer for cms'

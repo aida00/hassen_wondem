@@ -1,0 +1,7 @@
+simple_sitemap_auth.settings:
+  path: '/admin/config/search/simplesitemap/user'
+  defaults:
+    _form: '\Drupal\simple_sitemap_auth\Form\SimplesitemapauthSettingsForm'
+    _title: 'Simple XML Sitemap'
+  requirements:
+    _permission: 'administer sitemap settings'

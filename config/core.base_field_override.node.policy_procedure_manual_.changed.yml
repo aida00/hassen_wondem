@@ -1,0 +1,18 @@
+uuid: 1626d094-b4e2-44b8-af77-1dda29b67241
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.policy_procedure_manual_
+id: node.policy_procedure_manual_.changed
+field_name: changed
+entity_type: node
+bundle: policy_procedure_manual_
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

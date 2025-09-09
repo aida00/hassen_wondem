@@ -1,0 +1,23 @@
+{
+    "name": "drupal/simple_sitemap_auth",
+    "description": "Simple XML Sitemap for nodes only accessible for authenticated users",
+    "type": "drupal-module",
+    "homepage": "https://drupal.org/project/simple_sitemap_auth",
+    "authors": [
+        {
+            "name": "Stefan Leitner (sleitner)",
+            "homepage": "https://www.drupal.org/u/sleitner",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://drupal.org/project/issues/simple_sitemap_auth",
+        "source": "https://cgit.drupalcode.org/simple_sitemap_auth"
+    },
+    "require": {
+        "drupal/simple_sitemap": "^4.0"
+    },
+    "require-dev": {
+        "drupal/node_view_permissions": "^1.5"
+    }
+}

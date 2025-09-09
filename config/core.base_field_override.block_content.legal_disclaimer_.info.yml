@@ -1,0 +1,18 @@
+uuid: 37043d06-9238-48f7-b4f4-7d324c91b06e
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type.legal_disclaimer_
+id: block_content.legal_disclaimer_.info
+field_name: info
+entity_type: block_content
+bundle: legal_disclaimer_
+label: 'Block description'
+description: 'A brief description of your block.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

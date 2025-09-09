@@ -1,0 +1,12 @@
+uuid: 23f20a16-30db-421e-9a3e-beb27ec66d96
+langcode: en
+status: true
+dependencies: {  }
+id: drop_us_a_line
+label: 'Drop us a line'
+recipients:
+  - admin@oype.com
+reply: ''
+weight: 0
+message: "Thank you for getting in touch with sky medical supplies! \r\n\r\nWe appreciate you contacting us. One of our colleagues will get back to you soon! Have a wonderful day!\r\n"
+redirect: /FHQ

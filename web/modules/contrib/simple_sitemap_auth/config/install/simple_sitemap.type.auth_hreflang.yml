@@ -1,0 +1,10 @@
+id: auth_hreflang
+label: Auth hreflang
+description: The hreflang sitemap type for nodes only accessible for authenticated users.
+sitemap_generator: auth
+url_generators:
+  - custom
+  - entity
+  - entity_menu_link_content
+  - arbitrary
+  - auth_entity

@@ -1,0 +1,28 @@
+uuid: 72f21254-d2cc-4814-99fe-c03907d86751
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.legal_disclaimer_
+    - field.storage.block_content.field_help
+  module:
+    - link
+id: block_content.legal_disclaimer_.field_help
+field_name: field_help
+entity_type: block_content
+bundle: legal_disclaimer_
+label: Help
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    attributes: {  }
+    uri: 'internal:/help'
+    title: 'Help topic'
+    options: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

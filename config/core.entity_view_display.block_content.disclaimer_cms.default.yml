@@ -1,0 +1,24 @@
+uuid: e0eba65a-1497-428b-8285-644590643aa3
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type.disclaimer_cms
+    - field.field.block_content.disclaimer_cms.body
+  module:
+    - text
+id: block_content.disclaimer_cms.default
+targetEntityType: block_content
+bundle: disclaimer_cms
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

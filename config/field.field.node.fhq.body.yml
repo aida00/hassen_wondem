@@ -1,0 +1,23 @@
+uuid: a104913a-92b0-4e63-afbf-beb16fa44f14
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.fhq
+  module:
+    - text
+id: node.fhq.body
+field_name: body
+entity_type: node
+bundle: fhq
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

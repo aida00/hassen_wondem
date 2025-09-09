@@ -1,0 +1,20 @@
+uuid: 20ef24c0-152b-497a-a660-c9d5ff9b909a
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.amenities_
+  module:
+    - path
+id: taxonomy_term.amenities_.path
+field_name: path
+entity_type: taxonomy_term
+bundle: amenities_
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

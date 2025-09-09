@@ -1,0 +1,29 @@
+uuid: 1c96cfda-d5b5-4985-a66d-2b0a8a6650ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_relevant_document
+    - media.type.document
+    - node.type.compliance_program
+id: node.compliance_program.field_relevant_document
+field_name: field_relevant_document
+entity_type: node
+bundle: compliance_program
+label: 'relevant document'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

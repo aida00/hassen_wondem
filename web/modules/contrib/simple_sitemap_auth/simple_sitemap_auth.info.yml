@@ -1,0 +1,14 @@
+name: "Simple XML Sitemap Auth"
+description: "Simple sitemap for nodes only accessible for authenticated users"
+core_version_requirement: ^9.3 || ^10
+package: SEO
+type: module
+dependencies:
+- simple_sitemap:simple_sitemap
+test_dependencies:
+- node_view_permissions:node_view_permissions
+
+# Information added by Drupal.org packaging script on 2023-04-11
+version: '2.1.0'
+project: 'simple_sitemap_auth'
+datestamp: 1681233907

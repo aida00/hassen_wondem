@@ -1,0 +1,67 @@
+uuid: b8d9ed3c-ff30-4bb4-81e1-673a6c5e214f
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.compliance_reporting_note
+    - field.field.block_content.compliance_reporting_note.body
+    - field.field.block_content.compliance_reporting_note.field_f
+    - field.field.block_content.compliance_reporting_note.field_l
+    - field.field.block_content.compliance_reporting_note.field_title
+  module:
+    - text
+id: block_content.compliance_reporting_note.default
+targetEntityType: block_content
+bundle: compliance_reporting_note
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 26
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_f:
+    type: string_textfield
+    weight: 28
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_l:
+    type: string_textfield
+    weight: 29
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,41 @@
+{% extends "html.html.twig" %}
+
+{% block page %}
+	<div
+		class="min-h-screen flex flex-col bg-gray-50">
+
+		{# Header Region #}
+		<header class="bg-blue-600 text-white shadow-md">
+			<div class="container mx-auto px-4 py-6 flex justify-between items-center">
+				<div class="text-xl font-bold">
+					{{ site_name }}
+				</div>
+				<nav class="space-x-4">
+					{{ page.header }}
+				</nav>
+			</div>
+		</header>
+
+		{# Main Content #}
+		<main class="flex-grow container mx-auto px-4 py-10 space-y-12">
+			{% block content %}
+				{{ page.content }}
+			{% endblock %}
+		</main>
+
+		{# Footer Region #}
+		<footer class="bg-gray-900 text-white py-10 mt-16">
+			<div class="container mx-auto px-4">
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+					{{ page.footer }}
+				</div>
+				<div class="text-center text-xs mt-6 text-gray-400">
+					&copy;
+					{{ "now"|date("Y") }}
+					HHass. All rights reserved.
+				</div>
+			</div>
+		</footer>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+uuid: 74342496-beac-4a43-b64f-09bea1f165a6
+langcode: en
+status: true
+dependencies: {  }
+id: online_compliance_reporting
+label: 'Online Compliance Reporting'
+recipients:
+  - contact@oype.com
+reply: ''
+weight: 0
+message: "Compliance Report Form\r\nInstructions for Compliance Report Form:\r\nPlease complete this form providing all relevant information with as much detail as possible.\r\nYou may choose to remain anonymous; however, that may hamper our ability to follow up on your concern.  This submission will be viewed within 14 days.  If you provide contact information, someone will contact you with follow-up information.  Additional information may be sent to csuhn_compliance@mail.colostate.edu or reported through our compliance hotline at (970) 491-3107.\r\nWe will take reasonable measures to ensure the confidentiality of the information you provide to us.  However, there may be circumstances when the disclosure of this information will become necessary.\r\nPrivacy notice: For privacy purposes, please limit the any personal information to your Student ID number and contact information. Do not provide any other private identification information, such as your birth date or any personal medical information, in these online forms."
+redirect: /FHQ

@@ -1,0 +1,20 @@
+uuid: fdbafe97-21a9-4d8e-8633-c9d7786b67e8
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.mechanism
+  module:
+    - path
+id: taxonomy_term.mechanism.path
+field_name: path
+entity_type: taxonomy_term
+bundle: mechanism
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

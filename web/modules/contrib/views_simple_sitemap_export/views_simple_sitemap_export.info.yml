@@ -1,0 +1,13 @@
+name: Views Simple XML Sitemap Export
+description: Export results from a View into a sitemap managed by Simple XML Sitemap.
+type: module
+core_version_requirement: ^9 || ^10
+package: SEO
+dependencies:
+  - simple_sitemap:simple_sitemap_views
+  - drupal:views
+
+# Information added by Drupal.org packaging script on 2022-12-24
+version: '1.0.0-beta2'
+project: 'views_simple_sitemap_export'
+datestamp: 1671919315

@@ -1,0 +1,12 @@
+uuid: f53625ca-f7ac-44b7-9c9c-9b96a66a4023
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+id: staff
+label: staff
+weight: 5
+is_admin: null
+permissions:
+  - 'delete own files'

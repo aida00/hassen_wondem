@@ -1,0 +1,20 @@
+uuid: 5c426600-3414-44f8-8108-1f28e681a8a8
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.fhq
+id: node.fhq.menu_link
+field_name: menu_link
+entity_type: node
+bundle: fhq
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

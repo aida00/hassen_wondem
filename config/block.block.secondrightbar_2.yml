@@ -1,0 +1,30 @@
+uuid: 69138e56-decc-4728-85c1-5f4abf299238
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:b68f9363-8baa-4b1a-9eaa-699e935df4e8'
+  module:
+    - block_content
+    - system
+  theme:
+    - olivero
+id: secondrightbar_2
+theme: olivero
+region: sidebar
+weight: 0
+provider: null
+plugin: 'block_content:b68f9363-8baa-4b1a-9eaa-699e935df4e8'
+settings:
+  id: 'block_content:b68f9363-8baa-4b1a-9eaa-699e935df4e8'
+  label: 'Out rentals '
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

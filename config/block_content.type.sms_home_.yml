@@ -1,0 +1,8 @@
+uuid: 6f4bcc3c-f0a2-4788-aac3-9f2a54b789c5
+langcode: en
+status: true
+dependencies: {  }
+id: sms_home_
+label: 'sms home '
+revision: true
+description: 'shows home page'

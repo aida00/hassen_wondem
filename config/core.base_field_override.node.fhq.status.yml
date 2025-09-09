@@ -1,0 +1,22 @@
+uuid: 1d9aa2f1-3a3a-4c8a-8413-79aea7eef2c3
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.fhq
+id: node.fhq.status
+field_name: status
+entity_type: node
+bundle: fhq
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

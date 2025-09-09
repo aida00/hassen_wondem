@@ -1,0 +1,20 @@
+uuid: 138e4ff3-4d0c-42b3-a027-3df0dd67db52
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.amenities_
+  module:
+    - text
+id: taxonomy_term.amenities_.description
+field_name: description
+entity_type: taxonomy_term
+bundle: amenities_
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

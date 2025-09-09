@@ -1,0 +1,8 @@
+uuid: c7c1a80d-ad3d-44c8-b91d-4f9313c62d2d
+langcode: en
+status: true
+dependencies: {  }
+id: catchphrase_2_
+label: 'catchphrase 2 '
+revision: false
+description: 'incudes lang option'

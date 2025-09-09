@@ -1,0 +1,19 @@
+uuid: 633c32cf-8814-4d55-a651-ed6ee3859791
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_resolution
+field_name: field_resolution
+entity_type: node
+type: text_with_summary
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

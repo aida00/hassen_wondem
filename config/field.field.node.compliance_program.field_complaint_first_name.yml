@@ -1,0 +1,19 @@
+uuid: d731fa28-6f1e-4b6c-90a3-43c52c78d3dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_complaint_first_name
+    - node.type.compliance_program
+id: node.compliance_program.field_complaint_first_name
+field_name: field_complaint_first_name
+entity_type: node
+bundle: compliance_program
+label: 'First Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,22 @@
+uuid: a2e9914a-9413-4c37-ad41-f883094f33a9
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.compliance_program
+id: node.compliance_program.sticky
+field_name: sticky
+entity_type: node
+bundle: compliance_program
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

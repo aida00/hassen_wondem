@@ -1,0 +1,11 @@
+uuid: 1a80542a-90a5-4a2f-b73c-ae09dae9267b
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.writer_registration
+label: 'Writer registration'
+description: ''
+targetEntityType: user
+cache: true

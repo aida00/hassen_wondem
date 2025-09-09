@@ -1,0 +1,22 @@
+uuid: 534337cc-41fa-48a3-97e6-4675275740b5
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type.legal_disclaimer_
+id: block_content.legal_disclaimer_.status
+field_name: status
+entity_type: block_content
+bundle: legal_disclaimer_
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

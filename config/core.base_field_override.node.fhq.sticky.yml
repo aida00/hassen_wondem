@@ -1,0 +1,22 @@
+uuid: 9827404d-4d77-45fb-ad15-044e0af905b1
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.fhq
+id: node.fhq.sticky
+field_name: sticky
+entity_type: node
+bundle: fhq
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

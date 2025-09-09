@@ -1,0 +1,22 @@
+uuid: 837fa572-aa15-4c5e-b26c-3e2798f7db61
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type.catchphrase_2_
+id: block_content.catchphrase_2_.status
+field_name: status
+entity_type: block_content
+bundle: catchphrase_2_
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,55 @@
+uuid: 1de23305-9f6a-4fed-a8ee-338cf2d6180a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.sms_map
+    - field.field.block_content.sms_map.body
+    - field.field.block_content.sms_map.field_location
+    - field.field.block_content.sms_map.field_map_location
+  module:
+    - simple_gmap
+    - text
+id: block_content.sms_map.default
+targetEntityType: block_content
+bundle: sms_map
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_location:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_map_location:
+    type: simple_gmap
+    label: above
+    settings:
+      include_map: true
+      include_static_map: false
+      include_link: false
+      include_text: false
+      iframe_height: '450'
+      iframe_width: '300'
+      iframe_title: 'Sky Medical Supplies'
+      static_scale: 1
+      zoom_level: 14
+      link_text: 'View larger map'
+      map_type: m
+      langcode: en
+      apikey: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

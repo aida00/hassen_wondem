@@ -1,0 +1,24 @@
+uuid: 329dd2e2-7abb-4d3d-a72a-3fe9976225e6
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - olivero
+id: pagetitle
+theme: olivero
+region: primary_menu
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /front-page

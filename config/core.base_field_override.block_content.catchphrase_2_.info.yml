@@ -1,0 +1,18 @@
+uuid: 6baa014d-02a8-43e4-a86f-8ceb49903739
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type.catchphrase_2_
+id: block_content.catchphrase_2_.info
+field_name: info
+entity_type: block_content
+bundle: catchphrase_2_
+label: 'Block description'
+description: 'A brief description of your block.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,21 @@
+uuid: 8a158dde-154b-4e98-93bf-412f455d369c
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.online_compliance_reporting
+    - field.storage.contact_message.field_phone_no
+  module:
+    - telephone
+id: contact_message.online_compliance_reporting.field_phone_no
+field_name: field_phone_no
+entity_type: contact_message
+bundle: online_compliance_reporting
+label: 'Phone Number (Optional)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

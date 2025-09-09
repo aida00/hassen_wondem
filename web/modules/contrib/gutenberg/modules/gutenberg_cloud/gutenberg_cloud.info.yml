@@ -1,0 +1,13 @@
+name: Gutenberg Cloud
+type: module
+description: "Your library of blocks in the cloud."
+configure: gutenberg_cloud.manager
+package: Gutenberg
+core_version_requirement: ^9 || ^10 || ^11
+dependencies:
+- gutenberg
+
+# Information added by Drupal.org packaging script on 2024-10-09
+version: '8.x-2.14'
+project: 'gutenberg'
+datestamp: 1728495278

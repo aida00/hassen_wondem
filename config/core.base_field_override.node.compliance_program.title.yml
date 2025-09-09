@@ -1,0 +1,18 @@
+uuid: 3f63301a-df47-4228-8543-31a43a5e0047
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.compliance_program
+id: node.compliance_program.title
+field_name: title
+entity_type: node
+bundle: compliance_program
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,23 @@
+uuid: 2b5ef543-5490-46cb-8e7f-cfb0c0ab7f21
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attempts_made
+    - node.type.compliance_program
+  module:
+    - text
+id: node.compliance_program.field_attempts_made
+field_name: field_attempts_made
+entity_type: node
+bundle: compliance_program
+label: 'attempts made'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

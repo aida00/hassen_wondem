@@ -1,0 +1,21 @@
+uuid: 4e002e02-0e49-482c-9501-673af59be527
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.online_compliance_reporting
+    - field.storage.contact_message.layout_builder__layout
+  module:
+    - layout_builder
+id: contact_message.online_compliance_reporting.layout_builder__layout
+field_name: layout_builder__layout
+entity_type: contact_message
+bundle: online_compliance_reporting
+label: Layout
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: layout_section

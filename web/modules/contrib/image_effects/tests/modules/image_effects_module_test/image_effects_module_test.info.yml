@@ -1,0 +1,12 @@
+type: module
+core_version_requirement: ^10.3 | ^11
+name: 'Image Effects test module'
+description: 'Provides implementations for testing Image Effects module functionality.'
+package: Testing
+dependencies:
+  - image_effects:image_effects
+
+# Information added by Drupal.org packaging script on 2024-11-13
+version: '4.0.0-rc3'
+project: 'image_effects'
+datestamp: 1731519773

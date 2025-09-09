@@ -1,0 +1,11 @@
+uuid: 31b2d137-1919-429e-ae2e-86b8dee03bb5
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.landing_page_banner
+id: block_content.landing_page_banner
+target_entity_type_id: block_content
+target_bundle: landing_page_banner
+default_langcode: site_default
+language_alterable: false

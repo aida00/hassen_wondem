@@ -1,0 +1,18 @@
+uuid: 0a0043ca-1d01-4721-89a3-514b56cd1f22
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type._ya_amaarenyaa_kefele
+id: block_content._ya_amaarenyaa_kefele.info
+field_name: info
+entity_type: block_content
+bundle: _ya_amaarenyaa_kefele
+label: 'Block description'
+description: 'A brief description of your block.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

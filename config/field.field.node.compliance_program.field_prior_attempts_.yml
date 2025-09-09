@@ -1,0 +1,23 @@
+uuid: e537e834-ec42-4e9a-b156-ac2179dd5e95
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prior_attempts_
+    - node.type.compliance_program
+  module:
+    - text
+id: node.compliance_program.field_prior_attempts_
+field_name: field_prior_attempts_
+entity_type: node
+bundle: compliance_program
+label: 'Prior attempts?'
+description: 'Why do you think the complaint was not able to be resolved in your prior attempts?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

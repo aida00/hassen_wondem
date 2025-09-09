@@ -1,0 +1,19 @@
+uuid: ac5c1e02-e39e-48ee-b9f4-11b1eb3afa7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.online_compliance_reporting
+    - field.storage.contact_message.field_l
+id: contact_message.online_compliance_reporting.field_l
+field_name: field_l
+entity_type: contact_message
+bundle: online_compliance_reporting
+label: 'Last Name (Optional)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

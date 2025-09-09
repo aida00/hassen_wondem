@@ -1,0 +1,18 @@
+uuid: 1bda3749-8c43-4d67-8970-eff4c4f8f304
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.compliance_program
+id: node.compliance_program.created
+field_name: created
+entity_type: node
+bundle: compliance_program
+label: 'Authored on'
+description: 'The time that the node was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

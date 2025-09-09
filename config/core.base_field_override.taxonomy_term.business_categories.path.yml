@@ -1,0 +1,20 @@
+uuid: 1b0f4663-0f78-469a-8136-92968962c982
+langcode: am
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.business_categories
+  module:
+    - path
+id: taxonomy_term.business_categories.path
+field_name: path
+entity_type: taxonomy_term
+bundle: business_categories
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

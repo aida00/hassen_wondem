@@ -1,0 +1,11 @@
+uuid: ea27578c-d2bf-48be-bd61-f11139424042
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.landing_page_gutnber
+id: node.landing_page_gutnber
+target_entity_type_id: node
+target_bundle: landing_page_gutnber
+default_langcode: site_default
+language_alterable: false

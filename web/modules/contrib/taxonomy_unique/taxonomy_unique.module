@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * The taxonomy_unique module file.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\taxonomy_unique\TaxonomyUniqueConstants;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function taxonomy_unique_form_taxonomy_vocabulary_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\taxonomy\VocabularyInterface $taxonomy_vocabulary */
+  $taxonomy_vocabulary = $form_state->getFormObject()->getEntity();
+
+  $form['unique_container'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Taxonomy unique'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  ];
+
+  $form['unique_container']['unique'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Terms should be unique.'),
+    '#default_value' => $taxonomy_vocabulary->getThirdPartySetting('taxonomy_unique', 'enabled', FALSE),
+  ];
+
+  $form['unique_container']['unique_message'] = [
+    '#type' => 'textfield',
+    '#title' => t('Message to show if term already exists'),
+    '#description' => t('Supported placeholders: %term and %vocabulary.<br>If left empty, the default error message: \'@not_unique_default_message\' will be used instead.', ['@not_unique_default_message' => TaxonomyUniqueConstants::NOT_UNIQUE_DEFAULT_ERROR_MESSAGE]),
+    '#default_value' => $taxonomy_vocabulary->getThirdPartySetting('taxonomy_unique', 'message', TaxonomyUniqueConstants::NOT_UNIQUE_DEFAULT_ERROR_MESSAGE),
+  ];
+
+  $form['actions']['submit']['#submit'][] = 'taxonomy_unique_taxonomy_form_vocabulary_submit';
+}
+
+/**
+ * Handler function on submit the form.
+ */
+function taxonomy_unique_taxonomy_form_vocabulary_submit($form, FormStateInterface $form_state) {
+  /** @var \Drupal\taxonomy\VocabularyInterface $taxonomy_vocabulary */
+  $taxonomy_vocabulary = $form_state->getFormObject()->getEntity();
+
+  if (!empty($form_state->getValue('unique'))) {
+    $taxonomy_vocabulary->setThirdPartySetting('taxonomy_unique', 'enabled', TRUE);
+  }
+  else {
+    $taxonomy_vocabulary->setThirdPartySetting('taxonomy_unique', 'enabled', FALSE);
+  }
+
+  $unique_message = $form_state->getValue('unique_message');
+  if (!empty($unique_message)) {
+    $taxonomy_vocabulary->setThirdPartySetting('taxonomy_unique', 'message', $unique_message);
+  }
+  else {
+    $taxonomy_vocabulary->setThirdPartySetting('taxonomy_unique', 'message', TaxonomyUniqueConstants::NOT_UNIQUE_DEFAULT_ERROR_MESSAGE);
+  }
+
+  $taxonomy_vocabulary->save();
+}
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function taxonomy_unique_entity_base_field_info_alter(&$fields, EntityTypeInterface $entityType) {
+  if ($entityType->id() == 'taxonomy_term') {
+    if (!empty($fields['name'])) {
+      $fields['name']->addConstraint("taxonomy_unique");
+    }
+  }
+}

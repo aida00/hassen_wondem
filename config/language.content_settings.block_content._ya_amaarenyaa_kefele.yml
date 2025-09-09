@@ -1,0 +1,18 @@
+uuid: 301724be-aa3d-4d5d-86fd-b64cc401c2e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type._ya_amaarenyaa_kefele
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: block_content._ya_amaarenyaa_kefele
+target_entity_type_id: block_content
+target_bundle: _ya_amaarenyaa_kefele
+default_langcode: site_default
+language_alterable: false

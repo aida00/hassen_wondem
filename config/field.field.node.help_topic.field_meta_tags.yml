@@ -1,0 +1,21 @@
+uuid: f0d3db61-201a-43a0-904b-fc7d2f3369f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tags
+    - node.type.help_topic
+  module:
+    - metatag
+id: node.help_topic.field_meta_tags
+field_name: field_meta_tags
+entity_type: node
+bundle: help_topic
+label: 'Meta tags'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag

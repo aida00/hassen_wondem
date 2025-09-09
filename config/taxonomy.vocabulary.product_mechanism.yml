@@ -1,0 +1,9 @@
+uuid: 9a66613b-6189-40c6-8016-4975556dddce
+langcode: en
+status: true
+dependencies: {  }
+name: Mechanism
+vid: product_mechanism
+description: null
+weight: 0
+new_revision: false

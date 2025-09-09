@@ -1,0 +1,9 @@
+'@frontkom/g-content-in-columns':
+  name: '@frontkom/g-content-in-columns'
+  version: 0.4.5
+  label: 'Content in columns'
+  description: 'A custom block for Gutenberg Cloud'
+  screenshot: screenshot.png
+  js: build/index.js
+  edit_css: null
+  view_css: build/style.css

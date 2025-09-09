@@ -1,0 +1,143 @@
+uuid: d03b1d37-8e20-4256-9791-3e2dfe6da725
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.drop_us_a_line
+    - field.field.contact_message.drop_us_a_line.field_f
+    - field.field.contact_message.drop_us_a_line.field_l
+    - field.field.contact_message.drop_us_a_line.field_phone_no
+  content:
+    - 'block_content:sms_map:299311ba-7723-47ee-a724-04f966057ff1'
+  module:
+    - block_content
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: 'contact with address '
+          context_mapping: {  }
+          column_widths: 50-50
+        components:
+          75eb5416-607e-41ad-97e8-95693731ed27:
+            uuid: 75eb5416-607e-41ad-97e8-95693731ed27
+            region: first
+            configuration:
+              id: 'field_block:contact_message:drop_us_a_line:message'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          f15d2795-5426-496a-a6e9-2348500bba09:
+            uuid: f15d2795-5426-496a-a6e9-2348500bba09
+            region: first
+            configuration:
+              id: 'field_block:contact_message:drop_us_a_line:field_l'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          0eaf51b0-637c-4fd6-bef5-200d8814ad65:
+            uuid: 0eaf51b0-637c-4fd6-bef5-200d8814ad65
+            region: first
+            configuration:
+              id: 'field_block:contact_message:drop_us_a_line:field_f'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          7143b0d9-9e26-45c9-acf8-e5a83c966a23:
+            uuid: 7143b0d9-9e26-45c9-acf8-e5a83c966a23
+            region: first
+            configuration:
+              id: 'field_block:contact_message:drop_us_a_line:field_phone_no'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: basic_string
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          f2e126f7-d0e6-4971-97d4-560c5a92fb5a:
+            uuid: f2e126f7-d0e6-4971-97d4-560c5a92fb5a
+            region: second
+            configuration:
+              id: 'block_content:299311ba-7723-47ee-a724-04f966057ff1'
+              label: SMS-Map
+              label_display: visible
+              provider: block_content
+              status: true
+              info: ''
+              view_mode: full
+              context_mapping: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: contact_message.drop_us_a_line.default
+targetEntityType: contact_message
+bundle: drop_us_a_line
+mode: default
+content:
+  field_f:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_l:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_phone_no:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  message:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,18 @@
+uuid: 8a15c223-fc32-4265-befb-c9c7c88b08aa
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type.catchphrase_2_
+id: block_content.catchphrase_2_.changed
+field_name: changed
+entity_type: block_content
+bundle: catchphrase_2_
+label: Changed
+description: 'The time that the custom block was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

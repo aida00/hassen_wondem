@@ -1,0 +1,8 @@
+uuid: a8223412-2fc8-4f0a-b773-7daa21c380c0
+langcode: en
+status: true
+dependencies: {  }
+id: compliance_reporting_note
+label: 'compliance reporting note'
+revision: true
+description: 'show me around'

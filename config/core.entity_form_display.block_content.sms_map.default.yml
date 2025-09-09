@@ -1,0 +1,58 @@
+uuid: e4258e8e-9125-4c68-b750-bd5b7455f977
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.sms_map
+    - field.field.block_content.sms_map.body
+    - field.field.block_content.sms_map.field_location
+    - field.field.block_content.sms_map.field_map_location
+  module:
+    - text
+id: block_content.sms_map.default
+targetEntityType: block_content
+bundle: sms_map
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 26
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_location:
+    type: string_textfield
+    weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_map_location:
+    type: string_textfield
+    weight: 28
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

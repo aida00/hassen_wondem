@@ -1,0 +1,54 @@
+uuid: f9ce6471-cfc9-4da0-8826-af7c4603a6c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.rss
+    - field.field.node.article.body
+    - field.field.node.article.comment
+    - field.field.node.article.field_article_keywords
+    - field.field.node.article.field_article_ty
+    - field.field.node.article.field_downloadable_files
+    - field.field.node.article.field_image
+    - field.field.node.article.field_meta_tags
+    - field.field.node.article.field_new
+    - field.field.node.article.field_tags
+    - field.field.node.article.field_video
+    - field.field.node.article.field_yoast_seo
+    - node.type.article
+  module:
+    - user
+_core:
+  default_config_hash: 2rIr6K5Q0UQ9khg0zE_CK-PtJH76UL-BDDZcZnZzwCc
+id: node.article.rss
+targetEntityType: node
+bundle: article
+mode: rss
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  flag_flag_as_content_not_appropriate:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  body: true
+  comment: true
+  field_article_keywords: true
+  field_article_ty: true
+  field_downloadable_files: true
+  field_image: true
+  field_meta_tags: true
+  field_new: true
+  field_tags: true
+  field_video: true
+  field_yoast_seo: true
+  langcode: true
+  search_api_excerpt: true

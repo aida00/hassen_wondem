@@ -1,0 +1,18 @@
+/* themes/custom/hhass/css/frontpage.css */
+
+/* Example: give your hero section a subtle gradient overlay */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* your extra overrides… */
+.hero-gradient {
+  background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+body {
+  background-color: rgb(187, 0, 255);
+}

@@ -1,0 +1,8 @@
+uuid: a2a56c7c-699b-4462-8c7b-199dd7afa435
+langcode: en
+status: true
+dependencies: {  }
+id: legal_disclaimer_
+label: 'Legal Disclaimer '
+revision: true
+description: 'place in locatiobs'

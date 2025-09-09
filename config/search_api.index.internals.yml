@@ -1,0 +1,47 @@
+uuid: 16136543-9b8e-4bce-97f6-7e8e711a9964
+langcode: en
+status: false
+dependencies:
+  module:
+    - node
+    - redirect
+    - shortcut
+id: internals
+name: 'Internal search index'
+description: ''
+read_only: false
+field_settings: {  }
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected:
+        - article
+        - compliance_program
+    languages:
+      default: true
+      selected: {  }
+  'entity:redirect':
+    bundles:
+      default: true
+      selected: {  }
+  'entity:shortcut':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: ''

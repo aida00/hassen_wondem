@@ -1,0 +1,11 @@
+uuid: 44072ac0-5a80-4ad0-aad0-7a41d384fca1
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.sms_map
+id: block_content.sms_map
+target_entity_type_id: block_content
+target_bundle: sms_map
+default_langcode: site_default
+language_alterable: false

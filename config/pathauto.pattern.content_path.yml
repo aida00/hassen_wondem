@@ -1,0 +1,32 @@
+uuid: c5bb4e03-5d9c-46c6-933f-06a5662f9ea0
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: content_path
+label: 'content path'
+type: 'canonical_entities:node'
+pattern: '[current-page:title]'
+selection_criteria:
+  487b53e8-f66e-4ac5-bea2-55a4ca9de7f5:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 487b53e8-f66e-4ac5-bea2-55a4ca9de7f5
+    context_mapping:
+      node: node
+    bundles:
+      article: article
+      book: book
+      business_directory: business_directory
+      compliance_program: compliance_program
+      event_around_sms: event_around_sms
+      fhq: fhq
+      forum: forum
+      help_topic: help_topic
+      page: page
+      policy_procedure_manual_: policy_procedure_manual_
+      terms_of_use: terms_of_use
+selection_logic: and
+weight: -5
+relationships: {  }

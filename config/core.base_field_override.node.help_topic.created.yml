@@ -1,0 +1,18 @@
+uuid: 34041824-282b-4c9a-bf41-28bbf47d1d86
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.help_topic
+id: node.help_topic.created
+field_name: created
+entity_type: node
+bundle: help_topic
+label: 'Authored on'
+description: 'The time that the node was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

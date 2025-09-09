@@ -1,0 +1,21 @@
+uuid: 5c7f1848-6b41-4c1d-9cc5-c45ee6dfcb24
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tags
+    - node.type.compliance_program
+  module:
+    - metatag
+id: node.compliance_program.field_meta_tags
+field_name: field_meta_tags
+entity_type: node
+bundle: compliance_program
+label: 'Meta tags'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag

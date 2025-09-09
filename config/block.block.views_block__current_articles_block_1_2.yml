@@ -1,0 +1,29 @@
+uuid: 62c1e6be-e9a0-4ead-a704-defbfa829f54
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.current_articles
+  module:
+    - system
+    - views
+  theme:
+    - bootstrap5
+id: views_block__current_articles_block_1_2
+theme: bootstrap5
+region: sidebar_second
+weight: -7
+provider: null
+plugin: 'views_block:current_articles-block_1'
+settings:
+  id: 'views_block:current_articles-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/node\r\n/front-page"

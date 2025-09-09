@@ -1,0 +1,11 @@
+uuid: 0330f5f8-2ab7-44f6-88f1-bca81d998b06
+langcode: en
+status: true
+dependencies:
+  module:
+    - contact
+id: contact_message.sender_email
+label: 'send  email to administration '
+description: ''
+targetEntityType: contact_message
+cache: true

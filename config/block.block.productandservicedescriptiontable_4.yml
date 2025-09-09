@@ -1,0 +1,30 @@
+uuid: a0a28d23-0151-4537-ada1-2a4aab7d7c27
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:1d37906d-6cac-49f4-aba4-9ad6c74d9633'
+  module:
+    - block_content
+    - system
+  theme:
+    - bootstrap5
+id: productandservicedescriptiontable_4
+theme: bootstrap5
+region: content
+weight: -1
+provider: null
+plugin: 'block_content:1d37906d-6cac-49f4-aba4-9ad6c74d9633'
+settings:
+  id: 'block_content:1d37906d-6cac-49f4-aba4-9ad6c74d9633'
+  label: 'Product and service description '
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /node

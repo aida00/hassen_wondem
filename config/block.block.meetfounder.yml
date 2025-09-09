@@ -1,0 +1,25 @@
+uuid: 75128cb4-f39d-43c9-86db-819dc79800c8
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:landing_page_banner:b908e16b-41bf-40a6-b2b5-872bfb1325b0'
+  module:
+    - block_content
+  theme:
+    - olivero
+id: meetfounder
+theme: olivero
+region: content
+weight: 0
+provider: null
+plugin: 'block_content:b908e16b-41bf-40a6-b2b5-872bfb1325b0'
+settings:
+  id: 'block_content:b908e16b-41bf-40a6-b2b5-872bfb1325b0'
+  label: 'meet founder'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

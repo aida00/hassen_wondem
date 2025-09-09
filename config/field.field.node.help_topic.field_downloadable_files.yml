@@ -1,0 +1,35 @@
+uuid: 6e44c573-41b6-4578-b2c8-4ae631b422e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_downloadable_files
+    - media.type.document
+    - media.type.remote_video
+    - node.type.help_topic
+  content:
+    - 'media:document:8adfb439-b8de-4130-a657-533c3bdd9fa5'
+id: node.help_topic.field_downloadable_files
+field_name: field_downloadable_files
+entity_type: node
+bundle: help_topic
+label: 'Downloadable Files'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    target_uuid: 8adfb439-b8de-4130-a657-533c3bdd9fa5
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+      remote_video: remote_video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: document
+field_type: entity_reference

@@ -1,0 +1,21 @@
+uuid: dcfdd561-f494-4072-a345-5d6c01ddedc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.layout_builder__layout
+    - node.type.compliance_program
+  module:
+    - layout_builder
+id: node.compliance_program.layout_builder__layout
+field_name: layout_builder__layout
+entity_type: node
+bundle: compliance_program
+label: Layout
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: layout_section

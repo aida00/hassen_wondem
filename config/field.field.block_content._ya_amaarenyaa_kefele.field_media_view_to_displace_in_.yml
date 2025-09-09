@@ -1,0 +1,29 @@
+uuid: b54138fb-0fc4-462a-adfe-72d37c1f1dc3
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type._ya_amaarenyaa_kefele
+    - field.storage.block_content.field_media_view_to_displace_in_
+    - media.type.image
+id: block_content._ya_amaarenyaa_kefele.field_media_view_to_displace_in_
+field_name: field_media_view_to_displace_in_
+entity_type: block_content
+bundle: _ya_amaarenyaa_kefele
+label: 'Media view Amharic '
+description: ' to displace in  Amharic '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

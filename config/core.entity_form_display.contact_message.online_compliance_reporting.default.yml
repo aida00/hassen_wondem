@@ -1,0 +1,84 @@
+uuid: 9f18d750-9f86-44b6-b701-2cfaa805d7c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.online_compliance_reporting
+    - field.field.contact_message.online_compliance_reporting.field_department
+    - field.field.contact_message.online_compliance_reporting.field_email
+    - field.field.contact_message.online_compliance_reporting.field_f
+    - field.field.contact_message.online_compliance_reporting.field_l
+    - field.field.contact_message.online_compliance_reporting.field_phone_no
+    - field.field.contact_message.online_compliance_reporting.layout_builder__layout
+  module:
+    - telephone
+id: contact_message.online_compliance_reporting.default
+targetEntityType: contact_message
+bundle: online_compliance_reporting
+mode: default
+content:
+  copy:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_department:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_email:
+    type: email_default
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  field_f:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_l:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_phone_no:
+    type: telephone_default
+    weight: 4
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  message:
+    type: string_textarea
+    weight: 5
+    region: content
+    settings:
+      rows: 12
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  layout_builder__layout: true
+  mail: true
+  name: true
+  preview: true
+  subject: true

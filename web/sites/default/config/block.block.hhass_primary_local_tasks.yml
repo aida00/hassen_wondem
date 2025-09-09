@@ -1,0 +1,22 @@
+uuid: 95f2aab4-a9fa-4da0-9ab4-eb70bbcd7ab6
+langcode: en
+status: false
+dependencies:
+  theme:
+    - hhass
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: hhass_primary_local_tasks
+theme: hhass
+region: header
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

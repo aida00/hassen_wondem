@@ -1,0 +1,14 @@
+uuid: 02518c3d-3f25-48f8-a499-5e7186527d38
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.article_writer
+  module:
+    - user
+id: user_add_role_action.article_writer
+label: 'Add the article-writer role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: article_writer

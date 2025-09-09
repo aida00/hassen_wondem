@@ -1,0 +1,19 @@
+uuid: b86aad28-82d6-4a9c-ac3a-476febf72022
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.landing_pageblock_upper
+    - field.storage.block_content.field_map_location
+id: block_content.landing_pageblock_upper.field_map_location
+field_name: field_map_location
+entity_type: block_content
+bundle: landing_pageblock_upper
+label: 'map location'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

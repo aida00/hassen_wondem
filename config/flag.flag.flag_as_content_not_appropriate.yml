@@ -1,0 +1,31 @@
+uuid: 5207418e-7423-4a1f-8829-68513e650fc6
+langcode: en
+status: false
+dependencies:
+  module:
+    - node
+id: flag_as_content_not_appropriate
+label: 'flag as content not appropriate'
+bundles:
+  - article
+entity_type: node
+global: false
+flag_short: Flaged
+flag_long: 'you have flagged '
+flag_message: 'you have successfully flagged the content'
+unflag_short: 'Unflag this item'
+unflag_long: 'unflag content is appropriate'
+unflag_message: 'you  have unflaged'
+unflag_denied_text: 'already flagged'
+weight: 0
+flag_type: 'entity:node'
+link_type: ajax_link
+flagTypeConfig:
+  show_in_links:
+    teaser: teaser
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+linkTypeConfig: {  }

@@ -1,0 +1,20 @@
+uuid: 88026489-923c-4394-b164-517c7be535f0
+langcode: en
+status: false
+dependencies:
+  theme:
+    - hhass
+_core:
+  default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
+id: hhass_primary_admin_actions
+theme: hhass
+region: header
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

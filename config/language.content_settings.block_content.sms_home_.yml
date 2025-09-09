@@ -1,0 +1,11 @@
+uuid: 68e15889-df1d-415d-b785-a80283e95191
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.sms_home_
+id: block_content.sms_home_
+target_entity_type_id: block_content
+target_bundle: sms_home_
+default_langcode: site_default
+language_alterable: false

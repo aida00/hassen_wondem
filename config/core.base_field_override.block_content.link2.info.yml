@@ -1,0 +1,18 @@
+uuid: a0215242-5072-4242-b812-1ff9012a9f36
+langcode: am
+status: true
+dependencies:
+  config:
+    - block_content.type.link2
+id: block_content.link2.info
+field_name: info
+entity_type: block_content
+bundle: link2
+label: 'Block description'
+description: 'A brief description of your block.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

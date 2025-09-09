@@ -1,0 +1,20 @@
+uuid: ac253d19-943c-4edd-82de-1a16b5c59346
+langcode: am
+status: true
+dependencies:
+  config:
+    - node.type.policy_procedure_manual_
+id: node.policy_procedure_manual_.uid
+field_name: uid
+entity_type: node
+bundle: policy_procedure_manual_
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

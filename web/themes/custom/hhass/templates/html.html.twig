@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display the basic HTML structure of a single
+ * Drupal page.
+ *
+ * Variables:
+ * - logged_in: A boolean indicating if the user is logged in.
+ * - root_path: The root path of the current page (e.g. home, node/1, etc.).
+ * - node_type: The content type for the current node, if the page is a node.
+ * - head_title: List of text elements that make up the head_title variable.
+ *   May contain one or more of the following:
+ *   - title: The title of the current page.
+ *   - name: The name of the site.
+ *   - slogan: The slogan of the site.
+ * - page_top: Items for the top of the page.
+ * - page: Items for the rest of the page.
+ * - page_bottom: Items for the bottom of the page.
+ * - scripts: Script tags necessary to load the JavaScript files and settings.
+ * - db_offline: A boolean indicating if the database is offline.
+ * - theme_token: A token used for theme cache busting.
+ *
+ * @see template_preprocess_html()
+ *
+ * @ingroup themeable
+ */
+#}
+<!DOCTYPE html>
+<html{{html_attributes}}>
+	<head>
+		<head-placeholder token="{{ placeholder_token|raw }}">
+			<title>{{ head_title|safe_join(' | ') }}</title>
+			<css-placeholder token="{{ placeholder_token|raw }}"></head>
+			<body{{attributes.addClass(body_classes)}}>
+				<a href="#main-content" class="visually-hidden skip-link">
+					{{ 'Skip to main content'|t }}
+				</a>
+				{{ page_top }}
+				{{ page }}
+				{{ page_bottom }}
+				<js-placeholder token="{{ placeholder_token|raw }}"></body>
+			</html>
+			<html{{html_attributes.addClass('h-full')}}>

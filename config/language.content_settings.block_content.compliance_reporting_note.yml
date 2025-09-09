@@ -1,0 +1,18 @@
+uuid: 08cdd553-6977-4ec5-a962-e06f722dc901
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.compliance_reporting_note
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: block_content.compliance_reporting_note
+target_entity_type_id: block_content
+target_bundle: compliance_reporting_note
+default_langcode: site_default
+language_alterable: false

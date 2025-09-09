@@ -1,0 +1,21 @@
+uuid: a2c286ac-f82e-4787-9239-4fea93e74952
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email_of_the_consumer
+    - node.type.compliance_program
+id: node.compliance_program.field_email_of_the_consumer
+field_name: field_email_of_the_consumer
+entity_type: node
+bundle: compliance_program
+label: 'email of the consumer'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: admin@oype.com
+default_value_callback: ''
+settings: {  }
+field_type: email
