@@ -1,0 +1,7 @@
+name: Wondem Application Form
+type: module
+description: Provides a custom application form with admin review pages.
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:system

@@ -1,0 +1,27 @@
+wondem_application_form.form:
+  path: '/application-form'
+  defaults:
+    _form: '\Drupal\wondem_application_form\Form\ApplicationForm'
+    _title: 'Application Form'
+  requirements:
+    _permission: 'access content'
+
+wondem_application_form.admin_list:
+  path: '/admin/content/applications'
+  defaults:
+    _controller: '\Drupal\wondem_application_form\Controller\ApplicationAdminController::list'
+    _title: 'Applications'
+  requirements:
+    _permission: 'administer site configuration'
+
+wondem_application_form.admin_view:
+  path: '/admin/content/applications/{id}'
+  defaults:
+    _controller: '\Drupal\wondem_application_form\Controller\ApplicationAdminController::view'
+    _title: 'Application detail'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    parameters:
+      id:
+        type: integer
