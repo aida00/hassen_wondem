@@ -3,7 +3,7 @@
         'name' => 'pantheon-upstreams/drupal-composer-managed',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '4fc6264d0a840851cde474d9f3058278b0bb3eda',
+        'reference' => 'dcec22d8e4f0281968c61860b38fc05dcf3ee89f',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -1660,7 +1660,7 @@
         'pantheon-upstreams/drupal-composer-managed' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '4fc6264d0a840851cde474d9f3058278b0bb3eda',
+            'reference' => 'dcec22d8e4f0281968c61860b38fc05dcf3ee89f',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
