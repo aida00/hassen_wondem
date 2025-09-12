@@ -12,6 +12,10 @@ use OpenTelemetry\API\Logs\Severity;
 use OpenTelemetry\Context\Context;
 use OpenTelemetry\Context\ContextInterface;
 
+/**
+ * @deprecated
+ * @phan-suppress PhanDeprecatedInterface
+ */
 class EventLogger implements EventLoggerInterface
 {
     /**
@@ -26,6 +30,7 @@ class EventLogger implements EventLoggerInterface
     /**
      * @see https://github.com/open-telemetry/opentelemetry-specification/blob/v1.32.0/specification/logs/event-sdk.md#emit-event
      */
+    #[\Override]
     public function emit(
         string $name,
         mixed $body = null,

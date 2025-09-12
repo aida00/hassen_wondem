@@ -1,0 +1,12 @@
+name: wondem
+type: theme
+base theme: stable9
+version: 1.0.0
+libraries:
+  - wondem/base
+  - wondem/messages
+  - core/normalize
+  - wondem/frontpage   # ✅ add this
+description: ''
+core_version_requirement: ^10
+generator: 'starterkit_theme:10.5.2'

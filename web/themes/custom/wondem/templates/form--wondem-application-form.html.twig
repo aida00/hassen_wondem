@@ -1,0 +1,28 @@
+{# 
+  File: form--wondem-application-form.html.twig
+  Description: Tailwind styled application form
+#}
+
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-700 py-12 px-4">
+  <div class="max-w-3xl w-full bg-white rounded-2xl shadow-2xl p-10">
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-4">
+      Application Form
+    </h1>
+    <p class="text-gray-600 mb-8">
+      Fill out the form below to apply for a position with us.
+    </p>
+
+    <div class="space-y-6">
+      {{ children }}
+    </div>
+
+    <div class="mt-8">
+      {# Submit button is usually rendered via {{ children }}, 
+         but in case Drupal misses it, we enforce a styled button. #}
+      <button type="submit"
+        class="w-full py-3 px-6 bg-blue-600 text-white font-semibold rounded-xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition">
+        Submit Application
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+frontpage:
+  version: 1.x
+  css:
+    theme:
+      dist/frontpage.css: {}
+  js:
+    dist/frontpage.js: {}

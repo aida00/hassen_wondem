@@ -3,40 +3,15 @@
 namespace Drupal\wondem_application_form\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Provides admin listing and detail view for applications.
+ * Controller for Application admin pages.
  */
 class ApplicationAdminController extends ControllerBase {
 
   /**
-   * The date formatter service.
-   *
-   * @var \Drupal\Core\Datetime\DateFormatterInterface
-   */
-  protected $dateFormatter;
-
-  /**
-   * Constructs the controller.
-   */
-  public function __construct(DateFormatterInterface $date_formatter) {
-    $this->dateFormatter = $date_formatter;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static($container->get('date.formatter'));
-  }
-
-  /**
-   * List applications in a table.
+   * List applications (compact).
    */
   public function list() {
     $header = [
@@ -45,6 +20,7 @@ class ApplicationAdminController extends ControllerBase {
       'email' => $this->t('Email'),
       'phone' => $this->t('Phone'),
       'created' => $this->t('Submitted'),
+      'operations' => $this->t('Operations'),
     ];
 
     $rows = [];
@@ -55,11 +31,18 @@ class ApplicationAdminController extends ControllerBase {
 
     foreach ($results as $record) {
       $rows[] = [
-        'id' => Link::fromTextAndUrl((string) $record->id, Url::fromRoute('wondem_application_form.admin_view', ['id' => $record->id])),
+        'id' => $record->id,
         'full_name' => $record->full_name,
         'email' => $record->email,
         'phone' => $record->phone,
-        'created' => $this->dateFormatter->format($record->created, 'short'),
+        'created' => \Drupal::service('date.formatter')->format($record->created, 'short'),
+        'operations' => [
+          'data' => [
+            '#type' => 'link',
+            '#title' => $this->t('View'),
+            '#url' => Url::fromRoute('wondem_application_form.admin_view', ['id' => $record->id]),
+          ],
+        ],
       ];
     }
 
@@ -72,7 +55,7 @@ class ApplicationAdminController extends ControllerBase {
   }
 
   /**
-   * View application details.
+   * View a single application (all fields).
    */
   public function view($id) {
     $record = \Drupal::database()->select('wondem_applications', 'wa')
@@ -82,43 +65,48 @@ class ApplicationAdminController extends ControllerBase {
       ->fetchObject();
 
     if (!$record) {
-      throw new NotFoundHttpException();
+      return ['#markup' => $this->t('Application not found.')];
     }
 
-    $data = @unserialize($record->data) ?: [];
+    $values = unserialize($record->data);
 
-    $build = [
-      '#type' => 'details',
-      '#title' => $this->t('Application #@id', ['@id' => $record->id]),
-      'info' => [
-        '#type' => 'item',
-        '#title' => $this->t('Submitted by'),
-        '#markup' => "{$record->full_name} ({$record->email})",
-      ],
-      'phone' => [
-        '#type' => 'item',
-        '#title' => $this->t('Phone'),
-        '#markup' => $record->phone,
-      ],
-      'submitted' => [
-        '#type' => 'item',
-        '#title' => $this->t('Submitted on'),
-        '#markup' => $this->dateFormatter->format($record->created, 'long'),
-      ],
-      'answers' => [
-        '#theme' => 'item_list',
-        '#title' => $this->t('Form Answers'),
-        '#items' => [],
-      ],
+    // Human-readable labels for each field.
+    $labels = [
+      'full_name' => $this->t('Full Name'),
+      'email' => $this->t('Email'),
+      'phone' => $this->t('Phone'),
+      'employment_status' => $this->t('Employment Status'),
+      'equipment' => $this->t('PC & Internet'),
+      'online_experience' => $this->t('Online Work/Education Experience'),
+      'availability' => $this->t('Availability'),
+      'writing_experience' => $this->t('Writing Experience'),
+      'team_experience' => $this->t('Teamwork Experience'),
+      'writing_proficiency' => $this->t('Writing Proficiency'),
+      'media_proficiency' => $this->t('Media Proficiency'),
+      'tools_proficiency' => $this->t('Tools & Software Proficiency'),
+      'education_experience' => $this->t('Education/Experience'),
+      'salary' => $this->t('Salary Expectation'),
+      'obstacles' => $this->t('Obstacles/Challenges'),
+      'heard_about' => $this->t('How did you hear about us?'),
+      'heard_about_other' => $this->t('Other (please specify)'),
     ];
 
-    foreach ($data as $key => $value) {
-      $build['answers']['#items'][] = $this->t('@key: @value', [
-        '@key' => ucfirst(str_replace('_', ' ', $key)),
-        '@value' => $value,
-      ]);
+    $rows = [];
+    foreach ($labels as $key => $label) {
+      if (!empty($values[$key])) {
+        $rows[] = [
+          'label' => $label,
+          'value' => is_array($values[$key]) ? implode(', ', $values[$key]) : $values[$key],
+        ];
+      }
     }
 
-    return $build;
+    return [
+      '#theme' => 'table',
+      '#header' => [$this->t('Field'), $this->t('Value')],
+      '#rows' => array_map(fn($row) => [$row['label'], $row['value']], $rows),
+      '#empty' => $this->t('No details available.'),
+    ];
   }
+
 }

@@ -18,7 +18,7 @@ wondem_application_form.admin_view:
   path: '/admin/content/applications/{id}'
   defaults:
     _controller: '\Drupal\wondem_application_form\Controller\ApplicationAdminController::view'
-    _title: 'Application detail'
+    _title: 'Application Details'
   requirements:
     _permission: 'administer site configuration'
   options:

@@ -67,6 +67,8 @@ class EventDispatcher
     protected $runScripts = true;
     /** @var list<string> */
     private $eventStack;
+    /** @var list<string> */
+    private $skipScripts;
 
     /**
      * Constructor.
@@ -81,6 +83,12 @@ class EventDispatcher
         $this->io = $io;
         $this->process = $process ?? new ProcessExecutor($io);
         $this->eventStack = [];
+        $this->skipScripts = array_values(array_filter(
+            array_map('trim', explode(',', (string) Platform::getEnv('COMPOSER_SKIP_SCRIPTS'))),
+            function ($val) {
+                return $val !== '';
+            }
+        ));
     }
 
     /**
@@ -301,7 +309,12 @@ class EventDispatcher
                     }
                     $app->setAutoExit(false);
                     $cmd = new $className($event->getName());
-                    $app->add($cmd);
+                    if (method_exists($app, 'addCommand')) {
+                        $app->addCommand($cmd);
+                    } else {
+                        // Compatibility layer for symfony/console <7.4
+                        $app->add($cmd);
+                    }
                     $app->setDefaultCommand((string) $cmd->getName(), true);
                     try {
                         $args = implode(' ', array_map(static function ($arg) { return ProcessExecutor::escape($arg); }, $additionalArgs));
@@ -338,8 +351,12 @@ class EventDispatcher
 
                     if ($this->io->isVerbose()) {
                         $this->io->writeError(sprintf('> %s: %s', $event->getName(), $exec));
-                    } elseif ($event->getName() !== '__exec_command') {
+                    } elseif (
                         // do not output the command being run when using `composer exec` as it is fairly obvious the user is running it
+                        $event->getName() !== '__exec_command'
+                        // do not output the command being run when using `composer <script-name>` as it is also fairly obvious the user is running it
+                        && ($event->getFlags()['script-alias-input'] ?? null) === null
+                    ) {
                         $this->io->writeError(sprintf('> %s', $exec));
                     }
 
@@ -467,7 +484,7 @@ class EventDispatcher
             throw new \RuntimeException('Failed to locate PHP binary to execute '.$phpPath);
         }
         $phpArgs = $finder->findArguments();
-        $phpArgs = $phpArgs ? ' ' . implode(' ', $phpArgs) : '';
+        $phpArgs = \count($phpArgs) > 0 ? ' ' . implode(' ', $phpArgs) : '';
         $allowUrlFOpenFlag = ' -d allow_url_fopen=' . ProcessExecutor::escape(ini_get('allow_url_fopen'));
         $disableFunctionsFlag = ' -d disable_functions=' . ProcessExecutor::escape(ini_get('disable_functions'));
         $memoryLimitFlag = ' -d memory_limit=' . ProcessExecutor::escape(ini_get('memory_limit'));
@@ -581,6 +598,12 @@ class EventDispatcher
         $scripts = $package->getScripts();
 
         if (empty($scripts[$event->getName()])) {
+            return [];
+        }
+
+        if (in_array($event->getName(), $this->skipScripts, true)) {
+            $this->io->writeError('Skipped script listeners for <info>'.$event->getName().'</info> because of COMPOSER_SKIP_SCRIPTS', true, IOInterface::VERBOSE);
+
             return [];
         }
 

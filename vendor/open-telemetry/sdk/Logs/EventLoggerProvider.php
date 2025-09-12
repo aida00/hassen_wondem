@@ -7,12 +7,19 @@ namespace OpenTelemetry\SDK\Logs;
 use OpenTelemetry\API\Common\Time\Clock;
 use OpenTelemetry\API\Logs\EventLoggerInterface;
 
+/**
+ * @phan-suppress PhanDeprecatedInterface
+ */
 class EventLoggerProvider implements EventLoggerProviderInterface
 {
     public function __construct(private readonly LoggerProviderInterface $loggerProvider)
     {
     }
 
+    /**
+     * @phan-suppress PhanDeprecatedClass
+     */
+    #[\Override]
     public function getEventLogger(string $name, ?string $version = null, ?string $schemaUrl = null, iterable $attributes = []): EventLoggerInterface
     {
         return new EventLogger(
@@ -21,6 +28,7 @@ class EventLoggerProvider implements EventLoggerProviderInterface
         );
     }
 
+    #[\Override]
     public function forceFlush(): bool
     {
         return $this->loggerProvider->forceFlush();

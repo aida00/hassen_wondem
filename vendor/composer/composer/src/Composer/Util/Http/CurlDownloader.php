@@ -34,6 +34,14 @@ use Symfony\Component\HttpFoundation\IpUtils;
  */
 class CurlDownloader
 {
+    /**
+     * Known libcurl's broken versions when proxy is in use with HTTP/2
+     * multiplexing.
+     *
+     * @var list<non-empty-string>
+     */
+    private const BAD_MULTIPLEXING_CURL_VERSIONS = ['7.87.0', '7.88.0', '7.88.1'];
+
     /** @var \CurlMultiHandle */
     private $multiHandle;
     /** @var \CurlShareHandle */
@@ -99,7 +107,18 @@ class CurlDownloader
 
         $this->multiHandle = $mh = curl_multi_init();
         if (function_exists('curl_multi_setopt')) {
-            curl_multi_setopt($mh, CURLMOPT_PIPELINING, \PHP_VERSION_ID >= 70400 ? /* CURLPIPE_MULTIPLEX */ 2 : /*CURLPIPE_HTTP1 | CURLPIPE_MULTIPLEX*/ 3);
+            if (ProxyManager::getInstance()->hasProxy() && ($version = curl_version()) !== false && in_array($version['version'], self::BAD_MULTIPLEXING_CURL_VERSIONS, true)) {
+                /**
+                 * Disable HTTP/2 multiplexing for some broken versions of libcurl.
+                 *
+                 * In certain versions of libcurl when proxy is in use with HTTP/2
+                 * multiplexing, connections will continue stacking up. This was
+                 * fixed in libcurl 8.0.0 in curl/curl@821f6e2a89de8aec1c7da3c0f381b92b2b801efc
+                 */
+                curl_multi_setopt($mh, CURLMOPT_PIPELINING, /* CURLPIPE_NOTHING */ 0);
+            } else {
+                curl_multi_setopt($mh, CURLMOPT_PIPELINING, \PHP_VERSION_ID >= 70400 ? /* CURLPIPE_MULTIPLEX */ 2 : /*CURLPIPE_HTTP1 | CURLPIPE_MULTIPLEX*/ 3);
+            }
             if (defined('CURLMOPT_MAX_HOST_CONNECTIONS') && !defined('HHVM_VERSION')) {
                 curl_multi_setopt($mh, CURLMOPT_MAX_HOST_CONNECTIONS, 8);
             }
@@ -280,7 +299,9 @@ class CurlDownloader
         if (isset($this->jobs[$id], $this->jobs[$id]['curlHandle'])) {
             $job = $this->jobs[$id];
             curl_multi_remove_handle($this->multiHandle, $job['curlHandle']);
-            curl_close($job['curlHandle']);
+            if(\PHP_VERSION_ID < 80000) {
+                curl_close($job['curlHandle']);
+            }
             if (is_resource($job['headerHandle'])) {
                 fclose($job['headerHandle']);
             }
@@ -326,7 +347,9 @@ class CurlDownloader
             $error = curl_error($curlHandle);
             $errno = curl_errno($curlHandle);
             curl_multi_remove_handle($this->multiHandle, $curlHandle);
-            curl_close($curlHandle);
+            if (\PHP_VERSION_ID < 80000) {
+                curl_close($curlHandle);
+            }
 
             $headers = null;
             $statusCode = null;
@@ -407,7 +430,7 @@ class CurlDownloader
                 }
                 fclose($job['bodyHandle']);
 
-                if ($response->getStatusCode() >= 400 && $response->getHeader('content-type') === 'application/json') {
+                if ($response->getStatusCode() >= 300 && $response->getHeader('content-type') === 'application/json') {
                     HttpDownloader::outputWarnings($this->io, $job['origin'], json_decode($response->getBody(), true));
                 }
 

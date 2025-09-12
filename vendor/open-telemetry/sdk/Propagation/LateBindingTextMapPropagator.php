@@ -15,7 +15,6 @@ use OpenTelemetry\Context\Propagation\TextMapPropagatorInterface;
  */
 final class LateBindingTextMapPropagator implements TextMapPropagatorInterface
 {
-
     /**
      * @param TextMapPropagatorInterface|Closure(): TextMapPropagatorInterface $propagator
      */
@@ -24,6 +23,7 @@ final class LateBindingTextMapPropagator implements TextMapPropagatorInterface
     ) {
     }
 
+    #[\Override]
     public function fields(): array
     {
         if (!$this->propagator instanceof TextMapPropagatorInterface) {
@@ -33,6 +33,7 @@ final class LateBindingTextMapPropagator implements TextMapPropagatorInterface
         return $this->propagator->fields();
     }
 
+    #[\Override]
     public function inject(mixed &$carrier, ?PropagationSetterInterface $setter = null, ?ContextInterface $context = null): void
     {
         if (!$this->propagator instanceof TextMapPropagatorInterface) {
@@ -42,6 +43,7 @@ final class LateBindingTextMapPropagator implements TextMapPropagatorInterface
         $this->propagator->inject($carrier, $setter, $context);
     }
 
+    #[\Override]
     public function extract($carrier, ?PropagationGetterInterface $getter = null, ?ContextInterface $context = null): ContextInterface
     {
         if (!$this->propagator instanceof TextMapPropagatorInterface) {

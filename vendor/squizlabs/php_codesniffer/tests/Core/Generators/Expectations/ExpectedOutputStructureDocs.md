@@ -1,8 +1,7 @@
 # GeneratorTest Coding Standard
 
-## No Content
-
 ## Code Comparison Only, Missing Standard Block
+
   <table>
    <tr>
     <th>Valid: Lorem ipsum dolor sit amet.</th>
@@ -23,6 +22,7 @@
   </table>
 
 ## One Standard Block, Code Comparison
+
 Documentation contains one standard block and one code comparison.
   <table>
    <tr>
@@ -44,9 +44,11 @@ Documentation contains one standard block and one code comparison.
   </table>
 
 ## One Standard Block, No Code
+
 Documentation contains one standard block and no code comparison.
 
 ## One Standard Block, Two Code Comparisons
+
 Documentation contains one standard block and two code comparisons.
   <table>
    <tr>
@@ -86,10 +88,12 @@ Documentation contains one standard block and two code comparisons.
   </table>
 
 ## Two Standard Blocks, No Code
+
 This is standard block one.
 This is standard block two.
 
 ## Two Standard Blocks, One Code Comparison
+
 This is standard block one.
   <table>
    <tr>
@@ -112,6 +116,7 @@ This is standard block one.
 This is standard block two.
 
 ## Two Standard Blocks, Three Code Comparisons
+
 This is standard block one.
   <table>
    <tr>
@@ -168,4 +173,5 @@ This is standard block two.
 </td>
    </tr>
   </table>
+
 Documentation generated on *REDACTED* by [PHP_CodeSniffer *VERSION*](https://github.com/PHPCSStandards/PHP_CodeSniffer)

@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- Form Container --- */
+form.wondem-application-form {
+  @apply max-w-3xl mx-auto bg-white shadow-xl rounded-2xl p-8 space-y-6;
+}
+
+/* --- Labels --- */
+form.wondem-application-form label {
+  @apply block text-sm font-semibold text-gray-700 mb-1;
+}
+
+/* --- Inputs, Selects, Textareas --- */
+form.wondem-application-form input,
+form.wondem-application-form select,
+form.wondem-application-form textarea {
+  @apply w-full border border-gray-300 rounded-md px-4 py-2 shadow-sm 
+         focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+         focus:outline-none transition;
+}
+
+/* --- Radios & Checkboxes --- */
+form.wondem-application-form input[type="radio"],
+form.wondem-application-form input[type="checkbox"] {
+  @apply text-blue-600 focus:ring-blue-500 h-4 w-4;
+}
+
+/* --- Submit Button --- */
+form.wondem-application-form button[type="submit"],
+form.wondem-application-form input[type="submit"] {
+  @apply w-full bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg 
+         shadow-md hover:bg-blue-700 focus:outline-none 
+         focus:ring-2 focus:ring-blue-400 transition;
+}
+
+/* --- Headings --- */
+form.wondem-application-form h1,
+form.wondem-application-form h2 {
+  @apply text-2xl font-bold text-gray-900 mb-4;
+}
+
+form.wondem-application-form p.description {
+  @apply text-gray-500 text-sm mb-4;
+}

@@ -3,7 +3,7 @@
  * Tests to verify that the "help" command functions as expected.
  *
  * @author    Juliette Reinders Folmer <phpcs_nospam@adviesenzo.nl>
- * @copyright 2024 Juliette Reinders Folmer. All rights reserved.
+ * @copyright 2024 PHPCSStandards and contributors
  * @license   https://github.com/PHPCSStandards/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  */
 
@@ -37,12 +37,8 @@ final class HelpTest extends TestCase
      */
     public function testQaArgumentNamesAreWithinAcceptableBounds()
     {
-        $help = new Help(new ConfigDouble(), []);
-
-        $reflMethod = new ReflectionMethod($help, 'getAllOptions');
-        $reflMethod->setAccessible(true);
-        $allOptions = $reflMethod->invoke($help);
-        $reflMethod->setAccessible(false);
+        $help       = new Help(new ConfigDouble(), []);
+        $allOptions = $this->invokeReflectionMethod($help, 'getAllOptions');
 
         $this->assertGreaterThan(0, count($allOptions), 'No categories found');
 
@@ -81,12 +77,8 @@ final class HelpTest extends TestCase
      */
     public function testQaValidCategoryOptionDefinitions()
     {
-        $help = new Help(new ConfigDouble(), []);
-
-        $reflMethod = new ReflectionMethod($help, 'getAllOptions');
-        $reflMethod->setAccessible(true);
-        $allOptions = $reflMethod->invoke($help);
-        $reflMethod->setAccessible(false);
+        $help       = new Help(new ConfigDouble(), []);
+        $allOptions = $this->invokeReflectionMethod($help, 'getAllOptions');
 
         $this->assertGreaterThan(0, count($allOptions), 'No categories found');
 
@@ -185,10 +177,7 @@ final class HelpTest extends TestCase
     {
         $help = new Help(new ConfigDouble(), $longOptions, $shortOptions);
 
-        $reflProperty = new ReflectionProperty($help, 'activeOptions');
-        $reflProperty->setAccessible(true);
-        $activeOptions = $reflProperty->getValue($help);
-        $reflProperty->setAccessible(false);
+        $activeOptions = $this->getReflectionProperty($help, 'activeOptions');
 
         // Simplify the value to make it comparible.
         foreach ($activeOptions as $category => $options) {
@@ -324,10 +313,7 @@ final class HelpTest extends TestCase
     {
         $help = new Help(new ConfigDouble(), $longOptions, $shortOptions);
 
-        $reflProperty = new ReflectionProperty($help, 'activeOptions');
-        $reflProperty->setAccessible(true);
-        $activeOptions = $reflProperty->getValue($help);
-        $reflProperty->setAccessible(false);
+        $activeOptions = $this->getReflectionProperty($help, 'activeOptions');
 
         $this->assertNotEmpty($activeOptions, 'Active options is empty, test is invalid');
 
@@ -386,7 +372,7 @@ final class HelpTest extends TestCase
 
 
     /**
-     * Test that if no short/long options are passed, only usage information is displayed (and displayed correctly).
+     * Test that if no short/long options are passed, only usage information is displayed (CS mode).
      *
      * @param array<string> $cliArgs       Command line arguments.
      * @param string        $expectedRegex Regex to validate expected output.
@@ -395,7 +381,51 @@ final class HelpTest extends TestCase
      *
      * @return void
      */
-    public function testDisplayUsage($cliArgs, $expectedRegex)
+    public function testDisplayUsageCS($cliArgs, $expectedRegex)
+    {
+        if (PHP_CODESNIFFER_CBF === true) {
+            $this->markTestSkipped('This test needs CS mode to run');
+        }
+
+        $expectedRegex = str_replace('phpc(bf|s)', 'phpcs', $expectedRegex);
+        $this->verifyDisplayUsage($cliArgs, $expectedRegex);
+
+    }//end testDisplayUsageCS()
+
+
+    /**
+     * Test that if no short/long options are passed, only usage information is displayed (CBF mode).
+     *
+     * @param array<string> $cliArgs       Command line arguments.
+     * @param string        $expectedRegex Regex to validate expected output.
+     *
+     * @dataProvider dataDisplayUsage
+     * @group        CBF
+     *
+     * @return void
+     */
+    public function testDisplayUsageCBF($cliArgs, $expectedRegex)
+    {
+        if (PHP_CODESNIFFER_CBF === false) {
+            $this->markTestSkipped('This test needs CBF mode to run');
+        }
+
+        $expectedRegex = str_replace('phpc(bf|s)', 'phpcbf', $expectedRegex);
+        $this->verifyDisplayUsage($cliArgs, $expectedRegex);
+
+    }//end testDisplayUsageCBF()
+
+
+    /**
+     * Helper method to test that if no short/long options are passed, only usage information is displayed
+     * (and displayed correctly).
+     *
+     * @param array<string> $cliArgs       Command line arguments.
+     * @param string        $expectedRegex Regex to validate expected output.
+     *
+     * @return void
+     */
+    private function verifyDisplayUsage($cliArgs, $expectedRegex)
     {
         $help = new Help(new ConfigDouble($cliArgs), []);
 
@@ -403,7 +433,7 @@ final class HelpTest extends TestCase
 
         $help->display();
 
-    }//end testDisplayUsage()
+    }//end verifyDisplayUsage()
 
 
     /**
@@ -449,10 +479,7 @@ final class HelpTest extends TestCase
         $config = new ConfigDouble(["--report-width=$reportWidth", '--no-colors']);
         $help   = new Help($config, $longOptions);
 
-        $reflMethod = new ReflectionMethod($help, 'printCategories');
-        $reflMethod->setAccessible(true);
-        $reflMethod->invoke($help);
-        $reflMethod->setAccessible(false);
+        $this->invokeReflectionMethod($help, 'printCategories');
 
         $this->expectOutputString($expectedOutput);
 
@@ -528,12 +555,8 @@ final class HelpTest extends TestCase
      */
     public function testColorizeVariableInput($input, $expected)
     {
-        $help = new Help(new ConfigDouble(), []);
-
-        $reflMethod = new ReflectionMethod($help, 'colorizeVariableInput');
-        $reflMethod->setAccessible(true);
-        $result = $reflMethod->invoke($help, $input);
-        $reflMethod->setAccessible(false);
+        $help   = new Help(new ConfigDouble(), []);
+        $result = $this->invokeReflectionMethod($help, 'colorizeVariableInput', $input);
 
         $this->assertSame($expected, $result);
 
@@ -596,20 +619,9 @@ final class HelpTest extends TestCase
         $config = new ConfigDouble(['--no-colors']);
         $help   = new Help($config, []);
 
-        $reflProperty = new ReflectionProperty($help, 'activeOptions');
-        $reflProperty->setAccessible(true);
-        $reflProperty->setValue($help, ['cat' => $input]);
-        $reflProperty->setAccessible(false);
-
-        $reflMethod = new ReflectionMethod($help, 'setMaxOptionNameLength');
-        $reflMethod->setAccessible(true);
-        $reflMethod->invoke($help);
-        $reflMethod->setAccessible(false);
-
-        $reflMethod = new ReflectionMethod($help, 'printCategoryOptions');
-        $reflMethod->setAccessible(true);
-        $reflMethod->invoke($help, $input);
-        $reflMethod->setAccessible(false);
+        $this->setReflectionProperty($help, 'activeOptions', ['cat' => $input]);
+        $this->invokeReflectionMethod($help, 'setMaxOptionNameLength');
+        $this->invokeReflectionMethod($help, 'printCategoryOptions', $input);
 
         $this->expectOutputRegex($expectedRegex['no-color']);
 
@@ -631,20 +643,9 @@ final class HelpTest extends TestCase
         $config = new ConfigDouble(['--colors']);
         $help   = new Help($config, []);
 
-        $reflProperty = new ReflectionProperty($help, 'activeOptions');
-        $reflProperty->setAccessible(true);
-        $reflProperty->setValue($help, ['cat' => $input]);
-        $reflProperty->setAccessible(false);
-
-        $reflMethod = new ReflectionMethod($help, 'setMaxOptionNameLength');
-        $reflMethod->setAccessible(true);
-        $reflMethod->invoke($help);
-        $reflMethod->setAccessible(false);
-
-        $reflMethod = new ReflectionMethod($help, 'printCategoryOptions');
-        $reflMethod->setAccessible(true);
-        $reflMethod->invoke($help, $input);
-        $reflMethod->setAccessible(false);
+        $this->setReflectionProperty($help, 'activeOptions', ['cat' => $input]);
+        $this->invokeReflectionMethod($help, 'setMaxOptionNameLength');
+        $this->invokeReflectionMethod($help, 'printCategoryOptions', $input);
 
         $this->expectOutputRegex($expectedRegex['color']);
 
@@ -720,6 +721,72 @@ final class HelpTest extends TestCase
         // phpcs:enable
 
     }//end dataPrintCategoryOptions()
+
+
+    /**
+     * Test Helper: invoke a reflected method which is not publicly accessible.
+     *
+     * @param \PHP_CodeSniffer\Util\Help $help       Instance of a Help object.
+     * @param string                     $methodName The name of the method to invoke.
+     * @param mixed                      $params     Optional. Parameters to pass to the method invocation.
+     *
+     * @return mixed
+     */
+    private function invokeReflectionMethod(Help $help, $methodName, $params=null)
+    {
+        $reflMethod = new ReflectionMethod($help, $methodName);
+        (PHP_VERSION_ID < 80100) && $reflMethod->setAccessible(true);
+
+        if ($params === null) {
+            $returnValue = $reflMethod->invoke($help);
+        } else {
+            $returnValue = $reflMethod->invoke($help, $params);
+        }
+
+        (PHP_VERSION_ID < 80100) && $reflMethod->setAccessible(false);
+
+        return $returnValue;
+
+    }//end invokeReflectionMethod()
+
+
+    /**
+     * Test Helper: retrieve the value of property which is not publicly accessible.
+     *
+     * @param \PHP_CodeSniffer\Util\Help $help        Instance of a Help object.
+     * @param string                     $properyName The name of the property to retrieve.
+     *
+     * @return mixed
+     */
+    private function getReflectionProperty(Help $help, $properyName)
+    {
+        $reflProperty = new ReflectionProperty($help, $properyName);
+        (PHP_VERSION_ID < 80100) && $reflProperty->setAccessible(true);
+        $returnValue = $reflProperty->getValue($help);
+        (PHP_VERSION_ID < 80100) && $reflProperty->setAccessible(false);
+
+        return $returnValue;
+
+    }//end getReflectionProperty()
+
+
+    /**
+     * Test Helper: set the value of property which is not publicly accessible.
+     *
+     * @param \PHP_CodeSniffer\Util\Help $help        Instance of a Help object.
+     * @param string                     $properyName The name of the property to set.
+     * @param mixed                      $value       The value to set.
+     *
+     * @return void
+     */
+    private function setReflectionProperty(Help $help, $properyName, $value)
+    {
+        $reflProperty = new ReflectionProperty($help, $properyName);
+        (PHP_VERSION_ID < 80100) && $reflProperty->setAccessible(true);
+        $reflProperty->setValue($help, $value);
+        (PHP_VERSION_ID < 80100) && $reflProperty->setAccessible(false);
+
+    }//end setReflectionProperty()
 
 
 }//end class

@@ -53,21 +53,23 @@ class ClassCommentSniff implements Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $find   = Tokens::$methodPrefixes;
-        $find[T_WHITESPACE] = T_WHITESPACE;
-        $find[T_READONLY]   = T_READONLY;
+        $tokens         = $phpcsFile->getTokens();
+        $find           = ([
+            T_ABSTRACT   => T_ABSTRACT,
+            T_FINAL      => T_FINAL,
+            T_READONLY   => T_READONLY,
+            T_WHITESPACE => T_WHITESPACE,
+        ] + Tokens::$phpcsCommentTokens);
         $name           = $tokens[$stackPtr]['content'];
         $classCodeStart = $stackPtr;
 
-        $previousContent = null;
         for ($commentEnd = ($stackPtr - 1); $commentEnd >= 0; $commentEnd--) {
             if (isset($find[$tokens[$commentEnd]['code']]) === true) {
-                continue;
-            }
+                if (isset(Tokens::$phpcsCommentTokens[$tokens[$commentEnd]['code']]) === true) {
+                    $classCodeStart = $commentEnd;
+                }
 
-            if ($previousContent === null) {
-                $previousContent = $commentEnd;
+                continue;
             }
 
             if ($tokens[$commentEnd]['code'] === T_ATTRIBUTE_END
@@ -78,7 +80,7 @@ class ClassCommentSniff implements Sniff
             }
 
             break;
-        }
+        }//end for
 
         if ($tokens[$commentEnd]['code'] !== T_DOC_COMMENT_CLOSE_TAG
             && $tokens[$commentEnd]['code'] !== T_COMMENT

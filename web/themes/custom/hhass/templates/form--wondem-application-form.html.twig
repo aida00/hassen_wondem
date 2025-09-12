@@ -1,0 +1,21 @@
+{{ attach_library('wondem/frontpage') }}
+
+<form{{ attributes.addClass('space-y-6 max-w-3xl mx-auto p-8 bg-white shadow-lg rounded-lg') }}>
+  {% for name, child in form %}
+    {% if name not in ['#action', '#method', 'form_build_id', 'form_token', 'form_id', 'actions'] %}
+      <div class="space-y-2">
+        {{ child['#title'] is defined ? '<label class="block text-sm font-medium text-gray-700">' ~ child['#title'] ~ '</label>' }}
+        {{ child }}
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <div class="pt-6">
+    {{ form.actions.submit
+      .addClass('w-full bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition') }}
+  </div>
+
+  {{ form.form_build_id }}
+  {{ form.form_token }}
+  {{ form.form_id }}
+</form>
