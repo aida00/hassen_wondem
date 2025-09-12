@@ -1,0 +1,22 @@
+uuid: ea9c6bad-28b9-4d9d-b064-e6f939684297
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - hhass
+_core:
+  default_config_hash: jccFSSVqV0WCDb6NtML1VWAWTtDbZ-zn5YgTRMgMrIM
+id: hhass_help
+theme: hhass
+region: header
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

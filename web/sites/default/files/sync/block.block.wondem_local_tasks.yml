@@ -1,0 +1,22 @@
+uuid: ad127392-90a7-45ac-ba22-5aeed2d45f22
+langcode: en
+status: true
+dependencies:
+  theme:
+    - wondem
+_core:
+  default_config_hash: yX9o6NcntZnXRDfbJoHY1pJwuXlumW44m5AMs347NN4
+id: wondem_local_tasks
+theme: wondem
+region: content
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

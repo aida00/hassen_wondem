@@ -1,0 +1,25 @@
+uuid: 69f435ed-734c-4291-9746-f4ac4010b29b
+langcode: en
+status: true
+dependencies:
+  module:
+    - announcements_feed
+    - system
+  theme:
+    - wondem
+id: wondem_announcementsfeed
+theme: wondem
+region: content
+weight: 0
+provider: null
+plugin: announce_block
+settings:
+  id: announce_block
+  label: 'Announcements Feed'
+  label_display: visible
+  provider: announcements_feed
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'
