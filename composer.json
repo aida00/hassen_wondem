@@ -88,7 +88,10 @@
         "drupal/file_mdm": "^3.1",
         "drupal/sophron": "^2.1",
         "drupal/stable": "^2.0",
-        "drupal/webprofiler": "^10.3"
+        "drupal/webprofiler": "^10.3",
+        "drupal/token": "^1.16",
+        "drupal/devel": "^5.4",
+        "drupal/metatag": "^2.1"
     },
     "require-dev": {
         "drupal/core-dev": "^10"

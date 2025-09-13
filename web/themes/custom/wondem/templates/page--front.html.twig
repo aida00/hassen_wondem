@@ -1,34 +1,23 @@
-{# 
+{#
   File: page--front.html.twig
-  Public front page with hero + fallback message
+  Pure Twig front page, no dependency on nodes or Views
 #}
 {% extends "page.html.twig" %}
 
 {% block content %}
   {{ attach_library('wondem/frontpage') }}
 
-  {# --- Hero --- #}
-  <section class="flex flex-col items-center justify-center text-center min-h-[60vh] bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-6 py-20">
-    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-      Start Your Journey With Us 🚀
+  <section class="flex flex-col items-center justify-center text-center min-h-screen bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-6 py-20">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
+      🚀 Welcome to the Front Page 🚀
     </h1>
     <p class="text-lg md:text-xl max-w-2xl mb-8 opacity-90">
-      Apply now to join our growing team of content creators, developers, and digital innovators.
+      This is coming directly from <code>page--front.html.twig</code>, not from a node or a View.
     </p>
     <a href="/application-form"
        class="px-8 py-4 bg-white text-blue-700 font-semibold rounded-xl shadow hover:bg-gray-100 transition">
       Apply Now
     </a>
   </section>
-
-  {# --- Content Region (if blocks exist) --- #}
-  <div class="container mx-auto px-6 py-12">
-    {% if page.content %}
-      {{ page.content }}
-    {% else %}
-      <div class="bg-red-500 text-white p-4 rounded-lg">
-        Welcome! No blocks are visible for your role. This is a default fallback message.
-      </div>
-    {% endif %}
-  </div>
 {% endblock %}
+
