@@ -46,3 +46,6 @@ function wondem_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_st
     }
   }
 }
+function wondem_twig_namespace(\Twig\Loader\FilesystemLoader $loader) {
+  $loader->addPath(drupal_get_path('theme', 'wondem') . '/templates/patterns', 'organisms');
+}
