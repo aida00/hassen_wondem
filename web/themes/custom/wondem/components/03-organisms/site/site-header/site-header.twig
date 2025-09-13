@@ -1,0 +1,426 @@
+<div
+	x-data="{ open: false }" @keydown.window.escape="open = false" class="bg-white">
+	<!-- Mobile menu -->
+
+	<div x-show="open" class="relative z-40 lg:hidden" x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." x-ref="dialog" aria-modal="true" style="display: none">
+
+		<div x-show="open" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="Off-canvas menu backdrop, show/hide based on off-canvas menu state." class="fixed inset-0 bg-black bg-opacity-25"></div>
+
+
+		<div class="fixed inset-0 z-40 flex">
+
+			<div x-show="open" x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" x-description="Off-canvas menu, show/hide based on off-canvas menu state." class="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl" @click.away="open = false">
+				<div class="flex px-4 pt-5 pb-2">
+					<button type="button" class="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400" @click="open = false">
+						<span class="sr-only">Close menu</span>
+						<svg class="h-6 w-6" x-description="Heroicon name: outline/x-mark" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+						</svg>
+					</button>
+				</div>
+
+				<!-- Links -->
+				<div class="mt-2" x-data="Components.tabs()" @tab-click.window="onTabClick" @tab-keydown.window="onTabKeydown">
+					<div class="border-b border-gray-200">
+						<div class="-mb-px flex space-x-8 px-4" aria-orientation="horizontal" role="tablist">
+
+							<button id="tabs-1-tab-1" class="text-gray-900 border-transparent flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium" x-state:on="Selected" x-state:off="Not Selected" :class="{ 'text-primary-600 border-primary-600': selected, 'text-gray-900 border-transparent': !(selected) }" x-data="Components.tab(0)" aria-controls="tabs-1-panel-1" role="tab" x-init="init()" @click="onClick" @keydown="onKeydown" @tab-select.window="onTabSelect" :tabindex="selected ? 0 : -1" :aria-selected="selected ? 'true' : 'false'" type="button">
+								{{ 'Products'|trans }}
+							</button>
+
+							<button id="tabs-1-tab-2" class="text-gray-900 border-transparent flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium" x-state:on="Selected" x-state:off="Not Selected" :class="{ 'text-primary-600 border-primary-600': selected, 'text-gray-900 border-transparent': !(selected) }" x-data="Components.tab(0)" aria-controls="tabs-1-panel-2" role="tab" x-init="init()" @click="onClick" @keydown="onKeydown" @tab-select.window="onTabSelect" :tabindex="selected ? 0 : -1" :aria-selected="selected ? 'true' : 'false'" type="button">
+								{{ 'Rentals'|trans }}
+							</button>
+
+						</div>
+					</div>
+
+
+					<div id="tabs-1-panel-1" class="space-y-10 px-4 pt-10 pb-8" x-description="'Products' tab panel, show/hide based on tab state." x-data="Components.tabPanel(0)" aria-labelledby="tabs-1-tab-1" x-init="init()" x-show="selected" @tab-select.window="onTabSelect" role="tabpanel" tabindex="0">
+						<div class="space-y-4">
+
+							{{ bamboo_render_views('mobile_product_category', 'block_1') }}
+
+							{{ bamboo_render_views('mobile_product_category', 'block_2') }}
+
+							{{ bamboo_render_views('mobile_product_category', 'block_3') }}
+
+						</div>
+
+						<div class="space-y-10">
+
+							<div>
+								{{ bamboo_render_views('mobile_product_category_list', 'mobility') }}
+							</div>
+
+							<div>
+								{{ bamboo_render_views('mobile_product_category_list', 'breathing') }}
+							</div>
+
+							<div>
+								{{ bamboo_render_views('mobile_product_category_list', 'assistive_devices') }}
+							</div>
+
+							<div>
+								{{ bamboo_render_views('mobile_product_category_list', 'compression') }}
+							</div>
+
+						</div>
+
+						<div class="space-y-10">
+
+							<div>
+								{{ bamboo_render_views('mobile_product_category_list', 'more') }}
+							</div>
+
+						</div>
+
+					</div>
+
+					<div id="tabs-1-panel-2" class="space-y-12 px-4 py-6" x-description="'Rentals' tab panel, show/hide based on tab state." x-data="Components.tabPanel(0)" aria-labelledby="tabs-1-tab-2" x-init="init()" x-show="selected" @tab-select.window="onTabSelect" role="tabpanel" tabindex="0">
+						{{ bamboo_render_views('mobile_rental_category', 'block') }}
+					</div>
+
+
+				</div>
+
+				<div class="space-y-6 border-t border-gray-200 py-6 px-4">
+
+					<div class="flow-root">
+						<a href="/blog" class="-m-2 block p-2 font-medium text-gray-900">{{ 'Blog'|trans }}</a>
+					</div>
+
+					<div class="flow-root">
+						<a href="/about" class="-m-2 block p-2 font-medium text-gray-900">{{ 'About us'|trans }}</a>
+					</div>
+
+					<div class="flow-root">
+						<a href="/contact" class="-m-2 block p-2 font-medium text-gray-900">{{ 'Contact'|trans }}</a>
+					</div>
+
+				</div>
+
+				{# <div class="border-t border-gray-200 py-6 px-4">
+																																					<a href="#" class="-m-2 flex items-center p-2">
+																																						<span class="block text-base font-medium text-gray-900">English</span>
+																																						<span class="sr-only">, change language</span>
+																																					</a>
+																																				</div> #}
+			</div>
+
+		</div>
+	</div>
+
+
+	<header class="relative z-10">
+		<nav
+			aria-label="Top">
+			<!-- Top navigation -->
+			<div class="bg-gray-900">
+				<div
+					class="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 headerInnerWrapper">
+					<!-- Currency selector -->
+					<div class="lg:block lg:flex-1">
+						<span class="HeaderAddress">8246 Northfield Blvd #1430, Denver, CO</span>
+					</div>
+
+					{# <div class="flex-1 text-center [&>*]:text-sm [&>*]:font-medium [&>*]:text-white lg:flex-none">
+																																															{{ bamboo_render_block('block_content:c8a8705b-1af1-45a4-9d0f-5d692a19a02c') }}
+																																													</div> #}
+					{# <p class="flex-1 text-center text-sm font-medium text-white lg:flex-none">{{ 'Call to order: +1 (720)-350 4073'|trans }}</p> #}
+
+					<div class="flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+						{% if logged_in %}
+							<a href="/user" class="text-sm font-medium text-white hover:text-gray-100">
+								{{ 'My account'|trans }}
+							</a>
+							<a href="/user/logout" class="text-sm font-medium text-white hover:text-gray-100">
+								{{ 'Logout'|trans }}
+							</a>
+						{% else %}
+							<a href="/user/register" class="text-sm font-medium text-white hover:text-gray-100 displayNoneMobile">
+								{{ 'Create an account'|trans }}
+							</a>
+							<span class="h-6 w-px bg-gray-600 displayNoneMobile" aria-hidden="true"></span>
+							<a href="/user/login" class="text-sm font-medium text-white hover:text-gray-100 displayNoneMobile">
+								{{ 'Sign in'|trans }}
+							</a>
+						{% endif %}
+
+						<div class="flex space-x-8 searchMobile">
+
+							<div x-data="{ open: false }" class="flex">
+								<span x-on:click="open = true" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+									<span class="sr-only">{{ 'Search'|trans }}</span>
+									<svg class="h-6 w-6" x-description="Heroicon name: outline/magnifying-glass" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+									</svg>
+								</span>
+
+								<!-- Modal -->
+								<div
+									x-show="open" x-on:keydown.escape.prevent.stop="open = false" role="dialog" aria-modal="true" style="display: none" class="fixed inset-0 overflow-y-auto z-10">
+									<!-- Overlay -->
+									<div x-show="open" x-on:click.away="open = false" class="z-10 fixed inset-0 bg-gray-600 bg-opacity-25 transition-opacity"></div>
+
+									<!-- Panel -->
+									<div class="z-20 fixed inset-0 overflow-y-auto p-4 md:p-20 pt-10" x-show="open" x-on:click="open = false" x-trap.noscroll.inert="open" {# x-on:keydown.escape.prevent.stop="open = false" #} x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+										<div x-on:click.stop class="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
+											<div class="relative">
+												<svg class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+													<path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
+												</svg>
+												{{ bamboo_render_block('command_palette') }}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+
+						<div class="flex Headeritems">
+							<a href="/user" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+								<span class="sr-only">{{ 'Account'|trans }}</span>
+								<svg class="h-6 w-6" x-description="Heroicon name: outline/user" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
+								</svg>
+							</a>
+						</div>
+						<div class="flow-root Headeritems">
+							{{ bamboo_render_block('commerce_cart_flyout') }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<style></style>
+
+			<!-- Secondary navigation -->
+			<div class="bg-white">
+				<div class="border-b border-gray-200">
+					<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+						<div
+							class="flex h-16 items-center justify-between menuWrapper">
+							<!-- Logo (lg+) -->
+							<div class="hidden lg:flex lg:items-center">
+								<a href="{{ url('<front>') }}">
+									<span class="sr-only">Sky Medical</span>
+									<img class="mr-8 h-10 w-auto" height="40" width="158" src="/{{ active_theme_path() }}/images/logos/logo.svg" alt="Sky medical logo">
+								</a>
+							</div>
+
+							<div
+								class="hidden h-full lg:flex">
+								<!-- Flyout menus -->
+								<div class="hidden lg:block lg:flex-1 lg:self-stretch" x-data="Components.popoverGroup()" x-init="init()">
+									<div class="flex h-full space-x-8">
+
+										<div class="flex" x-data="Components.popover({ open: false, focus: false })" x-init="init()" @keydown.escape="onEscape" @close-popover-group.window="onClosePopoverGroup">
+											<div class="relative flex">
+												<button type="button" x-state:on="Item active" x-state:off="Item inactive" class="text-gray-700 hover:text-gray-800 relative z-10 flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out" :class="{ 'text-primary-600': open, 'text-gray-700 hover:text-gray-800': !(open) }" @click="toggle" @mousedown="if (open) $event.preventDefault()" aria-expanded="false" :aria-expanded="open.toString()">
+													{{ 'Products'|trans }}
+													<span class="absolute inset-x-0 bottom-0 h-0.5 transition-colors duration-200 ease-out sm:mt-5 sm:translate-y-px sm:transform" aria-hidden="true" x-state:on="Open" x-state:off="Closed" :class="{ 'bg-primary-600': open }"></span>
+												</button>
+											</div>
+
+
+											<div
+												x-show="open" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="'Women' flyout menu, show/hide based on flyout menu state." class="absolute inset-x-0 top-full" x-ref="panel" @click.away="open = false">
+												<!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
+												<div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
+
+												<div class="relative bg-white">
+													<div class="mx-auto max-w-7xl px-8">
+														<div class="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
+															<div class="grid grid-cols-2 grid-rows-1 gap-8 text-sm">
+
+																{{ bamboo_render_views('flyout_product_category', 'block_1') }}
+
+																{{ bamboo_render_views('flyout_product_category', 'block_2') }}
+
+																{{ bamboo_render_views('flyout_product_category', 'block_3') }}
+
+															</div>
+															<div class="grid grid-cols-3 gap-y-10 gap-x-8 text-sm text-gray-500">
+
+																<div class="space-y-10">
+
+																	<div>
+																		{{ bamboo_render_views('flyout_product_category_list', 'mobility') }}
+																	</div>
+
+																	<div>
+																		{{ bamboo_render_views('flyout_product_category_list', 'breathing') }}
+																	</div>
+
+																	<div>
+																		{{ bamboo_render_views('flyout_product_category_list', 'assistive_devices') }}
+																	</div>
+
+																	<div>
+																		{{ bamboo_render_views('flyout_product_category_list', 'compression') }}
+																	</div>
+
+																</div>
+
+																<div class="space-y-10">
+
+																	<div>
+																		{{ bamboo_render_views('flyout_product_category_list', 'more') }}
+																	</div>
+
+																</div>
+
+																<div class="space-y-10">
+
+																	<div>
+																		{{ bamboo_render_views('flyout_product_brands_list', 'block') }}
+																	</div>
+
+																</div>
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+										<div class="flex" x-data="Components.popover({ open: false, focus: false })" x-init="init()" @keydown.escape="onEscape" @close-popover-group.window="onClosePopoverGroup">
+											<div class="relative flex">
+												<button type="button" x-state:on="Item active" x-state:off="Item inactive" class="text-gray-700 hover:text-gray-800 relative z-10 flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out" :class="{ 'text-primary-600': open, 'text-gray-700 hover:text-gray-800': !(open) }" @click="toggle" @mousedown="if (open) $event.preventDefault()" aria-expanded="false" :aria-expanded="open.toString()">
+													{{ 'Rentals'|trans }}
+													<span class="absolute inset-x-0 bottom-0 h-0.5 transition-colors duration-200 ease-out sm:mt-5 sm:translate-y-px sm:transform" aria-hidden="true" x-state:on="Open" x-state:off="Closed" :class="{ 'bg-primary-600': open }"></span>
+												</button>
+											</div>
+
+
+											<div
+												x-show="open" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="'Men' flyout menu, show/hide based on flyout menu state." class="absolute inset-x-0 top-full" x-ref="panel" @click.away="open = false">
+												<!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
+												<div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
+
+												<div class="relative bg-white">
+													<div class="mx-auto max-w-7xl px-8">
+														{{ bamboo_render_views('flyout_rental_category', 'block') }}
+													</div>S
+												</div>
+											</div>
+
+										</div>
+
+
+										<a href="/blog" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">{{ 'Blog'|trans }}</a>
+
+										<a href="/about" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">{{ 'About'|trans }}</a>
+
+										<a href="/contact" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">{{ 'Contact'|trans }}</a>
+
+									</div>
+								</div>
+							</div>
+
+							<!-- Mobile menu and search (lg-) -->
+							<div class="flex items-center lg:hidden menuBtnMobile">
+								<button type="button" x-description="Mobile menu toggle, controls the 'mobileMenuOpen' state." class="-ml-2 rounded-md bg-white p-2 text-gray-400" @click="open = true">
+									<span class="sr-only">Open menu</span>
+									<svg class="h-6 w-6" x-description="Heroicon name: outline/bars-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+									</svg>
+								</button>
+
+								<!-- Search -->
+							{#                                <a href="/{{ bamboo_i18n_current_lang() }}/search" class="ml-2 p-2 text-gray-400 hover:text-gray-500">#}
+								{#                                    <span class="sr-only">{{ 'Search'|trans }}</span>#}
+								{#                                    <svg class="h-6 w-6" x-description="Heroicon name: outline/magnifying-glass" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">#}
+								{#                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>#}
+								{#                                    </svg>#}
+								{#                                </a>#}
+							</div>
+
+							<!-- Logo (lg-) -->
+							<a href="{{ url('<front>') }}" class="lg:hidden">
+								<span class="sr-only">Sky Medical</span>
+								<img class="h-10 w-auto" height="40" width="44" src="/{{ active_theme_path() }}/images/logos/mark.svg" alt="Sky medical logo">
+							</a>
+
+							<div class="flex flex-1 items-center justify-end">
+								<div class="flex items-center lg:ml-8 headerNumberWrap">
+									<div class="flex space-x-8 searchDesktop">
+
+										<div x-data="{ open: false }" class="flex">
+											<span x-on:click="open = true" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+												<span class="sr-only">{{ 'Search'|trans }}</span>
+												<svg class="h-6 w-6" x-description="Heroicon name: outline/magnifying-glass" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+													<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+												</svg>
+											</span>
+
+											<!-- Modal -->
+											<div
+												x-show="open" x-on:keydown.escape.prevent.stop="open = false" role="dialog" aria-modal="true" style="display: none" class="fixed inset-0 overflow-y-auto z-10">
+												<!-- Overlay -->
+												<div x-show="open" x-on:click.away="open = false" class="z-10 fixed inset-0 bg-gray-600 bg-opacity-25 transition-opacity"></div>
+
+												<!-- Panel -->
+												<div class="z-20 fixed inset-0 overflow-y-auto p-4 md:p-20 pt-10" x-show="open" x-on:click="open = false" x-trap.noscroll.inert="open" {# x-on:keydown.escape.prevent.stop="open = false" #} x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+													<div x-on:click.stop class="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
+														<div class="relative">
+															<svg class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+																<path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
+															</svg>
+															{{ bamboo_render_block('command_palette_desktop') }}
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+									</div>
+									{# <span class="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true"></span> #}
+									<div class="headerNumber">
+										<span>+720 350 4073</span>
+									</div>
+									<div class="headerWorkingHours">
+										<span class="headerDays">6 Days a week</span>
+										<span class="headerTime">10:00 am to 6:00 pm</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="fotFeature bg-gray-900">
+			<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<ul class="flex lg:flex-row flex-col justify-start items-center lg:gap-x-1 gap-x-3 sm:gap-y-0 gap-y-1.5 text-sm">
+					<li>
+						<a href="/product-category/lift-chair">Lift Chairs</a>
+					</li>
+					<li>
+						<a href="/product-category/scooter">Scooters</a>
+					</li>
+					<li>
+						<a href="/product-category/socks">Compression</a>
+					</li>
+					<li>
+						<a href="/product-category/bed">Hospital Beds</a>
+					</li>
+					<li>
+						<a href="/product-category/bathroom">Bathroom Safety</a>
+					</li>
+					<li>
+						<a href="/product-category/knee-scooter">more</a>
+					</li>
+					<li class="listButton sm:mt-0 mt-2 sm:ml-auto sm:mr-0 ml-0 mr-auto tracking-widest font-semibold px-6 !py-2.5 rounded-full">
+						<a href="/product-category/oxygen-concentrator">OFFERS</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>

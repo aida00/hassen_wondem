@@ -1,0 +1,22 @@
+/**
+ * @file
+ * Image upload widget.
+ */
+
+.image-preview {
+  @apply float-left pt-0 pr-2.5 pb-2.5 pl-0; /* LTR */
+}
+[dir="rtl"] .image-preview {
+  float: right;
+  padding: 0 0 10px 10px;
+  @apply float-right pt-0 pr-0 pb-2.5 pl-2.5;
+}
+.image-widget-data {
+  @apply float-left; /* LTR */
+}
+[dir="rtl"] .image-widget-data {
+  @apply float-right;
+}
+.image-widget-data .text-field {
+  @apply w-auto;
+}

@@ -1,0 +1,14 @@
+/**
+ * @file
+ * Visual styles for table drag.
+ */
+
+tr.drag {
+  @apply bg-amber-50;
+}
+tr.drag-previous {
+  @apply bg-lime-50;
+}
+body div.tabledrag-changed-warning {
+  @apply mb-2;
+}

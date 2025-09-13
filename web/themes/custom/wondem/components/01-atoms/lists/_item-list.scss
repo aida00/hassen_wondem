@@ -1,0 +1,30 @@
+/**
+ * @file
+ * Visual styles for item list.
+ */
+
+.item-list .title {
+  @apply font-bold;
+}
+.item-list ul {
+  @apply mb-3 p-0;
+}
+.item-list li {
+  @apply mb-1 ml-6 p-0; /* LTR */
+}
+[dir="rtl"] .item-list li {
+  @apply mb-1 mr-6 ml-0;
+}
+
+/**
+ * Comma separated lists.
+ */
+.item-list--comma-list {
+  @apply inline;
+}
+.item-list--comma-list .item-list__comma-list,
+.item-list__comma-list li,
+[dir="rtl"] .item-list--comma-list .item-list__comma-list,
+[dir="rtl"] .item-list__comma-list li {
+  @apply m-0;
+}

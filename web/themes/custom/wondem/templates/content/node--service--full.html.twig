@@ -1,0 +1,184 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.hasField('field_example') returns TRUE if the node bundle includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   - node.isPublished() will return whether the node is published or not.
+ *   Calling other methods, such as node.delete(), will result in an exception.
+ *   See \Drupal\node\Entity\Node for a full list of public properties and
+ *   methods for the node object.
+ * - label: (optional) The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: (optional) Themed creation date field.
+ * - author_name: (optional) Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ * - price_tier_tabs: These are the pricing pier tabs.
+ * - field_tagline: The tagline for the rental.
+ * - field_rental_features: The features of the rental.
+ *
+ * @see sky_preprocess_node__service__full()
+ *
+ */
+#}
+
+{# This is from the Gliderjs module. It is needed for the related products slider. #}
+{{ attach_library('gliderjs/gliderjs') }}
+
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'mx-auto',
+    'max-w-7xl',
+    'px-4',
+    'pb-12',
+    'sm:px-6',
+    'lg:px-8',
+    'lg:pb-16',
+  ]
+%}
+{%
+  set title_classes = [
+    'text-black',
+    'font-semibold',
+    'text-2xl',
+    'leading-7',
+    'lg:text-5xl',
+    'lg:font-extrabold',
+  ]
+%}
+
+{# Breadcrumbs should be in the breadcrumb block. This is from the legacy theme. #}
+<div class="mx-auto max-w-7xl px-4 pt-7 pb-2 sm:px-6 lg:px-8 lg:pt-6 lg:pb-8">
+  <nav aria-label="Breadcrumb">
+    <ul role="list" class="flex">
+      <li>
+        <a href="/rentals" class="text-black text-sm font-semibold leading-4 opacity-50 hover:opacity-100">{{ 'Rentals'|trans }}</a>
+      </li>
+      <li><span class="text-black text-sm font-semibold leading-4 opacity-50">&nbsp;&nbsp;/&nbsp;&nbsp;</span</li>
+      <li>
+        {{ content.field_rental_category|field_value }}
+      </li>
+    </ul>
+  </nav>
+</div>
+<article{{ attributes.addClass(classes) }}>
+  <div class="lg:grid lg:grid-cols-5 lg:gap-8 xl:gap-10">
+    <div class="lg:col-span-3">
+      <header>
+        {{ title_prefix }}
+        <h1{{ title_attributes.addClass(title_classes) }}>{{ label }}</h1>
+        {{ title_suffix }}
+      </header>
+      {{ content.field_starting_price }}
+      {{ content.field_ratings }}
+      {# If there is multiple slider images show the slider field. #}
+      {% if node.field_slider_images.value %}
+        {{ content.field_slider_images }}
+      {% else %}
+        {# Default image field. #}
+        {{ content.field_image }}
+      {% endif %}
+    </div>
+    {# Price Tiers / Availability Form #}
+    <div class="pt-9 lg:pt-0 lg:col-span-2">
+      <div class="bg-white shadow-custom-1">
+        <div class="">
+          <div class="flex flex-row">
+            {{ price_tier_tabs }}
+          </div>
+          <div class="px-5 pt-4">
+            <div class="pb-5 border-b border-gray-300 border-dashed">
+              <p class="mb-3 text-black text-sm lg:text-lg">{{ field_tagline }}</p>
+              <ul role="list" class="space-y-3 lg:space-y-4">
+                {% for field_rental_feature in field_rental_features %}
+                  <li class="flex">
+                    <svg class="h-5 w-5 lg:h-6 lg:w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div class="ml-2.5 text-black text-sm lg:text-lg">{{ field_rental_feature }}</div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {{ bamboo_render_form('renting', 'CheckAvailability') }}
+      </div>
+      <div class="flex pt-3 px-5 lg:pt-5">
+        <svg class="mr-2 h-6 w-6 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+        </svg>
+        <span class="text-black text-xs font-medium lg:text-sm">{{ 'All rentals are thoroughly sanitized and inspected upon return and before delivery.'|trans }}</span>
+      </div>
+      <div class="mt-5">
+        {{ content.field_sidebar_detials }}
+      </div>
+    </div>
+  </div>
+  <div class="lg:grid lg:grid-cols-5 lg:gap-5 xl:gap-6">
+    <div class="lg:col-span-3 pt-10">
+      {{ content.body }}
+      {# Pricing Tier / Rental Buttons #}
+      <div id="sections"></div>
+      {{ content.field_sections }}
+    </div>
+  </div>
+  <footer>
+    {{ content.field_related_products }}
+  </footer>
+</article>

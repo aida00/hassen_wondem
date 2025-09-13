@@ -1,0 +1,36 @@
+/**
+ * @file
+ * Visual styles for exposed filters.
+ */
+
+.exposed-filters .filters {
+  @apply float-left mr-4; /* LTR */
+}
+[dir="rtl"] .exposed-filters .filters {
+  @apply float-right mr-0 ml-4;
+}
+.exposed-filters .form-item {
+  @apply m-0 mb-0.5 p-0;
+}
+.exposed-filters .form-item label {
+  @apply float-left w-40 font-normal; /* LTR */
+}
+[dir="rtl"] .exposed-filters .form-item label {
+  @apply float-right;
+}
+.exposed-filters .form-select {
+  @apply w-56;
+}
+/* Current filters */
+.exposed-filters .current-filters {
+  @apply mb-4;
+}
+.exposed-filters .current-filters .placeholder {
+  @apply font-bold not-italic;
+}
+.exposed-filters .additional-filters {
+  @apply float-left mr-4; /* LTR */
+}
+[dir="rtl"] .exposed-filters .additional-filters {
+  @apply float-right mr-0 ml-4;
+}

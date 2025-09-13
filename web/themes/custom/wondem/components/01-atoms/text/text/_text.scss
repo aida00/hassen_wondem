@@ -1,0 +1,30 @@
+body {
+  @apply text-gray-500;
+  @apply font-sans;
+  @apply text-base;
+  @apply leading-relaxed;
+}
+
+.text-long {
+  p {
+    @apply mb-4;
+  }
+
+  blockquote {
+    @apply italic border-l-4 border-primary-500 ml-4 pl-4;
+  }
+
+  hr {
+    @apply border border-solid;
+
+    color: currentColor;
+  }
+}
+
+.page-node-type-blog {
+    .field--name-body {
+        a {
+            @apply text-primary-600 underline;
+        }
+    }
+}

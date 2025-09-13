@@ -1,0 +1,14 @@
+/**
+ * @file
+ * Styles for modal windows.
+ */
+
+.ui-dialog--narrow {
+  @apply max-w-lg;
+}
+
+@media screen and (max-width: 600px) {
+  .ui-dialog--narrow {
+    @apply min-w-[95%] max-w-[95%];
+  }
+}

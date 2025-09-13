@@ -1,0 +1,8 @@
+/**
+ * @file
+ * Visual styles for a resizable textarea.
+ */
+
+.form-textarea-wrapper textarea {
+  @apply block box-border w-full m-0;
+}

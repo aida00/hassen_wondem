@@ -1,0 +1,21 @@
+@mixin link {
+  @apply text-primary-600;
+
+  &:hover {
+    @apply text-primary-500;
+  }
+}
+
+.link {
+  @include link;
+}
+
+// Navigation
+a.is-active, a.is-active-trail {
+    @apply text-gray-900;
+}
+
+.link--previous {
+    @include link;
+    @apply ml-4;
+}

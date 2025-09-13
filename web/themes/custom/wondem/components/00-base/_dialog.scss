@@ -1,0 +1,42 @@
+/**
+ * @file
+ * Presentational styles for Drupal dialogs.
+ */
+
+.ui-dialog {
+  @apply absolute z-50 overflow-visible p-0 text-black border border-gray-300 bg-white;
+}
+
+@media all and (max-width: 48em) { /* 768px */
+  .ui-dialog {
+    @apply w-[92%];
+  }
+}
+.ui-dialog .ui-dialog-titlebar {
+  @apply border-b border-gray-300 rounded-none bg-gray-100 font-bold;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+  @apply border-none bg-transparent;
+}
+.ui-dialog .ui-dialog-buttonpane {
+  @apply mt-0 pt-1.5 px-0 pb-0 border-t border-gray-300 bg-gray-100;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  @apply m-0 p-0;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-button-text-only .ui-button-text {
+  @apply p-0;
+}
+
+/* Form action buttons are moved in dialogs. Remove empty space. */
+.ui-dialog .ui-dialog-content .form-actions {
+    @apply m-0 p-0;
+}
+.ui-dialog .ajax-progress-throbber {
+  background-image: url(../../images/icons/loading-small.gif);
+  @apply fixed z-50 top-[48.5%] left-[49%] w-6 h-6 p-1 opacity-90 rounded-md bg-gray-800 bg-no-repeat bg-center;
+}
+.ui-dialog .ajax-progress-throbber .throbber,
+.ui-dialog .ajax-progress-throbber .message {
+  @apply hidden;
+}

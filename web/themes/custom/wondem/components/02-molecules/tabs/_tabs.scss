@@ -1,0 +1,27 @@
+/**
+ * @file
+ * Visual styles for tabs.
+ */
+
+div.tabs {
+  @apply my-4 mx-0;
+}
+ul.tabs {
+  @apply mb-2 p-0 list-none;
+}
+.tabs > li {
+  @apply inline-block mr-2; /* LTR */
+}
+[dir="rtl"] .tabs > li {
+  @apply mr-0 ml-2;
+}
+.tabs a {
+  @apply block py-1 px-4 no-underline;
+}
+.tabs a.is-active {
+  @apply bg-gray-100;
+}
+.tabs a:focus,
+.tabs a:hover {
+  @apply bg-gray-200;
+}

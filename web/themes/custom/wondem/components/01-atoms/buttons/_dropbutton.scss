@@ -1,0 +1,29 @@
+/**
+ * @file
+ * General styles for dropbuttons.
+ */
+
+.js .dropbutton-widget {
+  @apply border border-gray-300 bg-white;
+}
+.js .dropbutton-widget:hover {
+  @apply border-gray-400;
+}
+.dropbutton .dropbutton-action > * {
+  @apply py-0.5 px-1 whitespace-nowrap;
+}
+.dropbutton .secondary-action {
+  @apply border-t border-gray-200;
+}
+.dropbutton-multiple .dropbutton {
+  @apply border-r border-gray-200; /* LTR */
+}
+[dir="rtl"] .dropbutton-multiple .dropbutton {
+  @apply border-r-0 border-l border-gray-200;
+}
+.dropbutton-multiple .dropbutton .dropbutton-action > * {
+  @apply mr-1; /* LTR */
+}
+[dir="rtl"] .dropbutton-multiple .dropbutton .dropbutton-action > * {
+  @apply mr-0 ml-1;
+}

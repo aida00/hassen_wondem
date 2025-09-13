@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override for an 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ */
+#}
+{# Additional style in 01-atoms/buttons/buttons.scss #}
+{%
+	set classes = [
+		'cursor-pointer',
+		'm-0',
+		'flex',
+		'w-full',
+		'justify-center',
+		'border',
+		'rounded-md',
+		'focus:outline-none',
+		'focus:ring-2',
+		'focus:ring-offset-2',
+		'p-3.5',
+		'border-transparent',
+		'text-lg',
+		'leading-5',
+		'font-medium',
+		'text-white',
+		'bg-primary-600',
+		'hover:bg-primary-700',
+		'focus:ring-primary-500',
+		'lg:text-2xl',
+		'lg:leading-6',
+		'lg:p-6',
+	]
+%}
+<input{{ attributes.addClass(classes) }} />{{ children }}

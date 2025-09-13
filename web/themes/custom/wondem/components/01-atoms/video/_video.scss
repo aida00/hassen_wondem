@@ -1,0 +1,12 @@
+/* Responsive Video using CSS only */
+.video {
+    @apply relative h-0 pb-[56.25%]; /* 56.25% = 16x9 */
+
+    iframe {
+        @apply absolute top-0 left-0 width-full height-full;
+    }
+}
+
+.video--full {
+    @apply pb-[75%]; /* 75% = 4x3 */
+}
