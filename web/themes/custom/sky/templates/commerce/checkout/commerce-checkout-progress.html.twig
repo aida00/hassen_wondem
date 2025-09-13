@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Default theme implementation for the checkout progress.
+ *
+ * Available variables:
+ * - steps: An array of steps, where each step has the following keys:
+ *   - id: The step ID.
+ *   - label: The step label.
+ *   - position: 'previous', 'current' or 'next'.
+ *
+ * @ingroup themeable
+ */
+#}
+<nav aria-label="Progress" class="pb-4 mt-0 border-b border-gray-200 bg-white">
+    <ol role="list" class="checkout-progress max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 md:flex md:space-y-0 md:space-x-8">
+        {% for step in steps %}
+            <li class="md:flex-1">
+                <div class="checkout-progress--step checkout-progress--step__{{ step.position }} group flex flex-col border-l-4 py-2 pl-4 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0">
+
+                    <span class="text-sm font-medium text-gray-700">{{ step.label }}</span>
+
+                </div>
+            </li>
+        {% endfor %}
+    </ol>
+</nav>

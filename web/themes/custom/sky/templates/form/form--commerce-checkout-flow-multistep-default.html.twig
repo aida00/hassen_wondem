@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+{% set classes = [
+    'mx-auto',
+    'max-w-7xl',
+    'px-4',
+    'pt-5',
+    'pb-12',
+    'sm:px-6',
+    'lg:px-8',
+    'lg:pt-6',
+    'lg:pb-15',
+  ]
+%}
+<div id="block-pagetitle" class="contextual-region prose max-w-7xl mx-auto pt-8 px-4 sm:px-6 lg:px-8">
+  <h1 class="page-title">Checkout</h1>
+</div>
+<form{{ attributes.addClass(classes) }}>
+  {{ children }}
+</form>

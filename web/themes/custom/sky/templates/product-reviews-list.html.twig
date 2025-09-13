@@ -1,0 +1,22 @@
+<div class="space-y-6">
+	{% for review in reviews %}
+		<div class="p-4 border rounded-lg bg-white shadow-sm">
+			<div class="flex items-center mb-1">
+				<strong class="text-gray-800 mr-2">{{ review.title }}</strong>
+				<span class="text-sm text-gray-500">{{ review.created }}</span>
+				<span class="ml-2 text-sm text-gray-500">by
+					{{ review.author }}</span>
+			</div>
+
+			<div class="flex items-center mb-2">
+				{% for i in 1..5 %}
+					<svg class="h-5 w-5 transition-transform transform hover:scale-110 {{ i <= review.rating ? 'text-yellow-400' : 'text-gray-300' }}" fill="currentColor" viewbox="0 0 20 20">
+						<path d="M10 15l-5.878 3.09L5.64 12.18 1 7.91l6.061-.89L10 2l2.939 5.02 6.061.89-4.64 4.27 1.518 5.91z"/>
+					</svg>
+				{% endfor %}
+			</div>
+
+			<p class="text-sm text-gray-700">{{ review.text }}</p>
+		</div>
+	{% endfor %}
+</div>

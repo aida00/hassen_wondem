@@ -1,0 +1,107 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a paragraph.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ *   - id: The paragraph ID.
+ *   - bundle: The type of the paragraph, for example, "image" or "text".
+ *   - authorid: The user ID of the paragraph author.
+ *   - createdtime: Formatted creation date. Preprocess functions can
+ *     reformat it by calling format_date() with the desired parameters on
+ *     $variables['paragraph']->getCreatedTime().
+ * - content: All paragraph items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - paragraphs: The current template type (also known as a "theming hook").
+ *   - paragraphs--type-[type]: The current paragraphs type. For example, if the paragraph is an
+ *     "Image" it would result in "paragraphs--type--image". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - paragraphs--view-mode--[view_mode]: The View Mode of the paragraph; for example, a
+ *     preview would result in: "paragraphs--view-mode--preview", and
+ *     default: "paragraphs--view-mode--default".
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+
+
+<div class="bg-white relative overflow-hidden">
+	<div
+	class="backgroungOverlay sm:pt-10 pt-96 px-5 py-10 md:py-20 xl:py-32 sm:bg-cover bg-contain bg-center bg-no-repeat">
+	<div class="container mx-auto lg:max-w-7xl">
+		<div class="skyMedTxt text-left">
+			<h2 class="text-3xl sm:text-5xl font-bold pb-3">SkyMed Difference</h2>
+			<p class="text-lg sm:text-xl font-normal mb-8 leading-5 lg:w-1/2">
+				Choose from one of the product categories above or click the arrow below to view the full range.
+			</p>
+
+			<div class="my-4 sm:my-5 sm:ml-0 w-fit mx-auto text-left skyMedIconWrap">
+				<span
+					class="font-medium uppercase tracking-wider sm:text-xl text-base block">
+					Product experts
+				</span>
+				<p class="text-sm sm:text-base mt-1">
+					Benefits from our experience
+				</p>
+			</div>
+
+			<div class="my-4 sm:my-5 sm:ml-0 w-fit mx-auto text-left skyMedIconWrap">
+				<span
+					class="font-medium uppercase tracking-wider sm:text-xl text-base">
+					Product experts
+				</span>
+				<p class="text-sm sm:text-base mt-1">
+					Benefits from our experience
+				</p>
+			</div>
+
+			<a href="#" class="skyMedA p-3 mt-4 px-10 font-medium rounded-md text-white inline-block">
+				Shop Now
+			</a>
+		</div>
+	</div>
+</div>
+
+{#
+
+	<!-- Decorative background image and gradient -->
+	<div aria-hidden="true" class="absolute inset-0">
+		<div class="absolute inset-0 max-w-7xl mx-auto overflow-hidden xl:px-8">
+			<img src="{{ content.field_media_image|render|striptags('<img>')|trim|raw }}" loading="lazy" alt="" class="w-full h-full object-center object-cover">
+		</div>
+		<div class="absolute inset-0 bg-white bg-opacity-75"></div>
+		<div class="absolute inset-0 bg-gradient-to-t from-white via-white"></div>
+	</div>
+
+	<!-- Callout added pb-8 because commented testimonials-->
+	<section aria-labelledby="sale-heading" class="relative max-w-7xl mx-auto pt-32 pb-8 px-4 flex flex-col items-center text-center sm:px-6 lg:px-8">
+		<div class="max-w-2xl mx-auto lg:max-w-none">
+			<h2 id="sale-heading" class="text-4xl font-heading font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+                {{ content.field_headline.0 }}
+			</h2>
+			<p class="mt-4 max-w-xl mx-auto text-xl text-gray-600">
+                {{ content.field_tagline.0 }}
+            </p>
+            {{ content.field_cta|add_attr('link_attributes', {class: ['mt-6 inline-block w-full bg-gray-900 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-gray-800 sm:w-auto']}) }}
+		</div>
+	</section>
+	
+#}
+
+	<!-- Testimonials -->
+    {{ content.field_testimonials_view }}
+
+</div>

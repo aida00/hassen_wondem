@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Template for displaying the product reviews view.
+ *
+ * Available variables:
+ * - rows: The rendered rows of the view.
+ * - title: The title of the view.
+ * - view: The view object.
+ * - header: The view header.
+ * - footer: The view footer.
+ * - empty: The empty text to display if the view is empty.
+ */
+#}
+
+<div class="product-reviews-view">
+	{% if title %}
+		<h2>{{ title }}</h2>
+	{% endif %}
+
+	{% if header %}
+		<div class="view-header">
+			{{ header }}
+		</div>
+	{% endif %}
+
+	{% if rows %}
+		<div class="view-content">
+			{{ rows }}
+		</div>
+	{% elseif empty %}
+		<div class="view-empty">
+			{{ empty }}
+		</div>
+	{% endif %}
+
+	{% if footer %}
+		<div class="view-footer">
+			{{ footer }}
+		</div>
+	{% endif %}
+</div>

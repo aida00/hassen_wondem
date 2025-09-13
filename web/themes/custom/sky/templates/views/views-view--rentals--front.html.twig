@@ -1,0 +1,170 @@
+{#
+/**
+ * @file
+ * Theme override for main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A CSS-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   Javascript.
+ *
+ * @see template_preprocess_views_view()
+ */
+#}
+{%
+  set classes = [
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+    '',
+  ]
+%}
+{# <div{{ attributes.addClass(classes) }}> #}
+{#    <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"> #}
+{#        {% if header %}#}
+{#            <h2 class="text-2xl font-bold tracking-tight text-gray-900">#}
+{#                {{ header }}#}
+{#            </h2>#}
+{#            {% if footer %}#}
+{#                {{ footer }}#}
+{#            {% endif %}#}
+{#        {% endif %}#}
+{#        {% if more %}#}
+{#            <span class="hidden text-sm font-medium [&>*]:text-primary-600 [&>*]:hover:text-primary-500 md:block">#}
+{#                {{ more }}#}
+{#            </span>#}
+{#        {% endif %}#}
+
+{#        {% if rows -%}#}
+{#            {{ rows }}#}
+{#        {% elseif empty -%}#}
+{#            {{ empty }}#}
+{#        {% endif %}#}
+
+<!-- Main Layout -->
+{#  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <!-- Left Column (1/3 of width) -->
+    <div class="col-span-1 p-4">
+        {% if header %}
+            {{ header }}
+        {% endif %}
+        {% if footer %}
+            {{ footer }}
+        {% endif %}
+        {% if more %}
+            <span class="hidden text-sm font-medium [&>*]:text-primary-600 [&>*]:hover:text-primary-500 md:block">
+                {{ more }}
+            </span>
+        {% endif %}
+    </div>
+
+            <!-- Right Column (2/3 of width) -->
+            <div class="col-span-2 space-y-4">
+                {% if rows -%}
+                    {{ rows }}
+                {% elseif empty -%}
+                    {{ empty }}
+                {% endif %} #}
+{#                <!-- Card 1 --> #}
+{#                <div class="p-6 bg-white shadow-md rounded-md">#}
+{#                    <h3 class="text-lg font-semibold">Card 1</h3>#}
+{#                    <p>Content for card 1 goes here.</p>#}
+{#                </div>#}
+
+{#                <!-- Card 2 -->#}
+{#                <div class="p-6 bg-white shadow-md rounded-md">#}
+{#                    <h3 class="text-lg font-semibold">Card 2</h3>#}
+{#                    <p>Content for card 2 goes here.</p>#}
+{#                </div>#}
+
+{#                <!-- Card 3 -->#}
+{#                <div class="p-6 bg-white shadow-md rounded-md">#}
+{#                    <h3 class="text-lg font-semibold">Card 3</h3>#}
+{#                    <p>Content for card 3 goes here.</p>#}
+{#                </div>#}
+{#            </div> #}
+{#        </div> #}
+{#    </div> #}
+{# </div> #}
+
+	<div class="container mx-auto lg:max-w-7xl medEdupWrap"> <div class="grid grid-cols-1 lg:gap-x-24 lg:grid-cols-3 gap-4">
+		<div class="col-span-1 text-left medEdupLeft">
+			<h2 class="font-bold leading-tight">Medical
+				<span class="sm:block inline">Equipment</span>
+				<span class="block">Rentals</span>
+			</h2>
+			<p class="py-4 sm:pb-10 font-normal">As the leading home medical equipment retail store, we provide high quality weekly or monthly rentals. Prebook medical supply rentals in Colorado online or in-store.</p>
+			<a href="/rentals">
+				<button style="background-color:#105790" class="p-4 mt-5 px-12 px-8 text-lg text-base font-medium rounded-md text-white">
+					View our Rentals
+				</button>
+			</a>
+		</div>
+		<div class="col-span-2 space-y-4 medEdupRight">
+			<div class="sm:py-7 py-5 sm:px-10 px-6 lg:bg-none bg-no-repeat" style="background-color:#fff3ce;background-image:url(/themes/custom/sky/images/img/Recliner-Chair--6.png); background-position:center right 15px;">
+				<h3 class="text-2xl leading-6 sm:pr-0 pr-12 font-medium text-gray-900 capitalize">Reclining Lift Chair With Heat &amp; Massage</h3>
+				<p class="mt-1 font-medium text-gray-500">From $150/week</p>
+				<div class="reviewsWrap text-black my-3 mb-6 text-sm overflow-hidden rounded-xl flex justify-between items-center w-fit">
+					<span class="p-1 px-4 starWrap" style="background-color:#ffbc00">
+						<img src="/themes/custom/sky/images/img/star-icon.png" alt="icon" class="inline mr-1.5">
+						4.2
+					</span>
+					<span class="reviewsSpan p-1 px-3" style="background-color:#e3e99f">56 Reviews</span>
+				</div>
+				<a class="text-sm font-semibold text-blue-600 hover:text-blue-500 tracking-widest requestRentalA" href="/rentals/mobility-scooter-easy-disassemble">
+					REQUEST RENTALS
+					<span class="text-3xl" style="color:#141414"></span>
+				</a>
+			</div>
+
+			<div class="sm:py-7 py-5 sm:px-10 px-6 lg:bg-none bg-no-repeat" style="background-color:#d5ffea;background-image:url(/themes/custom/sky/images/img/standard1.png); background-position:center right 15px;">
+				<h3 class="text-2xl leading-6 sm:pr-0 pr-12 font-medium text-gray-900 capitalize">Standard Hospital Bed Rental</h3>
+				<p class="mt-1 font-medium text-gray-500">From $150/week</p>
+				<div class="reviewsWrap text-black my-3 mb-6 text-sm overflow-hidden rounded-xl flex justify-between items-center w-fit">
+					<span class="p-1 px-4 starWrap" style="background-color:#ffbc00">
+						<img src="/themes/custom/sky/images/img/star-icon.png" alt="icon" class="inline mr-1.5">
+						4.2
+					</span>
+					<span class="reviewsSpan p-1 px-3" style="background-color:#e3e99f">56 Reviews</span>
+				</div>
+				<a class="text-sm font-semibold text-blue-600 hover:text-blue-500 tracking-widest requestRentalA" href="/rentals/mobility-scooter-easy-disassemble">
+					REQUEST RENTALS
+					<span class="text-3xl" style="color:#141414"></span>
+				</a>
+			</div>
+
+			<div class="sm:py-7 py-5 sm:px-10 px-6 lg:bg-none bg-no-repeat" style="background-color:#fff2fc;background-image:url(/themes/custom/sky/images/img/bed-rails-support_2.png); background-position:center right 15px;">
+				<h3 class="text-2xl leading-6 sm:pr-0 pr-12 font-medium text-gray-900 capitalize">Bed Rails & Support System</h3>
+				<p class="mt-1 font-medium text-gray-500">From $150/week</p>
+				<div class="reviewsWrap text-black my-3 mb-6 text-sm overflow-hidden rounded-xl flex justify-between items-center w-fit">
+					<span class="p-1 px-4 starWrap" style="background-color:#ffbc00">
+						<img src="/themes/custom/sky/images/img/star-icon.png" alt="icon" class="inline mr-1.5">
+						4.2
+					</span>
+					<span class="reviewsSpan p-1 px-3" style="background-color:#e3e99f">56 Reviews</span>
+				</div>
+				<a class="text-sm font-semibold text-blue-600 hover:text-blue-500 tracking-widest requestRentalA" href="/rentals/mobility-scooter-easy-disassemble">
+					REQUEST RENTALS
+					<span class="text-3xl" style="color:#141414"></span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

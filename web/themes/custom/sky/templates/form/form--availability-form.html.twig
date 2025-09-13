@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+
+{%
+  set classes = [
+    'pt-7',
+    'pb-2',
+    'px-2',
+    'lg:px-3',
+    'lg:pb-3',
+  ]
+%}
+<form{{ attributes.addClass(classes) }}>
+  {{ children }}
+</form>

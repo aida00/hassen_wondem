@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Theme override for a details element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the details element.
+ * - errors: (optional) Any errors for this details element, may not be set.
+ * - title: (optional) The title of the element, may not be set.
+ * - summary_attributes: A list of HTML attributes for the summary element.
+ * - description: (optional) The description of the element, may not be set.
+ * - children: (optional) The children of the element, may not be set.
+ * - value: (optional) The value of the element, may not be set.
+ *
+ * @see template_preprocess_details()
+ */
+#}
+{% set classes = [
+    'mt-7',
+    'pt-6',
+    'border-t',
+    'border-gray-300',
+    'border-dashed',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  <h2 class="mb-1 font-sans text-black font-semibold text-2xl lg:text-3xl">{{ title }}</h2>
+  <div class="address-details-wrapper">
+    {% if errors %}
+      <div class="form-item--error-message">
+        <strong>{{ errors }}</strong>
+      </div>
+    {% endif %}
+    {%- if description -%}
+      <div class="details-description">{{ description }}</div>
+    {%- endif -%}
+    {%- if children -%}
+      {{ children }}
+    {%- endif -%}
+    {%- if value -%}
+      {{ value }}
+    {%- endif -%}
+  </div>
+</div>

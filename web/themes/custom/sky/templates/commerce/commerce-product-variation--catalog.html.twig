@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ *
+ * Default template for product variations.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product_variation: The rendered product variation fields.
+ *   Use 'product_variation' to print them all, or print a subset such as
+ *   'product_variation.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product_variation|without('title') }}
+ *   @endcode
+ * - product_variation_entity: The product variation entity.
+ * - product_url: The product URL.
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('group relative bg-white shadow-lg rounded-lg border relative h-full') }}>
+    <div class="w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 border-b">
+        {#{{ product_variation.field_image.0 }}#}
+   <img src="{{ product_variation.field_image.0|render|striptags('<img>')|trim|raw }}" loading="lazy" alt="{{ product_variation.title|field_value }}" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+
+{#        {% set image = content.field_image[0] %}#}
+{#        {% set imageStyle = 'responsive_mobile_and_desktop' %}  Replace 'product_image_style' with your desired responsive image style ID #}
+{#        {% set responsiveImageStyle = {#}
+{#            '#theme': 'responsive_image',#}
+{#            '#responsive_image_style_id': imageStyle,#}
+{#            '#uri': image['#item'].entity.uri.value,#}
+{#            '#attributes': { alt: image['#item'].alt, class: ['h-full', 'w-full', 'object-cover', 'object-center', 'lg:h-full', 'lg:w-full'], loading: 'lazy' }#}
+{#        } %}#}
+
+{#        {{ responsiveImageStyle }}#}
+
+    </div>
+    <div class="mt-4 px-6">
+        <div>
+            <h3 class="font-semibold text-gray-900 mb-16">
+                <a href="{{ product_url }}">
+                    <span aria-hidden="true" class="absolute inset-0 capitalize"></span>
+                    {{ product_variation.product_id|field_value }}
+                </a>
+            </h3>
+            <p class="mb-1 text-sm text-gray-500 uppercase absolute" style="bottom:44px">
+                {{ product_variation.attribute_color|field_value }}
+            </p>
+        </div>
+        <p class="text-2xl font-bold text-gray-900 absolute bottom-0 text-primary-600" style="bottom:17px">
+            {{ product_variation.price|field_value }}
+        </p>
+    </div>
+</div>

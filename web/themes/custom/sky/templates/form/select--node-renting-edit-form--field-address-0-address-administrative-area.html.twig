@@ -1,0 +1,49 @@
+{#
+/**
+ * @file
+ * Theme override for a select element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the <select> tag.
+ * - options: The <option> element children.
+ *
+ * @see template_preprocess_select()
+ */
+#}
+{% set classes = [
+    'js-text-full',
+    'text-full',
+    'w-full',
+    'rounded',
+    'border',
+    'border-gray-200',
+    'focus:ring-gray-400',
+    'focus:border-gray-400',
+    'text-sm',
+    'text-gray-600',
+    'leading-8',
+    'mb-1.5',
+    'pr-6',
+] %}
+
+<div class="mb-1.5">
+	{% spaceless %}
+		<select{{attributes.addClass(classes)}}>
+			{% for option in options %}
+				{% if option.type == 'optgroup' %}
+					<optgroup label="{{ option.label|trim|e }}">
+						{% for sub_option in option.options %}
+							<option value="{{ sub_option.value|e }}" {% if sub_option.selected %} selected="selected" {% endif %}>
+								{{ sub_option.label|trim|e }}
+							</option>
+						{% endfor %}
+					</optgroup>
+				{% elseif option.type == 'option' %}
+					<option value="{{ option.value|e }}" {% if option.selected %} selected="selected" {% endif %}>
+						{{ option.label|trim|e }}
+					</option>
+				{% endif %}
+			{% endfor %}
+		</select>
+	{% endspaceless %}
+</div>

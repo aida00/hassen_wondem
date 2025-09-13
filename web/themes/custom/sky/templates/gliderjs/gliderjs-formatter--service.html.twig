@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Default theme implementation for gliderjs.
+ *
+ * Available variables:
+ * - slider_id: The slider container element id.
+ * - slides: The elements to use for the carousel.
+ *
+ * @see template_preprocess_gliderjs()
+ *
+ * @ingroup themeable
+ */
+#}
+
+<div class="glider-contain">
+  <div id="{{ slider_id }}" class="glider" data-gliderjs-module>
+    {% for slide in slides %}
+      {{ slide }}
+    {% endfor %}
+  </div>
+  <div class="glider-controls">
+    <button aria-label="{{ 'Previous'|t }}" class="{{ slider_id }}-prev glider-prev">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-white w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+      </svg>
+    </button>
+    <button aria-label="{{ 'Next'|t }}" class="{{ slider_id }}-next glider-next">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-white w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
+    <div role="tablist" class="{{ slider_id }}-dots glider-dots"></div>
+  </div>
+</div>

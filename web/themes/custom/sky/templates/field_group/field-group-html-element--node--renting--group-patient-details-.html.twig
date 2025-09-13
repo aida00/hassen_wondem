@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a fieldgroup html element.
+ *
+ * Available variables:
+ * - title: Title of the group.
+ * - title_element: Element to wrap the title.
+ * - children: The children of the group.
+ * - wrapper_element: The html element to use
+ * - attributes: A list of HTML attributes for the group wrapper.
+ *
+ * @see template_preprocess_field_group_html_element()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+    'bg-white',
+    'rounded-md',
+    'shadow-custom-1',
+    'py-5',
+    'px-6',
+    'lg:pt-8',
+    'lg:pb-7',
+    'lg:px-10',
+    'mb-8',
+    'lg:mb-0',
+    'lg:col-span-3',
+  ]
+%}
+{% set title_classes = [
+    'font-sans',
+    'text-black',
+    'font-semibold',
+    'text-2xl',
+    'lg:text-3xl',
+    'mb-1',
+  ]
+%}
+<{{ wrapper_element }} {{ attributes.addClass(classes) }}>
+  {% if title %}
+    <{{ title_element }}{{ title_attributes.addClass(title_classes) }}>{{ title }}</{{ title_element }}>
+  {% endif %}
+  {% if collapsible %}
+    <div class="field-group-wrapper">
+  {% endif %}
+  <div class="lg:grid lg:grid-cols-4 lg:gap-x-5">
+    {{children}}
+  </div>
+  {% if collapsible %}
+    </div>
+  {% endif %}
+</{{ wrapper_element }}>

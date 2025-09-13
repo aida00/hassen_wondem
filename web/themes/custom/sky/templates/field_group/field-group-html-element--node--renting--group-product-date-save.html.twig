@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a fieldgroup html element.
+ *
+ * Available variables:
+ * - title: Title of the group.
+ * - title_element: Element to wrap the title.
+ * - children: The children of the group.
+ * - wrapper_element: The html element to use
+ * - attributes: A list of HTML attributes for the group wrapper.
+ *
+ * @see template_preprocess_field_group_html_element()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+  'product-date-save-wrapper',
+  'mb-8',
+  'xl:mb-10',
+  'lg:col-span-2',
+  ]
+%}
+<{{ wrapper_element }} {{ attributes.addClass(classes) }}>
+  <div class="bg-white rounded-md shadow-custom-1 py-5 px-6">
+    {{children}}
+    <button type="button" id="rental-save-button" class="flex w-full justify-center border rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 p-3.5 border-transparent text-lg leading-5 font-medium text-white bg-primary-600 hover:bg-primary-700 focus:ring-primary-500">
+      Save &amp; Continue
+    </button>
+  </div>
+  <div class="rental-button pt-3.5 pb-5 px-6">
+    <button type="button" id="rental-preview-button" class="flex w-full justify-center border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 bg-transparent p-3.5 border-gray-300 text-lg leading-5 font-medium text-gray-700 hover:bg-gray-50 focus:ring-primary-500">
+      Preview
+    </button>
+  </div>
+</{{ wrapper_element }}>

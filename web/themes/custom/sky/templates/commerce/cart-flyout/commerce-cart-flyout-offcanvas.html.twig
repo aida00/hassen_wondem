@@ -1,0 +1,37 @@
+<div class="cart--cart-offcanvas flex-1 overflow-y-auto py-6 px-4 sm:px-6">
+
+    <div class="flex items-start justify-between">
+        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
+            {{ 'Shopping cart'|trans }}
+        </h2>
+        <div class="cart--cart-offcanvas__close ml-3 flex h-7 items-center">
+            <button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+                <span class="sr-only">Close panel</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="flex flex-1 flex-col justify-between">
+    <div class="divide-y divide-gray-200 px-4 sm:px-6">
+        <% if (count > 0) { %>
+            <div class="cart-block--offcanvas-contents">
+                <div class="cart-block--offcanvas-contents__inner">
+                    <div class="cart-block--offcanvas-contents__items"></div>
+                    <div class="cart-block--offcanvas-contents__links">
+
+                        <div class="flex items-center justify-center rounded-md border border-transparent bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700">
+                            <%= links %>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="space-y-6 pt-6 pb-5">{{ 'Your cart is empty'|t }}</div>
+        <% } %>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Theme override for a fieldset element and its children.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the fieldset element.
+ * - errors: (optional) Any errors for this fieldset element, may not be set.
+ * - required: Boolean indicating whether the fieldset element is required.
+ * - legend: The legend element containing the following properties:
+ *   - title: Title of the fieldset, intended for use as the text of the legend.
+ *   - attributes: HTML attributes to apply to the legend.
+ * - description: The description element containing the following properties:
+ *   - content: The description content of the fieldset.
+ *   - attributes: HTML attributes to apply to the description container.
+ * - children: The rendered child elements of the fieldset.
+ * - prefix: The content to add before the fieldset children.
+ * - suffix: The content to add after the fieldset children.
+ *
+ * @see template_preprocess_fieldset()
+ */
+#}
+{%
+  set classes = [
+    'js-form-item',
+    'form-item',
+    'js-form-wrapper',
+    'form-wrapper',
+    'w-full',
+    'p-0',
+    'float-none',
+  ]
+%}
+<div class="lg:col-span-3">
+  <div class="bg-white rounded-m shadow-custom-1 py-5 px-6 lg:pt-8 lg:pb-7 lg:px-10 mb-8 lg:mb-0">
+    <fieldset{{ attributes.addClass(classes) }}>
+      {%
+        set legend_span_classes = [
+          'text-black',
+          'font-semibold',
+          'text-2xl',
+          'lg:text-3xl',
+        ]
+      %}
+      {#  Always wrap fieldset legends in a <span> for CSS positioning. #}
+      <legend{{ legend.attributes }}>
+        <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
+      </legend>
+      <div class="fieldset-wrapper pt-1">
+        {% if errors %}
+          <div class="form-item--error-message">
+            <strong>{{ errors }}</strong>
+          </div>
+        {% endif %}
+        {% if prefix %}
+          <span class="field-prefix">{{ prefix }}</span>
+        {% endif %}
+        {{ children }}
+        {% if suffix %}
+          <span class="field-suffix">{{ suffix }}</span>
+        {% endif %}
+        {% if description.content %}
+          <div{{ description.attributes.addClass('description') }}>{{ description.content }}</div>
+        {% endif %}
+      </div>
+    </fieldset>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+name: Sky
+type: theme
+description: 'A Vite, TailwindCSS & AlpineJS Drupal theme. Developed & Designed by <a href=http://bluemelon.io>BlueMelon</a>'
+'base theme': stable
+starterkit: true
+version: VERSION
+regions:
+  topbar: 'Top bar'
+  navigation: Navigation
+  header: Header
+  hero: Hero
+  content: Content # the content region is required
+  sidebar: 'Sidebar'
+  footer: Footer
+libraries:
+  - core/normalize
+  - sky/base
+  - sky/global
+  - sky/hot-module-replacement
+  - sky/fontinter
+  - sky/typography
+  - sky/hero
+  - sky/hero-image
+  - sky/alpine
+  - sky/hero-video
+  - sky/hero-video-controls
+  - sky/hero-video-controls-play
+  - sky/hero-video-controls-pause
+  - sky/hero-video-controls-mute
+  - sky/hero-video-controls-unmute
+  - sky/hero-video-controls-fullscreen
+  - sky/hero-video-controls-fullscreen-exit 
+stylesheets-remove:
+  - modules/contrib/commerce_cart_flyout/css/add-to-cart.css
+  - modules/contrib/commerce_cart_flyout/css/module.css
+core_version_requirement: ^9 || ^10
+generator: 'starterkit_theme:10.0.0'
+
+# MUST install `components` module: `composer require drupal/components && drush en components -y`
+components:
+  namespaces:
+    base:
+        - components/00-base
+    atoms:
+        - components/01-atoms
+    molecules:
+        - components/02-molecules
+    organisms:
+        - components/03-organisms
+    templates:
+        - components/04-templates
+    pages:
+        - components/05-pages

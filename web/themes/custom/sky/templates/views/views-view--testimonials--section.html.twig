@@ -1,0 +1,155 @@
+{#
+/**
+ * @file
+ * Theme override for main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A CSS-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   Javascript.
+ *
+ * @see template_preprocess_views_view()
+ */
+#}
+
+{#
+{%
+  set classes = [
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+    'relative py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:py-32 lg:px-8'
+  ]
+%}
+
+<section{{ attributes.addClass(classes) }} aria-labelledby="testimonial-heading">
+	<div class="max-w-2xl mx-auto lg:max-w-none">
+
+        <h2 id="testimonial-heading" class="text-2xl font-heading font-bold tracking-tight text-gray-900">
+            {{ header }}
+        </h2>
+
+        {% if rows -%}
+            {{ rows }}
+        {% elseif empty -%}
+            {{ empty }}
+        {% endif %}
+
+    </div>
+</section>
+#}
+
+
+
+<div class="testimonialWrap py-12 px-5 sm:py-20">
+  <div class="container mx-auto max-w-5xl">
+    <div class="borderWrap1 border relative p-5 rounded-xl" style="position: relative; border-radius: 0.75rem; padding: 1.25rem;">
+      <div class="img" style="
+        content: '';
+        position: absolute;
+        width: 115px;
+        height: 125px;
+        top: -30px;
+        left: 70px;
+        background-image: url('/themes/custom/sky/images/img/test1.webp');
+        background-size: 115px 115px;
+        background-repeat: no-repeat;">
+      </div>
+      
+      <div class="borderWrap2 border relative p-5 rounded-xl" style="position: relative; border-radius: 0.75rem; padding: 1.25rem;">
+        <div class="img" style="
+          content: '';
+          position: absolute;
+          width: 85px;
+          height: 90px;
+          top: -20px;
+          right: 150px;
+          background-image: url('/themes/custom/sky/images/img/test4.webp');
+          background-size: 85px 85px;
+          background-repeat: no-repeat;">
+        </div>
+        
+        <div class="borderWrap3 border relative p-5 rounded-xl" style="position: relative; border-radius: 0.75rem; padding: 1.25rem;">
+          <div class="img" style="
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 110px;
+            bottom: -80px;
+            left: 150px;
+            background-image: url('/themes/custom/sky/images/img/test3.webp');
+            background-size: 100px 100px;
+            background-repeat: no-repeat;">
+          </div>
+          
+          <div class="borderWrap4 relative p-5 rounded-xl text-center py-14 sm:py-20" style="position: relative; border-radius: 0.75rem; padding: 3rem 1.25rem;">
+            <div class="img" style="
+              content: '';
+              position: absolute;
+              width: 70px;
+              height: 80px;
+              bottom: -60px;
+              right: 0px;
+              background-image: url('/themes/custom/sky/images/img/test2.webp');
+              background-size: 70px 70px;
+              background-repeat: no-repeat;">
+            </div>
+            
+            <div class="swiper relative">
+
+              <div class="swiper-wrapper pb-14 m-0">
+
+                <div class="swiper-slide min-h-fit overflow-hidden w-full bg-auto bg-left bg-no-repeat swiper-slider">
+                  <div>
+                    <img src="/themes/custom/sky/images/img/group-star.png" class="w-32 mx-auto mb-2 md:w-48 md:mb-4" alt="Star Icon" />
+                    <strong class="text-2xl sm:text-4xl">What are people saying?</strong>
+                  </div>
+                  <div>
+                    <p class="w-full py-5 text-sm mx-auto sm:w-[70%] sm:text-lg">
+                      I am an 80 yr. old woman from Atlanta, Ga. I spoke on the phone with Hussein about renting a scooter approx. 10 days before my family and I started our vacation in the mid-western area. I rented a 4-wheel scooter because I have a problem walking and I had an exciting and ...
+                    </p>
+                    <strong class="h text-sm sm:text-2xl">Linda, Customer</strong>
+                  </div>
+                </div>
+
+                <div class="swiper-slide min-h-fit overflow-hidden w-full bg-auto bg-left bg-no-repeat swiper-slider">
+                  <div>
+                    <img src="/themes/custom/sky/images/img/group-star.png" class="w-32 mx-auto mb-2 md:w-48 md:mb-4" alt="Star Icon" />
+                    <strong class="text-2xl sm:text-4xl">What are people saying?</strong>
+                  </div>
+                  <div>
+                    <p class="w-full py-5 text-sm mx-auto sm:w-[70%] sm:text-lg">
+                      I am an 80 yr. old woman from Atlanta, Ga. I spoke on the phone with Hussein about renting a scooter approx. 10 days before my family and I started our vacation in the mid-western area. I rented a 4-wheel scooter because I have a problem walking and I had an exciting and ...
+                    </p>
+                    <strong class="h text-sm sm:text-2xl">Linda, Customer</strong>
+                  </div>
+                </div>
+                
+              </div>
+
+              <div class="swiper-pagination"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

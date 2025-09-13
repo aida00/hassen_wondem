@@ -1,0 +1,362 @@
+<?php
+/**
+ * @file
+ * Functions to support theming.
+ */
+
+use Drupal\Core\Site\Settings;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\block\Entity\Block;
+
+/**
+ * Implements hook_preprocess_image_widget().
+ */
+function sky_preprocess_image_widget(array &$variables) {
+  $data = &$variables['data'];
+
+  // This prevents image widget templates from rendering preview container HTML
+  // to users that do not have permission to access these previews.
+  // @todo revisit in https://drupal.org/node/953034
+  // @todo revisit in https://drupal.org/node/3114318
+  if (isset($data['preview']['#access']) && $data['preview']['#access'] === false) {
+    unset($data['preview']);
+  }
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function sky_library_info_alter(&$libraries, $extension) {
+  if ($extension !== 'sky') {
+    return;
+  }
+
+  $local = Settings::get('hot_module_replacement');
+
+  // Replace library paths so they are ready for either Dev or Prd.
+  // For Dev we need to load all assets via ViteJS, no need for parssing CSS
+  // All css must be imported in main.js
+  if (!is_array($libraries)) {
+    \Drupal::logger('theme')->warning('Expected $libraries to be an array, got ' . gettype($libraries));
+    return;
+}
+foreach ($libraries as $library => $settings) {
+    if (isset($settings['js'])) {
+      foreach ($settings['js'] as $path => $options) {
+        _sky_replace_library($libraries[$library]['js'], $path, $options);
+      }
+    }
+  }
+
+  // Exit if local development. Everything after will be for production.
+  if ($local) {
+    return;
+  }
+
+  // Remove the HMR client library.
+  unset($libraries['hot-module-replacement']);
+
+  // Read the production Manifest file to find CSS files imported via JS files.
+  $manifest_path = __DIR__ . '/dist/.vite/manifest.json';
+if (!file_exists($manifest_path)) {
+    \Drupal::logger('theme')->warning("Manifest file not found: $manifest_path");
+    return;
+}
+$manifest_file = file_get_contents($manifest_path);
+  $manifest = json_decode($manifest_file);
+
+  foreach ($manifest as $key => $data) {
+    // Ignore files that will be imported via js.
+    if (preg_match('/^_/', $key)) {
+      continue;
+    }
+
+    if (!empty($data->css)) {
+      foreach ($data->css as $css_file) {
+        // Search through each library.
+        if (!is_array($libraries)) {
+    \Drupal::logger('theme')->warning('Expected $libraries to be an array, got ' . gettype($libraries));
+    return;
+}
+foreach ($libraries as $library => $settings) {
+          if (isset($settings['js'])) {
+            foreach ($settings['js'] as $path => $options) {
+              $js_path = 'dist/' . $data->file;
+              if ($path == $js_path) {
+                $libraries[$library]['css']['component']["dist/{$css_file}"] = [];
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Replace an asset path with one that works with Vite.
+ *
+ * @param array $library
+ *   The library to be altered.
+ * @param string $path
+ *   The file path and name.
+ * @param array $options
+ *   Any settings that were part of the original file's settings.
+ */
+function _sky_replace_library(array &$library, string $path, array $options): void {
+  // Ignore external paths
+  if (preg_match('/^(http|:\/\/)/', $path)) {
+    return;
+  }
+
+  $local = Settings::get('hot_module_replacement');
+  $dir = 'dist';
+
+  // Remove the old library info.
+  unset($library[$path]);
+
+  if ($local) {
+    $dir = 'http://localhost:12321';
+    $options['type'] = 'external';
+
+    if (preg_match('/.m?js$/', $path)) {
+      $options['crossorigin'] = true;
+    }
+  } else {
+    // Convert .scss files to .css
+    $path = preg_replace('/.s[ac]ss$/', '.css', $path);
+    // Strip off all but the filename.
+    $path = basename($path);
+  }
+
+  // Prepend the local development url.
+  $path = "{$dir}/{$path}";
+  // Add in the new altered library.
+  $library[$path] = $options;
+}
+
+/**
+ * Implements paragraphs index for FAQ.
+ */
+function sky_preprocess_field(&$vars) {
+  if ($vars['field_type'] == 'entity_reference_revisions' && $vars['element']['#items']->getItemDefinition()->getSetting('target_type') == 'paragraph') {
+    foreach ($vars['items'] as $idx => $item) {
+      $vars['items'][$idx]['content']['#paragraph']->index = $idx;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page_title().
+ */
+function sky_preprocess_page_title(&$variables) {
+  $route_match = \Drupal::routeMatch();
+  // Change the Rental Content Type Title
+  if ($node = $route_match->getParameter('node')) {
+    // Load the label of the bundle
+    if ($node instanceof \Drupal\node\NodeInterface && $node->bundle() == 'renting') {
+      // Set the page title
+      $variables['title'] = 'Agreement - Submitted';
+    }
+  }
+
+  // If this is the Rental Agreement Preview we need to change the title.
+  // As this is on the front end theme it should not effect other content types.
+  if ($route_match->getRouteName() == 'entity.node.preview') {
+    // Set the page title
+    $variables['title'] = 'Agreement - Preview';
+  }
+
+  // If Node Add Rental Agreement.
+  $path = \Drupal::request()->getpathInfo();
+  if ($path == '/node/add/renting') {
+    $variables['title'] = 'Agreement';
+  }
+}
+
+/**
+ * Implements hook_preprocess_node for node-rental.html.twig.
+ */
+function sky_preprocess_node__renting(&$variables) {
+  // Add if the rental node is in preview.
+  // This does not seem to be avaiable on the twig template level.
+  if($variables['node']->in_preview) {
+    $variables['preview'] = 'TRUE';
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Prepares additional variables for node service full template.
+ * Template: node--service--full.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - Original variables
+ *   - price_tier_tabs: The pricing tier made available elsewhere.
+ *
+ * @see node--service--full.html.twig
+ */
+function sky_preprocess_node__service__full(array &$variables) {
+  $entity = $variables['node'];
+
+  // Get field_section Paragraph entities.
+  $referencedEntities = $entity->field_sections->referencedEntities();
+
+  if (!empty($referencedEntities)) {
+    foreach ($referencedEntities as $referencedEntity) {
+      // We need the pricing sections.
+      if ($referencedEntity->getType() == 'pricing_section') {
+        // Get the pricing tier fields.
+        $pricingTiers = $referencedEntity->field_tiers->referencedEntities();
+
+        if (!empty($pricingTiers)) {
+          $variables['price_tier_tabs'] = [];
+          $price_tier_tabs = '';
+          $variables['field_tagline'] = [];
+          $field_tagline = '';
+          $variables['field_rental_features'] = [];
+          $field_rental_features = [];
+
+          // Loop through the pricing tiers and get the data.
+          foreach ($pricingTiers as $pricingTier) {
+            // Need to get the price and round it.
+            if (!empty($pricingTier->field_rental_price->getValue()[0]['number'])) {
+              $priceData = $pricingTier->field_rental_price->getValue();
+$price = isset($priceData[0]['number']) ? round($priceData[0]['number'], 2) : 0;
+              $price = round($price, 2);
+            }
+
+            // We need a few text changes based on the Calendar price tier.
+            $pricingTierCalendar = $pricingTier->paragraph_view_mode->getValue()[0]['value'];
+            $pricingTierCalendarPer = '';
+            switch ($pricingTierCalendar) {
+              case 'weekly':
+                $pricingTierCalendar = 'Weekly';
+                $pricingTierCalendarPer = '/week';
+                break;
+              case 'monthly':
+                $pricingTierCalendar = 'Monthly';
+                $pricingTierCalendarPer = '/month';
+                break;
+              case 'daily':
+                $pricingTierCalendar = '3 Days';
+                $pricingTierCalendarPer = '/3 days';
+                break;
+            }
+
+            // Add the Pricing Tab most popular.
+            if ($pricingTier->field_popular_label->getValue()[0]['value'] == '1') {
+              $price_tier_tabs .= '<div class="price-tier-tab popular-tab">';
+              $price_tier_tabs .= '<div class="price-tier-popular">' . t('Most Popular') . '</div>';
+            }
+            else {
+              $price_tier_tabs .= '<div class="price-tier-tab">';
+            }
+            $price_tier_tabs .= '<div class="price-tier-calendar">' . $pricingTierCalendar . '</div>';
+            $price_tier_tabs .= '<div class="price-tier-price">$' . $price . '</div>';
+            $price_tier_tabs .= '<div class="price-tier-per">' . $pricingTierCalendarPer . '</div>';
+            $price_tier_tabs .= '</div>';
+
+            // Going to add the Tagline and Features for the tabs.
+            if ($pricingTier->field_popular_label->getValue()[0]['value'] == '1') {
+              $field_tagline = $pricingTier->field_tagline->getValue()[0]['value'];
+              // Get the Rental Features Term names.
+              $rentalTermIDs = explode(', ', $pricingTier->field_rental_features->getString());
+              foreach ($rentalTermIDs as $tid) {
+                $termName = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($tid);
+                $field_rental_features[] = $termName->getName();
+              }
+            }
+          }
+        }
+      }
+    }
+    $variables['price_tier_tabs'] = [
+      '#markup' => $price_tier_tabs,
+    ];
+    $variables['field_tagline'] = [
+      '#markup' => $field_tagline,
+    ];
+    $variables['field_rental_features'] = $field_rental_features;
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ *
+ */
+function sky_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  // We need a custom page.html.twig theme suggestion.
+  if ($hook == 'page' && $node = \Drupal::routeMatch()->getParameter('node')) {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $path_args = explode('/', $current_path);
+
+    // If the Renting Content Type and Edit.
+    if ($node->bundle() == 'renting' && isset($path_args[3]) && $path_args[3] == 'edit') {
+      $suggestions[] = 'page__node__edit__renting';
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ */
+function sky_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  // The Cart form adds a cart ID to the end. We need a generic template for it.
+  $partialValue = "form__views_form_commerce_cart_form_default";
+  foreach ($suggestions as $value) {
+    if (strpos($value, $partialValue) !== false) {
+      $suggestions[] = 'form__views_form_commerce_cart_form_default';
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter()
+ *
+ */
+function sky_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  if (in_array($form_id,['user_login_form','user_register_form'])) {
+    $block_manager = \Drupal::service('plugin.manager.block');
+    $block_plugin = $block_manager->createInstance('social_auth_login', []);
+    if ($block_plugin) {
+      $form['social_auth_block'] = [
+        '#type' => 'container',
+        '#weight' => -10,
+        '#attributes' => ['class' => ['social-auth-wrapper']],
+        'block_content' => $block_plugin->build(),
+      ];
+
+      // $form['social_auth_block'] = $block_plugin->build();
+      // $form['social_auth_block']['#weight'] = -10; 
+    }
+  }
+  // Alter the Registration Form.
+  if($form_id == 'user_register_form') {
+   
+
+    // Hide the User Profile picture upload on register
+    $form['user_picture']['#access'] = FALSE;
+  }
+
+  // Alter the signin / registration from on checkout.
+  if($form_id == 'commerce_checkout_flow_multistep_default') {
+    // Get the anon Renter email from:
+    // web/modules/custom/renting/renting.module:178
+    /** @var \Drupal\Core\TempStore\PrivateTempStore $store */
+    $store = \Drupal::service('tempstore.private')->get('renting');
+    $email = $store->get('renter_email');
+    // If there is an email.
+    if($email) {
+      $form['login']['returning_customer']['name']['#default_value'] = $email;
+      $form['login']['register']['mail']['#default_value'] = $email;
+    }
+  }
+}
+
+// \Drupal::service('update.post_update_registry')->registerInvokedUpdates(['media_post_update_collection_route', 'media_post_update_storage_handler', 'media_post_update_enable_standalone_url', 'media_post_update_add_status_extra_filter', 'setting functions as applied according_to_the_error_message']);

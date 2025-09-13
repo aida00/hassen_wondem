@@ -1,0 +1,66 @@
+
+
+<div class="mt-8">
+    <div class="flow-root">
+        <ul role="list" class="-my-6 divide-y divide-gray-200">
+
+            <% _.each(cart.order_items, function(orderItem, key) { %>
+            <li class="flex py-6">
+
+                <div class="ml-4 flex flex-1 flex-col">
+                    <div>
+                        <div class="flex justify-between text-base font-medium text-gray-900 capitalize">
+                            <h3>
+                                <%- orderItem.title %>
+                            </h3>
+                            <p class="cart-block--offcanvas-cart-table__price ml-4">
+                                <%= orderItem.total_price.formatted %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-1 items-end justify-between text-sm">
+                        <p class="text-gray-500">
+                         <% if (orderItem.purchased_entity.type !== 'renting') { %>
+                            <input
+                                type="<% if (!(orderItem.locked || false)) { print('number') } else { print('hidden') } %>"
+                                data-key="<% print(key) %>"
+                                min="1"
+                                value="<% print(parseInt(orderItem.quantity)) %>"
+                                style="width: 60px"
+                            />
+                         <% } %>
+                        </p>
+
+                        <div class="cart-block--offcanvas-cart-table__remove flex">
+                            <% if (!(orderItem.locked || false)) { %>
+                                <button
+                                    value="<% print(JSON.stringify([cart.order_id, orderItem.order_item_id]))  %>"
+                                    class="button btn font-medium text-primary-600 hover:text-primary-500"
+                                >
+                                    {{ 'Remove'|trans }}
+                                </button>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+
+            </li>
+            <% }) %>
+
+        </ul>
+
+    </div>
+
+    <div class="border-t border-gray-200 mt-6 py-4 px-4 sm:px-6">
+
+        <div class="mt-4 text-center">
+            <button
+                type="submit"
+                class="cart-block--offcanvas-contents__update button btn font-medium text-primary-600 hover:text-primary-500"
+            >
+                {{ 'Update quantities'|t }}
+            </button>
+        </div>
+
+    </div>
+</div>

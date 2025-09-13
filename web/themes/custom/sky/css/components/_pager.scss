@@ -1,0 +1,14 @@
+/**
+ * @file
+ * Visual styles for pager.
+ */
+
+.pager__items {
+  @apply clear-both text-center;
+}
+.pager__item {
+  @apply inline p-2;
+}
+.pager__item.is-active {
+  @apply font-bold;
+}

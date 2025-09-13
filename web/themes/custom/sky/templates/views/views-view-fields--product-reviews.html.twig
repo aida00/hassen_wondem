@@ -1,0 +1,16 @@
+<div class="p-4 mb-4 border rounded bg-white shadow-sm">
+	<div class="flex items-center mb-2">
+		<strong class="text-gray-800 mr-2">{{ fields.title.content }}</strong>
+		<span class="text-sm text-gray-500">{{ fields.created.content }}</span>
+		<span class="ml-2 text-sm text-gray-500">
+			by
+			{{ fields.user_id.content }}
+		</span>
+	</div>
+
+	<div class="flex items-center mb-2">
+		{% include '@sky/components/rating-stars.html.twig' with { 'rating': fields.rating.content|trim|int } %}
+	</div>
+
+	<p class="text-gray-700 text-sm">{{ fields.text.content }}</p>
+</div>

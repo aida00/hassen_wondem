@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override the Voting Widgets Summery.
+ *
+ */
+#}
+<div class="flex">
+  <div class="bg-custom-yellow-1 rounded-l-3xl pl-3 pr-2 lg:pl-5 lg:pr-4">
+    <div class="results-average text-black font-semibold text-xs leading-7 lg:text-lg lg:leading-10">
+      {% if results.vote_field_average is empty %}
+        0
+      {% else %}
+        {{ results.vote_field_average }}
+      {% endif %}
+    </div>
+  </div>
+  <div class="bg-custom-yellow-2 rounded-r-3xl pl-2 pr-3 lg:pl-4 lg:pr-5">
+    <div class="text-black text-xs font-normal leading-7 lg:text-lg lg:leading-10">
+      {% if results.vote_field_count is same as (1) %}
+        {% trans %}1 Review{% endtrans %}
+      {% else %}
+        {% trans %}{{ results.vote_field_count }} Reviews{% endtrans %}
+      {% endif %}
+    </div>
+  </div>
+</div>

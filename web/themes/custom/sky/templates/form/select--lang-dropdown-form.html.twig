@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override for a select element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the <select> tag.
+ * - options: The <option> element children.
+ *
+ * @see template_preprocess_select()
+ */
+#}
+
+<div class="flex">
+	<label for="desktop-currency" class="sr-only">Language</label>
+	<div class="group relative -ml-2 w-24 rounded-md border-transparent bg-gray-900">
+		<select{{attributes.addClass(['flexitems-center','rounded-md','border-transparent','bg-gray-900','bg-none','py-0.5','pl-2','pr-5','text-sm','font-medium','text-white','focus:border-transparent','focus:outline-none','focus:ring-0','group-hover:text-gray-100'])}}>
+			{% for option in options %}
+				{% if option.type == 'optgroup' %}
+					<optgroup label="{{ option.label|trim|e }}">
+						{% for sub_option in option.options %}
+							<option value="{{ sub_option.value|e }}" {% if sub_option.selected %} selected="selected" {% endif %}>
+								{{ sub_option.label|trim|e }}
+							</option>
+						{% endfor %}
+					</optgroup>
+				{% elseif option.type == 'option' %}
+					<option value="{{ option.value|e }}" {% if option.selected %} selected="selected" {% endif %}>
+						{{ option.label|trim|e }}
+					</option>
+				{% endif %}
+			{% endfor %}
+		</select>
+		<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center">
+			<svg class="h-5 w-5 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+				<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+			</svg>
+		</div>
+	</div>
+</div>

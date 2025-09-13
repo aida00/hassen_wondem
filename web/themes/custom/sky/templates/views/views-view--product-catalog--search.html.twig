@@ -1,0 +1,197 @@
+{#
+/**
+ * @file
+ * Theme override for a main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A CSS-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   JavaScript.
+ *
+ * @see template_preprocess_views_view()
+ */
+#}
+{%
+  set classes = [
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }} x-data="{ open: false }" @keydown.window.escape="open = false">
+
+    <!-- Mobile filter dialog -->
+    <div x-show="open" class="relative z-40 lg:hidden" x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." x-ref="dialog" aria-modal="true">
+
+        <div x-show="open" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="Off-canvas menu backdrop, show/hide based on off-canvas menu state." class="fixed inset-0 bg-black bg-opacity-25"></div>
+
+
+        <div class="fixed inset-0 z-40 flex">
+
+            <div x-show="open" x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" x-description="Off-canvas menu, show/hide based on off-canvas menu state." class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl" @click.away="open = false">
+                <div class="flex items-center justify-between px-4">
+                    <h2 class="text-lg font-medium text-gray-900">Filters</h2>
+                    <button type="button" class="-mr-2 flex h-10 w-10 items-center justify-center p-2 text-gray-400 hover:text-gray-500" @click="open = false">
+                        <span class="sr-only">Close menu</span>
+                        <svg class="h-6 w-6" x-description="Heroicon name: outline/x-mark" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <form class="mt-4">
+
+                    <div x-data="{ open: false }" class="border-t border-gray-200 pt-4 pb-4">
+                        <fieldset>
+                            <legend class="w-full px-2">
+                                <button type="button" x-description="Expand/collapse section button" class="flex w-full items-center justify-between p-2 text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
+                                    <span class="text-sm font-medium text-gray-900">{{ 'Category'|trans }}</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <svg class="rotate-0 h-5 w-5 transform" x-description="Expand/collapse icon, toggle classes based on section open state. Heroicon name: mini/chevron-down" x-state:on="Open" x-state:off="Closed" :class="{ '-rotate-180': open, 'rotate-0': !(open) }" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </legend>
+                            <div class="px-4 pt-4 pb-2" id="filter-section-0" x-show="open">
+                                <div class="space-y-6">
+
+                                    {{ bamboo_render_block('facet_block:category_search') }}
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div x-data="{ open: false }" class="border-t border-gray-200 pt-4 pb-4">
+                        <fieldset>
+                            <legend class="w-full px-2">
+                                <button type="button" x-description="Expand/collapse section button" class="flex w-full items-center justify-between p-2 text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
+                                    <span class="text-sm font-medium text-gray-900">{{ 'Brand'|trans }}</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <svg class="rotate-0 h-5 w-5 transform" x-description="Expand/collapse icon, toggle classes based on section open state.
+
+                                            Heroicon name: mini/chevron-down" x-state:on="Open" x-state:off="Closed" :class="{ '-rotate-180': open, 'rotate-0': !(open) }" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </legend>
+                            <div class="px-4 pt-4 pb-2" id="filter-section-1" x-show="open">
+                                <div class="space-y-6">
+
+                                    {{ bamboo_render_block('facet_block:brand_search') }}
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <main class="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
+        <div class="border-b border-gray-200 pt-24 pb-10">
+            <h1 class="text-4xl font-bold tracking-tight text-gray-900">{{ 'Search' |trans }}</h1>
+            <div class="mt-4 text-base text-gray-500 [&>*]:flex">{{ bamboo_render_block('views_exposed_filter_block:product_catalog-search') }}</div>
+        </div>
+
+        <div class="pt-12 pb-24 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
+            <aside>
+                <h2 class="sr-only">{{ 'Filters'|trans }}</h2>
+
+                <button type="button" x-description="Mobile filter dialog toggle, controls the 'mobileFilterDialogOpen' state." class="inline-flex items-center lg:hidden" @click="open = true">
+                    <span class="text-sm font-medium text-gray-700">{{ 'Filters'|trans }}</span>
+                    <svg class="ml-1 h-5 w-5 flex-shrink-0 text-gray-400" x-description="Heroicon name: mini/plus" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"></path>
+                    </svg>
+                </button>
+
+                <div class="hidden lg:block">
+                    <form class="space-y-10 divide-y divide-gray-200">
+
+                        <div>
+                            <fieldset>
+                                <legend class="block text-sm font-medium text-gray-900">{{ 'Category'|trans }}</legend>
+                                <div class="space-y-3 pt-6">
+
+                                    {{ bamboo_render_block('facet_block:category_search') }}
+
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="pt-10">
+                            <fieldset>
+                                <legend class="block text-sm font-medium text-gray-900">{{ 'Brand'|trans }}</legend>
+                                <div class="space-y-3 pt-6">
+
+                                    {{ bamboo_render_block('facet_block:brand_search') }}
+
+                                </div>
+                            </fieldset>
+                        </div>
+
+                    </form>
+                </div>
+            </aside>
+
+            <section aria-labelledby="product-heading" class="mt-6 lg:col-span-2 lg:mt-0 xl:col-span-3">
+                <h2 id="product-heading" class="sr-only">Products</h2>
+
+                {% if rows %}
+                    {{ rows }}
+                {% elseif empty %}
+                    <div class="view-empty">
+                    {{ empty }}
+                    </div>
+                {% endif %}
+
+            </section>
+        </div>
+    </main>
+
+
+    {% if pager %}
+        <div class="border-t border-gray-200 bg-white pt-6">
+            <div class="flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="w-full sm:w-auto sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                    <div class="hidden sm:block">
+                        {{ footer }}
+                    </div>
+
+                    <div>
+                        {{ pager }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+</div>

@@ -1,0 +1,20 @@
+global:
+  css:
+    theme:
+      dist/main.css: {}
+      dist/custom.css: {}
+  js:
+    src/main.js: { attributes: { type: 'module'}}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+
+hot-module-replacement:
+  header: true
+  js:
+    http://localhost:12321/@vite/client: {type: external, attributes: { type: 'module'}}
+
+fontinter:
+  css:
+    theme:
+      '//rsms.me/inter/inter.css': { type: external, minified: false }

@@ -1,0 +1,86 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ *
+ * @see template_preprocess_field()
+ */
+#}
+<!-- Slider main container -->
+<div class="swiper w-full h-700 lg:h-600 relative">
+    <!-- Slider content -->
+    <div class="swiper-wrapper">
+        {% for item in items %}
+            {% set bg_color = item.content['#paragraph'].field_background_color.value is null ? '#ffffff' : item.content['#paragraph'].field_background_color.value[0]['color'] %}
+
+            {% set image_url = item.content['#paragraph'].field_media_image.entity is null ? null : item.content['#paragraph'].field_media_image.entity.field_media_image.entity.uri.value | image_style('slider') %}
+            <!-- Slider Item -->
+            <div style="background-image: url({{ image_url }}); background-color: {{ bg_color }}!important;"
+                 class="swiper-slide min-h-fit overflow-hidden w-full bg-auto bg-left bg-no-repeat swiper-slider">
+                <div style="" class="w-full lg:hidden h-350 overflow-hidden relative">
+                    <img src="{{ image_url }}" class="w-full h-full object-center object-cover"/>
+                    <div style="background: transparent;background: linear-gradient(180deg, {{ bg_color }}00 82%, {{ bg_color }} 100%);"
+                        class="w-full h-36 absolute bottom-0 left-0 right-0 top-auto z-50"></div>
+                </div>
+                <div style="background: {{ bg_color }}; background: linear-gradient(90deg, {{ bg_color }}00 28%, {{ bg_color }} 45%);"
+                     class="w-full h-350 float-left flex items-center justify-center pl-0 lg:pl-350 lg:h-600 swiper-slide-container">
+                    <div class="bg-blue-500 overflow-hidden">
+                        <div class="overflow-hidden xl:pl-24 mobile-text-center">
+                            <h2 class="text-xl lg:text-3xl font-bold tracking-tight text-gray-900 slide-center">{{ item.content['#paragraph'].field_headline.0.value }}</h2>
+                            <div class="mt-4 text-base lg:text-xl text-gray-600 slide-center">
+                                {{ item.content['#paragraph'].field_text.0.value | raw }}
+                            </div>
+                            {% if item.content['#paragraph'].field_cta.value is not null %}
+                                <a class="mt-6 block-center inline-block rounded-md border border-transparent bg-primary-600 py-3 px-8 font-medium text-white hover:bg-primary-700"
+                                   href="{{ item.content['#paragraph'].field_cta.0.url }}">{{ item.content['#paragraph'].field_cta.0.title }}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+{#    <div class="autoplay-progress">#}
+{#        <svg viewBox="0 0 48 48">#}
+{#            <circle cx="24" cy="24" r="20"></circle>#}
+{#        </svg>#}
+{#        <span></span>#}
+{#    </div>#}
+    <div class="swipper-navigation overflow-hidden absolute bottom-0 z-50">
+        <div class="swiper-button-prev swiper-button"><svg xmlns="http://www.w3.org/2000/svg" width="68" height="71" viewBox="0 0 68 71"><defs><style>.a,.b{isolation:isolate;}.b{fill:#2a2a2a;mix-blend-mode:multiply;}.c{fill:#fff;stroke:#fff;}</style></defs><g class="a" transform="translate(68.001 71) rotate(180)"><rect class="b" width="68" height="71" rx="34" transform="translate(68.001 71) rotate(180)"/><path class="c" d="M1.174,19.24a.68.68,0,0,1-.486.2.677.677,0,0,1-.486-.2.688.688,0,0,1,0-.973L8.75,9.719.2,1.173A.687.687,0,0,1,1.174.2l9.031,9.031a.683.683,0,0,1,0,.972Zm0,0" transform="translate(28.438 26.494)"/></g></svg></div>
+        <div class="swiper-button-next swiper-button"><svg xmlns="http://www.w3.org/2000/svg" width="68" height="71" viewBox="0 0 68 71"><defs><style>.a,.b{isolation:isolate;}.b{fill:#2a2a2a;mix-blend-mode:multiply;}.c{fill:#fff;stroke:#fff;}</style></defs><g transform="translate(0.001)"><g class="a" transform="translate(0)"><rect class="b" width="68" height="71" rx="34" transform="translate(67.999 71) rotate(180)"/><path class="c" d="M1.174,19.24a.68.68,0,0,1-.486.2.677.677,0,0,1-.486-.2.688.688,0,0,1,0-.973L8.75,9.719.2,1.173A.687.687,0,0,1,1.174.2l9.031,9.031a.683.683,0,0,1,0,.972Zm0,0" transform="translate(28.751 26.494)"/></g></g></svg></div>
+    </div>
+</div>
