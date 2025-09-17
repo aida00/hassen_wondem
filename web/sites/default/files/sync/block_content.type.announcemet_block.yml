@@ -1,0 +1,8 @@
+uuid: 7c931711-6792-4111-90d3-dc4593849a3d
+langcode: en
+status: true
+dependencies: {  }
+id: announcemet_block
+label: 'announcemet block'
+revision: true
+description: null

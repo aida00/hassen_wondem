@@ -1,0 +1,27 @@
+uuid: 9e1b8d72-a1c8-481f-8fa9-eb9f9e5718e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.announcemet_block
+    - field.field.block_content.announcemet_block.field_apply_now
+  module:
+    - link
+id: block_content.announcemet_block.default
+targetEntityType: block_content
+bundle: announcemet_block
+mode: default
+content:
+  field_apply_now:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }
