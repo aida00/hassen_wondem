@@ -46,6 +46,12 @@ function wondem_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_st
     }
   }
 }
+
+/**
+ * Add Twig namespace for design system patterns.
+ */
 function wondem_twig_namespace(\Twig\Loader\FilesystemLoader $loader) {
-  $loader->addPath(drupal_get_path('theme', 'wondem') . '/templates/patterns', 'organisms');
+  if (function_exists('drupal_get_path')) {
+    $loader->addPath(drupal_get_path('theme', 'wondem') . '/templates/patterns', 'organisms');
+  }
 }

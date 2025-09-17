@@ -1,0 +1,10 @@
+{#
+  File: node--2.html.twig
+  Override for node 2
+#}
+<article{{ attributes }}>
+  <div{{ content_attributes }}>
+    {# Print only the body & fields, skip label/title #}
+    {{ content|without('links') }}
+  </div>
+</article>
