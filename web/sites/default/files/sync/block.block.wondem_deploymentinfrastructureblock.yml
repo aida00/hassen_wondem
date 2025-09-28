@@ -1,0 +1,20 @@
+uuid: 234494f4-be02-4f9f-a08e-0ea59e325b71
+langcode: en
+status: true
+dependencies:
+  module:
+    - excel_sky_architecture
+  theme:
+    - wondem
+id: wondem_deploymentinfrastructureblock
+theme: wondem
+region: content
+weight: 3
+provider: null
+plugin: deployment_block
+settings:
+  id: deployment_block
+  label: 'Deployment & Infrastructure Block'
+  label_display: '0'
+  provider: excel_sky_architecture
+visibility: {  }

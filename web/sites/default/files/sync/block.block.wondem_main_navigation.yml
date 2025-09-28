@@ -13,7 +13,7 @@ _core:
 id: wondem_main_navigation
 theme: wondem
 region: sidebar_first
-weight: 0
+weight: -10
 provider: null
 plugin: 'system_menu_block:main'
 settings:

@@ -11,7 +11,7 @@ _core:
 id: wondem_messages
 theme: wondem
 region: content
-weight: -7
+weight: -11
 provider: null
 plugin: system_messages_block
 settings:

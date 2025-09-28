@@ -11,7 +11,7 @@ _core:
 id: wondem_branding
 theme: wondem
 region: sidebar_first
-weight: -6
+weight: -11
 provider: null
 plugin: system_branding_block
 settings:

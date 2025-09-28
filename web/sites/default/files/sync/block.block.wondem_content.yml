@@ -11,7 +11,7 @@ _core:
 id: wondem_content
 theme: wondem
 region: content
-weight: -1
+weight: -6
 provider: null
 plugin: system_main_block
 settings:

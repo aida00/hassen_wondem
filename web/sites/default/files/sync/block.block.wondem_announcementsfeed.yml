@@ -10,7 +10,7 @@ dependencies:
 id: wondem_announcementsfeed
 theme: wondem
 region: content
-weight: 0
+weight: -5
 provider: null
 plugin: announce_block
 settings:

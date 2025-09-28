@@ -9,8 +9,8 @@ dependencies:
     - wondem
 id: wondem_userlogin
 theme: wondem
-region: secondary_menu
-weight: 0
+region: sidebar_first
+weight: -7
 provider: null
 plugin: user_login_block
 settings:

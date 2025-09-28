@@ -11,7 +11,7 @@ _core:
 id: wondem_help
 theme: wondem
 region: content
-weight: -3
+weight: -8
 provider: null
 plugin: help_block
 settings:

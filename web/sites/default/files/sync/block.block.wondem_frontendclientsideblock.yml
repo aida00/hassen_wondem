@@ -1,0 +1,20 @@
+uuid: dd15ec24-68b0-43f8-9015-64a08809ea44
+langcode: en
+status: true
+dependencies:
+  module:
+    - excel_sky_architecture
+  theme:
+    - wondem
+id: wondem_frontendclientsideblock
+theme: wondem
+region: content
+weight: -3
+provider: null
+plugin: frontend_block
+settings:
+  id: frontend_block
+  label: 'Frontend (Client-Side) Block'
+  label_display: '0'
+  provider: excel_sky_architecture
+visibility: {  }

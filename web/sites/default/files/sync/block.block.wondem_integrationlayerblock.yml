@@ -1,0 +1,20 @@
+uuid: 2756091e-176c-4def-b45e-879b55fd7083
+langcode: en
+status: true
+dependencies:
+  module:
+    - excel_sky_architecture
+  theme:
+    - wondem
+id: wondem_integrationlayerblock
+theme: wondem
+region: content
+weight: -1
+provider: null
+plugin: integration_block
+settings:
+  id: integration_block
+  label: 'Integration Layer Block'
+  label_display: visible
+  provider: excel_sky_architecture
+visibility: {  }

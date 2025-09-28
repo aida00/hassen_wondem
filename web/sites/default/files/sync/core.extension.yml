@@ -17,6 +17,7 @@ module:
   devel: 0
   dynamic_page_cache: 0
   editor: 0
+  excel_sky_architecture: 0
   field: 0
   field_ui: 0
   file: 0
@@ -58,4 +59,5 @@ theme:
   hhass: 0
   bootstrap5: 0
   wondem: 0
+  olivero: 0
 profile: standard
