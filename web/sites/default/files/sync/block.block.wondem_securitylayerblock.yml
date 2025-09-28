@@ -9,8 +9,8 @@ dependencies:
     - wondem
 id: wondem_securitylayerblock
 theme: wondem
-region: content
-weight: 1
+region: security
+weight: -11
 provider: null
 plugin: security_block
 settings:

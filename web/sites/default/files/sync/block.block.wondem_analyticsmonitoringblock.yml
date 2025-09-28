@@ -8,8 +8,8 @@ dependencies:
     - wondem
 id: wondem_analyticsmonitoringblock
 theme: wondem
-region: content
-weight: -2
+region: analytics
+weight: -11
 provider: null
 plugin: analytics_block
 settings:

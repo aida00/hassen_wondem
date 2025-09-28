@@ -8,8 +8,8 @@ dependencies:
     - wondem
 id: wondem_integrationlayerblock
 theme: wondem
-region: content
-weight: -1
+region: integration
+weight: -11
 provider: null
 plugin: integration_block
 settings:

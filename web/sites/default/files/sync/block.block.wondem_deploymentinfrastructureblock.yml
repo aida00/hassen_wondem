@@ -8,8 +8,8 @@ dependencies:
     - wondem
 id: wondem_deploymentinfrastructureblock
 theme: wondem
-region: content
-weight: 3
+region: deployment
+weight: -11
 provider: null
 plugin: deployment_block
 settings:

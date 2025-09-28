@@ -8,8 +8,8 @@ dependencies:
     - wondem
 id: wondem_backendserversideblock
 theme: wondem
-region: content
-weight: -4
+region: backend
+weight: -11
 provider: null
 plugin: backend_block
 settings:

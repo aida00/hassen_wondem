@@ -8,8 +8,8 @@ dependencies:
     - wondem
 id: wondem_databaselayerblock
 theme: wondem
-region: content
-weight: 2
+region: database
+weight: -11
 provider: null
 plugin: database_block
 settings:
