@@ -1,0 +1,7 @@
+excel_sky_architecture.architecture_page:
+  path: '/excel-architecture'
+  defaults:
+    _controller: '\Drupal\excel_sky_architecture\Controller\ExcelArchitectureController::build'
+    _title: 'Excel Sky Architecture'
+  requirements:
+    _permission: 'access content'

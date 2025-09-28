@@ -1,0 +1,20 @@
+{#
+  Theme override for login form (modal safe version).
+  File: user-login-form.html.twig
+#}
+<div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+  <h2 class="text-xl font-bold mb-4 text-gray-900">Log in</h2>
+
+  {{ form.username }}
+  {{ form.password }}
+
+  <div class="mt-4">
+    {{ form.actions }}
+  </div>
+
+  {# Optional: Remove or keep depending on design #}
+  <div class="mt-4 text-sm text-blue-600">
+    <a href="{{ path('user.register') }}" class="hover:underline">Create new account</a> |
+    <a href="{{ path('user.pass') }}" class="hover:underline">Forgot your password?</a>
+  </div>
+</div>

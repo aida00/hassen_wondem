@@ -1,0 +1,5 @@
+name: Excel Sky Architecture
+type: module
+description: Provides 7 custom blocks for Excel Sky Medical Supplies architecture.
+core_version_requirement: ^10
+package: Custom

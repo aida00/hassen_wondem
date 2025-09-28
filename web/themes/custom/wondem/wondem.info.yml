@@ -6,7 +6,23 @@ libraries:
   - wondem/base
   - wondem/messages
   - core/normalize
-  - wondem/frontpage   # ✅ add this
-description: ''
+  - wondem/frontpage
+description: 'Custom Drupal theme for Excel Sky Medical Supplies'
 core_version_requirement: ^10
 generator: 'starterkit_theme:10.5.2'
+
+regions:
+  header: 'Header'
+  content: 'Content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: 'Footer'
+
+  # ✅ New regions for Architecture Blocks
+  frontend: 'Frontend Block'
+  backend: 'Backend Block'
+  database: 'Database Block'
+  security: 'Security Block'
+  integration: 'Integration Block'
+  deployment: 'Deployment Block'
+  analytics: 'Analytics Block'

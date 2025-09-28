@@ -1,0 +1,11 @@
+{#
+  Custom block template for Frontend Block
+#}
+<div class="card card--frontend">
+  {% if label %}
+    <h2 class="text-xl font-bold mb-3 text-gray-800">{{ label }}</h2>
+  {% endif %}
+  <div class="block-content">
+    {{ content }}
+  </div>
+</div>

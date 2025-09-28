@@ -1,0 +1,42 @@
+{% extends "page.html.twig" %}
+
+{% block content %}
+  <div class="container mx-auto px-6 py-10">
+    <h1 class="text-3xl font-bold text-center text-blue-900 mb-10">
+      Excel Sky Medical Supplies – System Architecture
+    </h1>
+
+    <!-- 2x3 grid for first 6 blocks -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      
+      <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-blue-600">
+        {{ page.frontend }}
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-green-600">
+        {{ page.backend }}
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-purple-600">
+        {{ page.database }}
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-red-600">
+        {{ page.security }}
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-yellow-600">
+        {{ page.integration }}
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-pink-600">
+        {{ page.deployment }}
+      </div>
+    </div>
+
+    <!-- Full-width row for Analytics -->
+    <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-indigo-600 col-span-3">
+      {{ page.analytics }}
+    </div>
+  </div>
+{% endblock %}

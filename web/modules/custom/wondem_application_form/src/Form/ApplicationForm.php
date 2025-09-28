@@ -8,7 +8,7 @@ use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides the Application Form.
+ * Provides the Application Form with role-based variations.
  */
 class ApplicationForm extends FormBase {
 
@@ -27,10 +27,16 @@ class ApplicationForm extends FormBase {
     );
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function getFormId() {
     return 'wondem_application_form';
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function buildForm(array $form, FormStateInterface $form_state) {
     // 🔒 Require login
     if ($this->currentUser->isAnonymous()) {
@@ -40,12 +46,13 @@ class ApplicationForm extends FormBase {
       return $form;
     }
 
-    // ✅ Prefill values
     $account = $this->currentUser;
 
+    // Tailwind classes
     $text_classes = ['w-full', 'rounded-md', 'border-gray-300', 'shadow-sm', 'focus:border-blue-500', 'focus:ring-blue-500'];
     $textarea_classes = ['w-full', 'rounded-md', 'border-gray-300', 'shadow-sm', 'focus:border-blue-500', 'focus:ring-blue-500', 'h-32'];
 
+    // ✅ Common fields (original ones + extras)
     $form['full_name'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Full Name'),
@@ -64,118 +71,132 @@ class ApplicationForm extends FormBase {
 
     $form['phone'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Phone No'),
+      '#title' => $this->t('Phone Number'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $text_classes],
     ];
 
-    $form['source'] = [
+    $form['address'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Address'),
+      '#attributes' => ['class' => $text_classes],
+    ];
+
+    $form['experience'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Work Experience'),
+      '#attributes' => ['class' => $textarea_classes],
+    ];
+
+    $form['cover_letter'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Cover Letter'),
+      '#attributes' => ['class' => $textarea_classes],
+    ];
+
+    // ✅ Role selector
+    $form['role'] = [
       '#type' => 'radios',
-      '#title' => $this->t('How did you hear about us?'),
+      '#title' => $this->t('Which role are you applying for?'),
       '#options' => [
-        'recruitment_site' => $this->t('Recruitment Site'),
-        'referral' => $this->t('Referral'),
-        'other' => $this->t('Other (please specify)'),
+        'it' => $this->t('IT Applicant'),
+        'ba' => $this->t('Business Analyst'),
+        'cs' => $this->t('Customer Service'),
       ],
-      '#attributes' => ['class' => ['space-y-2']],
+      '#required' => TRUE,
+      '#ajax' => [
+        'callback' => '::updateRoleFields',
+        'wrapper' => 'role-specific-fields',
+        'effect' => 'fade',
+      ],
     ];
 
-    $form['employment_status'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('What is your current employment status?'),
-      '#attributes' => ['class' => $text_classes],
+    // ✅ Role-specific container
+    $form['role_fields'] = [
+      '#type' => 'container',
+      '#attributes' => ['id' => 'role-specific-fields'],
     ];
 
-    $form['equipment'] = [
-      '#type' => 'radios',
-      '#title' => $this->t('Do you have a reliable PC and internet connection?'),
-      '#options' => ['yes' => $this->t('Yes'), 'no' => $this->t('No')],
-      '#attributes' => ['class' => ['space-x-4']],
-    ];
+    $selected_role = $form_state->getValue('role');
+    if ($selected_role === 'it') {
+      $form['role_fields']['skills'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Technical Skills'),
+        '#attributes' => ['class' => $textarea_classes],
+      ];
+    }
+    elseif ($selected_role === 'ba') {
+      $form['role_fields']['certification'] = [
+        '#type' => 'textfield',
+        '#title' => $this->t('BA Certification ID'),
+        '#attributes' => ['class' => $text_classes],
+      ];
+    }
+    elseif ($selected_role === 'cs') {
+      $form['role_fields']['language'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Language Fluency'),
+        '#options' => [
+          'en' => $this->t('English'),
+          'fr' => $this->t('French'),
+          'es' => $this->t('Spanish'),
+        ],
+      ];
+    }
 
-    $form['experience_online'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Do you have online work/education experience?'),
-      '#attributes' => ['class' => $textarea_classes],
-    ];
-
-    $form['availability'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('How much time per day can you allocate? When are you available?'),
-      '#attributes' => ['class' => $textarea_classes],
-    ];
-
-    $form['experience_content'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('What is your experience in content writing? Please share samples or links.'),
-      '#attributes' => ['class' => $textarea_classes],
-    ];
-
-    $form['team_experience'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Describe a time you worked with a team to resolve an IT issue.'),
-      '#attributes' => ['class' => $textarea_classes],
-    ];
-
-    $form['proficiency_writing'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('How do you describe your proficiency in content writing?'),
-      '#attributes' => ['class' => $text_classes],
-    ];
-
-    $form['proficiency_media'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('How do you describe your proficiency in images & video editing?'),
-      '#attributes' => ['class' => $text_classes],
-    ];
-
-    $form['proficiency_tools'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Proficiency with version control, CMS (Drupal, WordPress), Linux?'),
-      '#attributes' => ['class' => $text_classes],
-    ];
-
-    $form['education_experience'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Relevant education, work experience, or hobbies related to digital content?'),
-      '#attributes' => ['class' => $textarea_classes],
-    ];
-
-    $form['salary_expectation'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('What is your salary expectation?'),
-      '#attributes' => ['class' => $text_classes],
-    ];
-
-    $form['job_obstacles'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('What do you think will be an obstacle to your job, or what do you hate in a job?'),
-      '#attributes' => ['class' => $textarea_classes],
-    ];
-
-    $form['actions']['submit'] = [
+    // ✅ Submit
+    $form['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Submit Application'),
-      '#attributes' => [
-        'class' => ['px-6', 'py-3', 'bg-blue-600', 'text-white', 'font-semibold', 'rounded-lg', 'shadow', 'hover:bg-blue-700', 'transition'],
-      ],
+      '#value' => $this->t('Apply Now'),
+      '#attributes' => ['class' => ['px-6', 'py-3', 'bg-blue-600', 'text-white', 'rounded-lg']],
     ];
 
     return $form;
   }
 
-  public function submitForm(array &$form, FormStateInterface $form_state) {
-    $values = $form_state->getValues();
-
-    \Drupal::database()->insert('wondem_applications')
-      ->fields([
-        'full_name' => $values['full_name'],
-        'email' => $values['email'],
-        'phone' => $values['phone'],
-        'data' => serialize($values),
-        'created' => \Drupal::time()->getRequestTime(),
-      ])
-      ->execute();
-
-    \Drupal::messenger()->addMessage($this->t('Application submitted successfully!'));
+  /**
+   * AJAX callback for role-specific fields.
+   */
+  public function updateRoleFields(array &$form, FormStateInterface $form_state) {
+    return $form['role_fields'];
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    // Gather all common values
+    $values = [
+      'Full Name' => $form_state->getValue('full_name'),
+      'Email' => $form_state->getValue('email'),
+      'Phone' => $form_state->getValue('phone'),
+      'Address' => $form_state->getValue('address'),
+      'Experience' => $form_state->getValue('experience'),
+      'Cover Letter' => $form_state->getValue('cover_letter'),
+      'Role' => $form_state->getValue('role'),
+    ];
+
+    // Add role-specific values
+    switch ($form_state->getValue('role')) {
+      case 'it':
+        $values['Technical Skills'] = $form_state->getValue('skills');
+        break;
+      case 'ba':
+        $values['BA Certification ID'] = $form_state->getValue('certification');
+        break;
+      case 'cs':
+        $values['Language Fluency'] = $form_state->getValue('language');
+        break;
+    }
+
+    // ✅ Print everything in one confirmation
+    $output = '<div class="p-6 bg-green-100 text-green-800 rounded-lg"><h2>Application Submitted</h2><ul>';
+    foreach ($values as $label => $value) {
+      $output .= '<li><strong>' . $label . ':</strong> ' . ($value ?: '-') . '</li>';
+    }
+    $output .= '</ul></div>';
+
+    $this->messenger()->addMessage(['#markup' => $output]);
+  }
+
 }

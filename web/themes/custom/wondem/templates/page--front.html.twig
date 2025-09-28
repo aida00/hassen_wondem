@@ -1,12 +1,9 @@
-{#
-  File: page--front.html.twig
-  Pure Twig front page, no dependency on nodes or Views
-#}
 {% extends "page.html.twig" %}
 
 {% block content %}
   {{ attach_library('wondem/frontpage') }}
 
+  <!-- Hero Section -->
   <section class="flex flex-col items-center justify-center text-center min-h-screen bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-6 py-20">
     <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
       🚀 Welcome to the Front Page 🚀
@@ -19,5 +16,26 @@
       Apply Now
     </a>
   </section>
-{% endblock %}
 
+  <!-- System Architecture Section -->
+  <section class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold text-center text-blue-900 mb-10">
+      Excel Sky Medical Supplies – System Architecture
+    </h2>
+
+    <!-- ✅ 2×3 grid for the first 6 blocks -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div class="card card--frontend">{{ page.frontend }}</div>
+      <div class="card card--backend">{{ page.backend }}</div>
+      <div class="card card--database">{{ page.database }}</div>
+      <div class="card card--security">{{ page.security }}</div>
+      <div class="card card--integration">{{ page.integration }}</div>
+      <div class="card card--deployment">{{ page.deployment }}</div>
+    </div>
+
+    <!-- ✅ Full-width row for Analytics -->
+    <div class="card card--analytics col-span-1 md:col-span-2 lg:col-span-3">
+      {{ page.analytics }}
+    </div>
+  </section>
+{% endblock %}

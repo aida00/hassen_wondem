@@ -5,3 +5,6 @@ frontpage:
       dist/frontpage.css: {}
   js:
     dist/frontpage.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
