@@ -11,8 +11,8 @@ dependencies:
     - wondem
 id: wondem_firstbackendblock
 theme: wondem
-region: content
-weight: 0
+region: backend
+weight: -10
 provider: null
 plugin: 'block_content:a234d372-ef03-4a24-8867-bfd6d6b842a6'
 settings:

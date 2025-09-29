@@ -15,6 +15,6 @@ plugin: integration_block
 settings:
   id: integration_block
   label: 'Integration Layer Block'
-  label_display: visible
+  label_display: '0'
   provider: excel_sky_architecture
 visibility: {  }
