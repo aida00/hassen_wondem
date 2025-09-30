@@ -72,24 +72,41 @@ class ApplicationAdminController extends ControllerBase {
 
     // Human-readable labels for each field.
     $labels = [
-      'full_name' => $this->t('Full Name'),
-      'email' => $this->t('Email'),
-      'phone' => $this->t('Phone'),
-      'employment_status' => $this->t('Employment Status'),
-      'equipment' => $this->t('PC & Internet'),
-      'online_experience' => $this->t('Online Work/Education Experience'),
-      'availability' => $this->t('Availability'),
-      'writing_experience' => $this->t('Writing Experience'),
-      'team_experience' => $this->t('Teamwork Experience'),
-      'writing_proficiency' => $this->t('Writing Proficiency'),
-      'media_proficiency' => $this->t('Media Proficiency'),
-      'tools_proficiency' => $this->t('Tools & Software Proficiency'),
+      // Common
+      'full_name'            => $this->t('Full Name'),
+      'email'                => $this->t('Email'),
+      'phone'                => $this->t('Phone'),
+      'address'              => $this->t('Address'),
+      'source'               => $this->t('How did you hear about us?'),
+      'employment_status'    => $this->t('Employment Status'),
+      'equipment'            => $this->t('PC & Internet'),
+      'experience_online'    => $this->t('Online Work/Education Experience'),
+      'availability'         => $this->t('Availability'),
+      'cover_letter'         => $this->t('Cover Letter'),
+      'role'                 => $this->t('Role'),
+
+      // IT
+      'skills'               => $this->t('Technical Skills'),
+      'team_experience'      => $this->t('Team Experience'),
+      'proficiency_tools'    => $this->t('Proficiency with Tools'),
       'education_experience' => $this->t('Education/Experience'),
-      'salary' => $this->t('Salary Expectation'),
-      'obstacles' => $this->t('Obstacles/Challenges'),
-      'heard_about' => $this->t('How did you hear about us?'),
-      'heard_about_other' => $this->t('Other (please specify)'),
+      'salary_expectation'   => $this->t('Salary Expectation'),
+      'job_obstacles'        => $this->t('Job Obstacles'),
+
+      // Content Writer
+      'experience_content'   => $this->t('Writing Experience'),
+      'proficiency_writing'  => $this->t('Writing Proficiency'),
+      'proficiency_media'    => $this->t('Media Proficiency'),
+
+      // Customer Service
+      'cs_experience'        => $this->t('Customer Service Experience'),
+      'conflict_resolution'  => $this->t('Conflict Resolution Example'),
+      'crm_tools'            => $this->t('CRM / Helpdesk Tools'),
+      'typing_speed'         => $this->t('Typing Speed (WPM)'),
+      'availability_shifts'  => $this->t('Availability & Shifts'),
+      'language'             => $this->t('Primary Language Fluency'),
     ];
+
 
     $rows = [];
     foreach ($labels as $key => $label) {

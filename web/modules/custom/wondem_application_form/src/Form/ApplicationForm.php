@@ -82,9 +82,42 @@ class ApplicationForm extends FormBase {
       '#attributes' => ['class' => $text_classes],
     ];
 
-    $form['experience'] = [
+    // Attach the CSS library to fix formatting of radio buttons and text
+    $form['#attached']['library'][] = 'wondem_application_form/form_styles';
+
+    $form['source'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('How did you hear about us?'),
+      '#options' => [
+        'recruitment_site' => $this->t('Recruitment Site'),
+        'referral' => $this->t('Referral'),
+        'other' => $this->t('Other (please specify)'),
+      ],
+      '#attributes' => ['class' => ['space-y-2']],
+    ];
+
+    $form['employment_status'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('What is your current employment status?'),
+      '#attributes' => ['class' => $text_classes],
+    ];
+
+    $form['equipment'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Do you have a reliable PC and internet connection?'),
+      '#options' => ['yes' => $this->t('Yes'), 'no' => $this->t('No')],
+      '#attributes' => ['class' => ['space-x-4']],
+    ];
+
+    $form['experience_online'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Work Experience'),
+      '#title' => $this->t('Do you have online work/education experience?'),
+      '#attributes' => ['class' => $textarea_classes],
+    ];
+
+    $form['availability'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('How much time per day can you allocate? When are you available?'),
       '#attributes' => ['class' => $textarea_classes],
     ];
 
@@ -99,8 +132,8 @@ class ApplicationForm extends FormBase {
       '#type' => 'radios',
       '#title' => $this->t('Which role are you applying for?'),
       '#options' => [
-        'it' => $this->t('IT Applicant'),
-        'ba' => $this->t('Business Analyst'),
+        'it' => $this->t('IT Applicant / Developer'),
+        'cw' => $this->t('Content Creator and Writer'),
         'cs' => $this->t('Customer Service'),
       ],
       '#required' => TRUE,
@@ -119,30 +152,165 @@ class ApplicationForm extends FormBase {
 
     $selected_role = $form_state->getValue('role');
     if ($selected_role === 'it') {
-      $form['role_fields']['skills'] = [
+      
+      $form['role_fields']['it_group'] = [
+      '#type'  => 'details',
+      '#title' => $this->t('IT Applicant Details'),
+      '#open'  => TRUE,
+      ];
+
+      $form['role_fields']['it_group']['skills'] = [
         '#type' => 'textarea',
-        '#title' => $this->t('Technical Skills'),
+        '#title' => $this->t('Describe any technical skills you have.'),
         '#attributes' => ['class' => $textarea_classes],
       ];
-    }
-    elseif ($selected_role === 'ba') {
-      $form['role_fields']['certification'] = [
+      
+      $form['role_fields']['it_group']['team_experience'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Describe a time you worked with a team to resolve an IT issue.'),
+      '#attributes' => ['class' => $textarea_classes],
+      ];
+
+      $form['role_fields']['it_group']['proficiency_tools'] = [
         '#type' => 'textfield',
-        '#title' => $this->t('BA Certification ID'),
+        '#title' => $this->t('Proficiency with version control, CMS (Drupal, WordPress), Linux?'),
         '#attributes' => ['class' => $text_classes],
       ];
-    }
-    elseif ($selected_role === 'cs') {
-      $form['role_fields']['language'] = [
-        '#type' => 'select',
-        '#title' => $this->t('Language Fluency'),
-        '#options' => [
-          'en' => $this->t('English'),
-          'fr' => $this->t('French'),
-          'es' => $this->t('Spanish'),
-        ],
+
+      $form['role_fields']['it_group']['education_experience'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Relevant education, work experience, or hobbies related to programming / Development?'),
+        '#attributes' => ['class' => $textarea_classes],
       ];
+
+      $form['role_fields']['it_group']['salary_expectation'] = [
+        '#type' => 'textfield',
+        '#title' => $this->t('What is your salary expectation?'),
+        '#attributes' => ['class' => $text_classes],
+      ];
+
+      $form['role_fields']['it_group']['job_obstacles'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('What do you think will be an obstacle to your job, or what do you hate in a job?'),
+        '#attributes' => ['class' => $textarea_classes],
+      ];
+
     }
+
+    elseif ($selected_role === 'cw') {
+    $form['role_fields']['cw_group'] = [
+      '#type'  => 'details',
+      '#title' => $this->t('Content Creator & Writer Details'),
+      '#open'  => TRUE,
+    ];
+
+    $form['role_fields']['cw_group']['education_experience'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Relevant education, work experience, or hobbies related to content creation'),
+      '#attributes' => ['class' => $textarea_classes],
+    ];
+
+    $form['role_fields']['cw_group']['experience_content'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('What is your experience in content writing? Please share samples or links.'),
+      '#attributes' => ['class' => $textarea_classes],
+    ];
+
+    $form['role_fields']['cw_group']['team_experience'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Describe a time you worked with a team to create content.'),
+      '#attributes' => ['class' => $textarea_classes],
+    ];
+
+    $form['role_fields']['cw_group']['proficiency_writing'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('How do you describe your proficiency in content writing?'),
+      '#attributes' => ['class' => $text_classes],
+    ];
+
+    $form['role_fields']['cw_group']['proficiency_media'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('How do you describe your proficiency in images & video editing?'),
+      '#attributes' => ['class' => $text_classes],
+    ];
+
+    $form['role_fields']['cw_group']['salary_expectation'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('What is your salary expectation?'),
+      '#attributes' => ['class' => $text_classes],
+    ];
+
+    $form['role_fields']['cw_group']['job_obstacles'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('What do you think will be an obstacle to your job, or what do you hate in a job?'),
+      '#attributes' => ['class' => $textarea_classes],
+    ];
+  }
+  elseif ($selected_role === 'cs') {
+    $form['role_fields']['cs_group'] = [
+      '#type'  => 'details',
+      '#title' => $this->t('Customer Service Details'),
+      '#open'  => TRUE,
+    ];
+
+    $form['role_fields']['cs_group']['cs_experience'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Customer Service Experience'),
+      '#description' => $this->t('Tell us about your experience handling customers (channels, typical volume, industries).'),
+      '#attributes' => ['class' => $textarea_classes],
+    ];
+
+    $form['role_fields']['cs_group']['conflict_resolution'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Conflict Resolution Example'),
+      '#description' => $this->t('Describe a difficult customer interaction and how you resolved it.'),
+      '#attributes' => ['class' => $textarea_classes],
+    ];
+
+    $form['role_fields']['cs_group']['crm_tools'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('CRM / Helpdesk Tools'),
+      '#description' => $this->t('e.g., Zendesk, Freshdesk, HubSpot, GA4 basics, phone systems, live chat.'),
+      '#attributes' => ['class' => $text_classes],
+    ];
+
+    $form['role_fields']['cs_group']['typing_speed'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Typing Speed (WPM)'),
+      '#attributes' => ['class' => $text_classes],
+    ];
+
+    $form['role_fields']['cs_group']['availability_shifts'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Availability & Shifts'),
+      '#description' => $this->t('Which days/hours can you work? Any weekend/evening availability?'),
+      '#attributes' => ['class' => $textarea_classes],
+    ];
+
+    // Keep your language field and place it here so it lives inside the CS group.
+    $form['role_fields']['cs_group']['language'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Primary Language Fluency'),
+      '#options' => [
+        'en' => $this->t('English'),
+        'fr' => $this->t('French'),
+        'es' => $this->t('Spanish'),
+      ],
+    ];
+
+    $form['role_fields']['cs_group']['salary_expectation'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('What is your salary expectation?'),
+      '#attributes' => ['class' => $text_classes],
+    ];
+
+    $form['role_fields']['cs_group']['job_obstacles'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('What do you think will be an obstacle to your job, or what do you hate in a job?'),
+      '#attributes' => ['class' => $textarea_classes],
+    ];
+  }
+
 
     // ✅ Submit
     $form['submit'] = [
@@ -164,39 +332,80 @@ class ApplicationForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Gather all common values
-    $values = [
-      'Full Name' => $form_state->getValue('full_name'),
-      'Email' => $form_state->getValue('email'),
-      'Phone' => $form_state->getValue('phone'),
-      'Address' => $form_state->getValue('address'),
-      'Experience' => $form_state->getValue('experience'),
-      'Cover Letter' => $form_state->getValue('cover_letter'),
-      'Role' => $form_state->getValue('role'),
-    ];
+public function submitForm(array &$form, FormStateInterface $form_state) {
+  // 1) Collect all values from the form_state.
+  $values = $form_state->getValues();
 
-    // Add role-specific values
-    switch ($form_state->getValue('role')) {
-      case 'it':
-        $values['Technical Skills'] = $form_state->getValue('skills');
-        break;
-      case 'ba':
-        $values['BA Certification ID'] = $form_state->getValue('certification');
-        break;
-      case 'cs':
-        $values['Language Fluency'] = $form_state->getValue('language');
-        break;
-    }
-
-    // ✅ Print everything in one confirmation
-    $output = '<div class="p-6 bg-green-100 text-green-800 rounded-lg"><h2>Application Submitted</h2><ul>';
-    foreach ($values as $label => $value) {
-      $output .= '<li><strong>' . $label . ':</strong> ' . ($value ?: '-') . '</li>';
-    }
-    $output .= '</ul></div>';
-
-    $this->messenger()->addMessage(['#markup' => $output]);
+  // Remove internal keys we don't want to store.
+  foreach ([
+    'form_build_id','form_token','form_id','op','submit',
+    // containers/details only carry children; keep them out
+    'role_fields','it_group','cw_group','cs_group',
+  ] as $k) {
+    unset($values[$k]);
   }
+
+  // 2) Insert into custom table (keep summary columns too).
+  \Drupal::database()->insert('wondem_applications')
+    ->fields([
+      'full_name' => $values['full_name'] ?? '',
+      'email'     => $values['email'] ?? '',
+      'phone'     => $values['phone'] ?? '',
+      'data'      => serialize($values),                   // keep schema as-is
+      'created'   => \Drupal::time()->getRequestTime(),
+    ])
+    ->execute();
+
+  // 3) Nice confirmation (your existing output).
+  $pretty = [
+    'Full Name'           => $values['full_name'] ?? '',
+    'Email'               => $values['email'] ?? '',
+    'Phone'               => $values['phone'] ?? '',
+    'Address'             => $values['address'] ?? '',
+    'Role'                => $values['role'] ?? '',
+    'Cover Letter'        => $values['cover_letter'] ?? '',
+  ];
+
+  // Role-specific echo-back (optional; purely for the message).
+  switch ($values['role'] ?? '') {
+    case 'it':
+      $pretty['Technical Skills']       = $values['skills'] ?? '';
+      $pretty['Team Experience']        = $values['team_experience'] ?? '';
+      $pretty['Proficiency with Tools'] = $values['proficiency_tools'] ?? '';
+      $pretty['Education/Experience']   = $values['education_experience'] ?? '';
+      $pretty['Salary Expectation']     = $values['salary_expectation'] ?? '';
+      $pretty['Job Obstacles']          = $values['job_obstacles'] ?? '';
+      break;
+
+    case 'cw':
+      $pretty['Education/Experience']   = $values['education_experience'] ?? '';
+      $pretty['Writing Experience']     = $values['experience_content'] ?? '';
+      $pretty['Team Experience']        = $values['team_experience'] ?? '';
+      $pretty['Writing Proficiency']    = $values['proficiency_writing'] ?? '';
+      $pretty['Media Proficiency']      = $values['proficiency_media'] ?? '';
+      $pretty['Salary Expectation']     = $values['salary_expectation'] ?? '';
+      $pretty['Job Obstacles']          = $values['job_obstacles'] ?? '';
+      break;
+
+    case 'cs':
+      $pretty['CS Experience']          = $values['cs_experience'] ?? '';
+      $pretty['Conflict Resolution']    = $values['conflict_resolution'] ?? '';
+      $pretty['CRM/Helpdesk Tools']     = $values['crm_tools'] ?? '';
+      $pretty['Typing Speed (WPM)']     = $values['typing_speed'] ?? '';
+      $pretty['Availability & Shifts']  = $values['availability_shifts'] ?? '';
+      $pretty['Language Fluency']       = $values['language'] ?? '';
+      $pretty['Salary Expectation']     = $values['salary_expectation'] ?? '';
+      $pretty['Job Obstacles']          = $values['job_obstacles'] ?? '';
+      break;
+  }
+
+  $output = '<div class="p-6 bg-green-100 text-green-800 rounded-lg"><h2>Application Submitted</h2><ul>';
+  foreach ($pretty as $label => $value) {
+    $output .= '<li><strong>' . $label . ':</strong> ' . ($value !== '' ? $value : '-') . '</li>';
+  }
+  $output .= '</ul></div>';
+
+  $this->messenger()->addMessage(['#markup' => $output]);
+}
 
 }

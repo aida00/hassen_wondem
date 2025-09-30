@@ -1,0 +1,14 @@
+/* Keep radio label on the same line as the input */
+.form-radios .form-type--radio,
+.form-radios .js-form-type-radio {
+  display: flex;            /* lay input + label in a row */
+  align-items: center;
+  gap: 0.5rem;              /* space between dot and text */
+}
+
+/* Make sure the label doesn't force a new line */
+.form-radios .form-type--radio > label,
+.form-radios .js-form-type-radio > label {
+  display: inline;          /* override any display:block from theme */
+  margin: 0;
+}
