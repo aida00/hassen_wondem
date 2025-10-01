@@ -255,45 +255,36 @@ class ApplicationForm extends FormBase {
 
     $form['role_fields']['cs_group']['cs_experience'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Customer Service Experience'),
-      '#description' => $this->t('Tell us about your experience handling customers (channels, typical volume, industries).'),
+      '#title' => $this->t('Tell us about your experience handling customers (channels, typical volume, industries).'),
       '#attributes' => ['class' => $textarea_classes],
     ];
 
     $form['role_fields']['cs_group']['conflict_resolution'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Conflict Resolution Example'),
-      '#description' => $this->t('Describe a difficult customer interaction and how you resolved it.'),
+      '#title' => $this->t('Describe a difficult customer interaction and how you resolved it.'),
       '#attributes' => ['class' => $textarea_classes],
     ];
 
     $form['role_fields']['cs_group']['crm_tools'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('CRM / Helpdesk Tools'),
-      '#description' => $this->t('e.g., Zendesk, Freshdesk, HubSpot, GA4 basics, phone systems, live chat.'),
-      '#attributes' => ['class' => $text_classes],
+      '#title' => $this->t('What CRM / Helpdesk Tools can you use? e.g., Zendesk, Freshdesk, HubSpot, GA4 basics, phone systems, live chat.'),
+       '#attributes' => ['class' => $text_classes],
     ];
 
     $form['role_fields']['cs_group']['typing_speed'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Typing Speed (WPM)'),
+      '#title' => $this->t('What is your typing Speed (WPM)'),
       '#attributes' => ['class' => $text_classes],
     ];
 
-    $form['role_fields']['cs_group']['availability_shifts'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Availability & Shifts'),
-      '#description' => $this->t('Which days/hours can you work? Any weekend/evening availability?'),
-      '#attributes' => ['class' => $textarea_classes],
-    ];
-
+    
     // Keep your language field and place it here so it lives inside the CS group.
     $form['role_fields']['cs_group']['language'] = [
       '#type' => 'select',
       '#title' => $this->t('Primary Language Fluency'),
       '#options' => [
         'en' => $this->t('English'),
-        'fr' => $this->t('French'),
+        'fr' => $this->t('Amharic'),
         'es' => $this->t('Spanish'),
       ],
     ];
@@ -392,7 +383,6 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
       $pretty['Conflict Resolution']    = $values['conflict_resolution'] ?? '';
       $pretty['CRM/Helpdesk Tools']     = $values['crm_tools'] ?? '';
       $pretty['Typing Speed (WPM)']     = $values['typing_speed'] ?? '';
-      $pretty['Availability & Shifts']  = $values['availability_shifts'] ?? '';
       $pretty['Language Fluency']       = $values['language'] ?? '';
       $pretty['Salary Expectation']     = $values['salary_expectation'] ?? '';
       $pretty['Job Obstacles']          = $values['job_obstacles'] ?? '';

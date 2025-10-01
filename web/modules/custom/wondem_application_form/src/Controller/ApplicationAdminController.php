@@ -103,7 +103,6 @@ class ApplicationAdminController extends ControllerBase {
       'conflict_resolution'  => $this->t('Conflict Resolution Example'),
       'crm_tools'            => $this->t('CRM / Helpdesk Tools'),
       'typing_speed'         => $this->t('Typing Speed (WPM)'),
-      'availability_shifts'  => $this->t('Availability & Shifts'),
       'language'             => $this->t('Primary Language Fluency'),
     ];
 
