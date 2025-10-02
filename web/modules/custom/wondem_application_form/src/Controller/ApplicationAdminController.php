@@ -70,6 +70,20 @@ class ApplicationAdminController extends ControllerBase {
 
     $values = unserialize($record->data);
 
+
+    if (!empty($values['role_label'])) {
+      $rows[] = ['label' => $this->t('Role'), 'value' => $values['role_label']];
+    } elseif (!empty($values['role'])) {
+      $role_labels = [
+        'it' => $this->t('IT Applicant / Developer'),
+        'cw' => $this->t('Content Creator and Writer'),
+        'cs' => $this->t('Customer Service'),
+      ];
+      $rows[] = ['label' => $this->t('Role'), 'value' => $role_labels[$values['role']] ?? $values['role']];
+    }
+
+
+
     // Human-readable labels for each field.
     $labels = [
       // Common

@@ -41,10 +41,46 @@ class ApplicationForm extends FormBase {
     // 🔒 Require login
     if ($this->currentUser->isAnonymous()) {
       $form['message'] = [
-        '#markup' => '<div class="p-6 bg-red-100 text-red-800 rounded-lg">You must <a href="/user/login" class="underline">log in</a> to apply.</div>',
+        '#markup' => '<div class="p-6 bg-red-100 text-red-800 rounded-lg">' .
+          $this->t('You must <a href="/user/login?destination=/application-form" class="underline">log in</a> to apply.') .
+          '</div>',
       ];
       return $form;
     }
+
+
+    // Define account + username
+    $account  = $this->currentUser;
+    $username = $account->getDisplayName();
+
+    // Deny re-applying if this email already submitted.
+    $email = $this->currentUser->getEmail();
+    $exists = \Drupal::database()->select('wondem_applications', 'wa')
+      ->fields('wa', ['id'])
+      ->condition('email', $email)
+      ->range(0, 1)
+      ->execute()
+      ->fetchField();
+
+    if ($exists) {
+      $form['message'] = [
+        '#markup' => '<div class="p-6 bg-yellow-100 text-yellow-800 rounded-lg">' .
+          $this->t('You have already submitted an application. View your <a href=":status">application status</a>.', [
+            ':status' => '/application/status',
+          ]) .
+        '</div>',
+      ];
+      return $form;
+    } else {
+      // New user logged in but hasn’t applied yet
+      $form['welcome'] = [
+        '#markup' => '<div class="p-6 bg-blue-100 text-blue-800 rounded-lg">' .
+          $this->t('Welcome @name! Please fill out the application form below.', ['@name' => $username]) .
+          '</div>',
+      ];
+}
+
+
 
     $account = $this->currentUser;
 
@@ -58,7 +94,7 @@ class ApplicationForm extends FormBase {
       '#title' => $this->t('Full Name'),
       '#required' => TRUE,
       '#default_value' => $account->getDisplayName(),
-      '#attributes' => ['readonly' => 'readonly', 'class' => $text_classes],
+      '#attributes' => ['class' => $text_classes],
     ];
 
     $form['email'] = [
@@ -79,6 +115,7 @@ class ApplicationForm extends FormBase {
     $form['address'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Address'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $text_classes],
     ];
 
@@ -88,6 +125,7 @@ class ApplicationForm extends FormBase {
     $form['source'] = [
       '#type' => 'radios',
       '#title' => $this->t('How did you hear about us?'),
+      '#required' => TRUE,
       '#options' => [
         'recruitment_site' => $this->t('Recruitment Site'),
         'referral' => $this->t('Referral'),
@@ -99,12 +137,14 @@ class ApplicationForm extends FormBase {
     $form['employment_status'] = [
       '#type' => 'textfield',
       '#title' => $this->t('What is your current employment status?'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $text_classes],
     ];
 
     $form['equipment'] = [
       '#type' => 'radios',
       '#title' => $this->t('Do you have a reliable PC and internet connection?'),
+      '#required' => TRUE,
       '#options' => ['yes' => $this->t('Yes'), 'no' => $this->t('No')],
       '#attributes' => ['class' => ['space-x-4']],
     ];
@@ -112,12 +152,14 @@ class ApplicationForm extends FormBase {
     $form['experience_online'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Do you have online work/education experience?'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $textarea_classes],
     ];
 
     $form['availability'] = [
       '#type' => 'textarea',
       '#title' => $this->t('How much time per day can you allocate? When are you available?'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $textarea_classes],
     ];
 
@@ -174,6 +216,7 @@ class ApplicationForm extends FormBase {
       $form['role_fields']['it_group']['proficiency_tools'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Proficiency with version control, CMS (Drupal, WordPress), Linux?'),
+        '#required' => TRUE,
         '#attributes' => ['class' => $text_classes],
       ];
 
@@ -186,6 +229,7 @@ class ApplicationForm extends FormBase {
       $form['role_fields']['it_group']['salary_expectation'] = [
         '#type' => 'textfield',
         '#title' => $this->t('What is your salary expectation?'),
+        '#required' => TRUE,
         '#attributes' => ['class' => $text_classes],
       ];
 
@@ -207,12 +251,14 @@ class ApplicationForm extends FormBase {
     $form['role_fields']['cw_group']['education_experience'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Relevant education, work experience, or hobbies related to content creation'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $textarea_classes],
     ];
 
     $form['role_fields']['cw_group']['experience_content'] = [
       '#type' => 'textarea',
       '#title' => $this->t('What is your experience in content writing? Please share samples or links.'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $textarea_classes],
     ];
 
@@ -225,18 +271,21 @@ class ApplicationForm extends FormBase {
     $form['role_fields']['cw_group']['proficiency_writing'] = [
       '#type' => 'textfield',
       '#title' => $this->t('How do you describe your proficiency in content writing?'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $text_classes],
     ];
 
     $form['role_fields']['cw_group']['proficiency_media'] = [
       '#type' => 'textfield',
       '#title' => $this->t('How do you describe your proficiency in images & video editing?'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $text_classes],
     ];
 
     $form['role_fields']['cw_group']['salary_expectation'] = [
       '#type' => 'textfield',
       '#title' => $this->t('What is your salary expectation?'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $text_classes],
     ];
 
@@ -256,6 +305,7 @@ class ApplicationForm extends FormBase {
     $form['role_fields']['cs_group']['cs_experience'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Tell us about your experience handling customers (channels, typical volume, industries).'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $textarea_classes],
     ];
 
@@ -267,8 +317,9 @@ class ApplicationForm extends FormBase {
 
     $form['role_fields']['cs_group']['crm_tools'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('What CRM / Helpdesk Tools can you use? e.g., Zendesk, Freshdesk, HubSpot, GA4 basics, phone systems, live chat.'),
-       '#attributes' => ['class' => $text_classes],
+      '#title' => $this->t('What CRM / Helpdesk Tools can you use? e.g., Zendesk, Freshdesk, HubSpot, GA4 basics, phone systems, live chat, or other'),
+      '#required' => TRUE,
+      '#attributes' => ['class' => $text_classes],
     ];
 
     $form['role_fields']['cs_group']['typing_speed'] = [
@@ -282,9 +333,10 @@ class ApplicationForm extends FormBase {
     $form['role_fields']['cs_group']['language'] = [
       '#type' => 'select',
       '#title' => $this->t('Primary Language Fluency'),
+      '#required' => TRUE,
       '#options' => [
         'en' => $this->t('English'),
-        'fr' => $this->t('Amharic'),
+        'am' => $this->t('Amharic'),
         'es' => $this->t('Spanish'),
       ],
     ];
@@ -292,6 +344,7 @@ class ApplicationForm extends FormBase {
     $form['role_fields']['cs_group']['salary_expectation'] = [
       '#type' => 'textfield',
       '#title' => $this->t('What is your salary expectation?'),
+      '#required' => TRUE,
       '#attributes' => ['class' => $text_classes],
     ];
 
@@ -336,6 +389,13 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
     unset($values[$k]);
   }
 
+
+    // Resolve the human-readable label for the chosen role and save it too.
+  $role_options = $form['role']['#options'] ?? [];
+  $values['role_label'] = $role_options[$values['role'] ?? ''] ?? ($values['role'] ?? '');
+
+
+
   // 2) Insert into custom table (keep summary columns too).
   \Drupal::database()->insert('wondem_applications')
     ->fields([
@@ -353,7 +413,7 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
     'Email'               => $values['email'] ?? '',
     'Phone'               => $values['phone'] ?? '',
     'Address'             => $values['address'] ?? '',
-    'Role'                => $values['role'] ?? '',
+    'Role'                => $values['role_label'] ?? '',
     'Cover Letter'        => $values['cover_letter'] ?? '',
   ];
 
@@ -396,6 +456,9 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
   $output .= '</ul></div>';
 
   $this->messenger()->addMessage(['#markup' => $output]);
+
+  $form_state->setRedirect('wondem_application_form.status');
+
 }
 
 }

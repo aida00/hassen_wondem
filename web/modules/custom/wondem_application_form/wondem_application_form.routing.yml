@@ -25,3 +25,12 @@ wondem_application_form.admin_view:
     parameters:
       id:
         type: integer
+
+wondem_application_form.status:
+  path: '/application/status'
+  defaults:
+    _controller: '\Drupal\wondem_application_form\Controller\ApplicationStatusController::status'
+    _title: 'Application Status'
+  requirements:
+    _permission: 'access content'
+
