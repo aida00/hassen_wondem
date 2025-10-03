@@ -1,0 +1,16 @@
+# Composer
+/vendor/
+
+# Drupal public files (generated)
+web/sites/*/files/
+web/sites/*/files/**
+
+# Aggregated CSS/JS and profiler artifacts
+web/sites/default/files/css/
+web/sites/default/files/js/
+web/sites/default/files/profiler/
+web/sites/default/files/php/
+
+# DDEV (optional – ignore generated stuff; keep config.yaml if you want)
+/.ddev/.snapshot/
+/.ddev/db/

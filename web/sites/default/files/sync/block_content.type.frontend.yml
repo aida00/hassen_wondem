@@ -1,8 +1,0 @@
-uuid: 8e248c42-f2a1-42ab-a020-b80fc091d37e
-langcode: en
-status: true
-dependencies: {  }
-id: frontend
-label: 'Frontend '
-revision: false
-description: null
