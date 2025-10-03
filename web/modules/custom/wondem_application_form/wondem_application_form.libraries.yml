@@ -2,3 +2,8 @@ form_styles:
   css:
     theme:
       css/form-styles.css: {}
+  js:
+      js/phone-mask.js: {}
+  dependencies:
+      - core/jquery
+      - core/drupal

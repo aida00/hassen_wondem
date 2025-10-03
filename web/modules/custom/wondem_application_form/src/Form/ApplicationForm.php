@@ -93,7 +93,6 @@ class ApplicationForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Full Name'),
       '#required' => TRUE,
-      '#default_value' => $account->getDisplayName(),
       '#attributes' => ['class' => $text_classes],
     ];
 
@@ -109,7 +108,13 @@ class ApplicationForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Phone Number'),
       '#required' => TRUE,
-      '#attributes' => ['class' => $text_classes],
+      '#description' => $this->t('Use international format, e.g., +251911234567'),
+      '#attributes' => [
+        'class' => $text_classes,
+        'placeholder' => '+251911234567',
+        'inputmode' => 'tel',     // better mobile keyboard
+        'autocomplete' => 'tel',  // browser autofill
+      ],
     ];
 
     $form['address'] = [
@@ -124,20 +129,55 @@ class ApplicationForm extends FormBase {
 
     $form['source'] = [
       '#type' => 'radios',
-      '#title' => $this->t('How did you hear about us?'),
+      '#title' => $this->t('How did you hear about this job post?'),
       '#required' => TRUE,
       '#options' => [
         'recruitment_site' => $this->t('Recruitment Site'),
-        'referral' => $this->t('Referral'),
-        'other' => $this->t('Other (please specify)'),
+        'referral'         => $this->t('Referral'),
+        'other'            => $this->t('Other (please specify)'),
       ],
       '#attributes' => ['class' => ['space-y-2']],
     ];
 
-    $form['employment_status'] = [
+    // Only show details field if "other" is selected.
+    $form['source_details'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('What is your current employment status?'),
+      '#title' => $this->t('Please specify'),
+      '#states' => [
+        'visible' => [
+          ':input[name="source"]' => ['value' => 'other'],
+        ],
+        'required' => [
+          ':input[name="source"]' => ['value' => 'other'],
+        ],
+      ],
+      '#attributes' => ['class' => $text_classes],
+    ];
+
+
+    $form['employment_status'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Are you currently employed?'),
       '#required' => TRUE,
+      '#options' => [
+        'yes' => $this->t('Yes'),
+        'no'  => $this->t('No'),
+      ],
+      '#attributes' => ['class' => ['space-x-4']],
+    ];
+
+    // Extra textbox, shown only if "Yes" is selected
+    $form['employment_details'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('If yes, please provide a few details about your current job'),
+      '#states' => [
+        'visible' => [
+          ':input[name="employment_status"]' => ['value' => 'yes'],
+        ],
+        'required' => [
+          ':input[name="employment_status"]' => ['value' => 'yes'],
+        ],
+      ],
       '#attributes' => ['class' => $text_classes],
     ];
 
@@ -366,6 +406,52 @@ class ApplicationForm extends FormBase {
     return $form;
   }
 
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    // ✅ Email validation (Drupal service)
+    $email = $form_state->getValue('email');
+    if (!\Drupal::service('email.validator')->isValid($email)) {
+      $form_state->setErrorByName('email', $this->t('Please enter a valid email address.'));
+    }
+
+    // ✅ Phone: normalize & validate against E.164 (7–15 digits, optional leading +)
+    $phone_raw = trim($form_state->getValue('phone') ?? '');
+
+    // Keep a single leading + if present; strip all other non-digits.
+    $phone_normalized = preg_replace('/(?!^\+)\D+/', '', $phone_raw);
+
+    if (!preg_match('/^\+?[1-9]\d{6,14}$/', $phone_normalized)) {
+      $form_state->setErrorByName('phone', $this->t('Please enter a valid international phone number (e.g., +251911234567).'));
+    } else {
+      // Save back the normalized value so we store clean data.
+      $form_state->setValue('phone', $phone_normalized);
+    }
+
+
+    // Validate employement status form 
+    if ($form_state->getValue('employment_status') === 'yes') {
+        $details = trim((string) $form_state->getValue('employment_details'));
+        if ($details === '') {
+          $form_state->setErrorByName('employment_details', $this->t('Please provide a few employment details.'));
+        }
+      }
+
+    // Validate the where did you hear about us section
+    if ($form_state->getValue('source') === 'other') {
+      $details = trim((string) $form_state->getValue('source_details'));
+      if ($details === '') {
+        $form_state->setErrorByName('source_details', $this->t('Please specify how you heard about us.'));
+      }
+    }
+
+
+
+      parent::validateForm($form, $form_state);
+    }
+
   /**
    * AJAX callback for role-specific fields.
    */
@@ -388,6 +474,30 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
   ] as $k) {
     unset($values[$k]);
   }
+
+
+  // ✅ Normalize employment fields:
+  // - Keep only when status == 'yes'
+  // - Convert the stored value to human-readable label for the summary.
+  $employment_status_value = $values['employment_status'] ?? '';
+  $employment_options = $form['employment_status']['#options'] ?? [];
+  $values['employment_status_label'] = $employment_options[$employment_status_value] ?? $employment_status_value;
+
+  if (($values['employment_status'] ?? '') !== 'yes') {
+    // If not employed, clear details before storing.
+    $values['employment_details'] = '';
+  }  
+
+
+  // Normalize source
+  $source_value = $values['source'] ?? '';
+  $source_options = $form['source']['#options'] ?? [];
+  $values['source_label'] = $source_options[$source_value] ?? $source_value;
+
+  if ($source_value !== 'other') {
+    $values['source_details'] = '';
+  }
+
 
 
     // Resolve the human-readable label for the chosen role and save it too.
@@ -415,7 +525,23 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
     'Address'             => $values['address'] ?? '',
     'Role'                => $values['role_label'] ?? '',
     'Cover Letter'        => $values['cover_letter'] ?? '',
+    'Currently Employed?'  => $values['employment_status_label'] ?? '',
   ];
+
+
+  if (($values['employment_status'] ?? '') === 'yes') {
+    $pretty['Employment Details'] = $values['employment_details'] ?? '';
+  }
+
+
+  $pretty['How did you hear about us?'] = $values['source_label'] ?? '';
+  if (($values['source'] ?? '') === 'other') {
+    $pretty['Source Details'] = $values['source_details'] ?? '';
+  }
+
+
+  $pretty['Cover Letter'] = $values['cover_letter'] ?? '';
+
 
   // Role-specific echo-back (optional; purely for the message).
   switch ($values['role'] ?? '') {

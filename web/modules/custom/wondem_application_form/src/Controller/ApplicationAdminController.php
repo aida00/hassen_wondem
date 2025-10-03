@@ -69,55 +69,53 @@ class ApplicationAdminController extends ControllerBase {
     }
 
     $values = unserialize($record->data);
+    $values = is_array($values) ? $values : [];
 
-
-    if (!empty($values['role_label'])) {
-      $rows[] = ['label' => $this->t('Role'), 'value' => $values['role_label']];
-    } elseif (!empty($values['role'])) {
-      $role_labels = [
-        'it' => $this->t('IT Applicant / Developer'),
-        'cw' => $this->t('Content Creator and Writer'),
-        'cs' => $this->t('Customer Service'),
-      ];
-      $rows[] = ['label' => $this->t('Role'), 'value' => $role_labels[$values['role']] ?? $values['role']];
-    }
-
+    // Normalize role to a human-readable label.
+    $values['applied_role'] = $values['role_label'] ?? $values['role'] ?? '';
+    $values['employment_status_hr'] = $values['employment_status_label'] ?? $values['employment_status'] ?? '';
+    $values['source_hr'] = $values['source_label'] ?? $values['source'] ?? '';
 
 
     // Human-readable labels for each field.
     $labels = [
-      // Common
-      'full_name'            => $this->t('Full Name'),
-      'email'                => $this->t('Email'),
-      'phone'                => $this->t('Phone'),
-      'address'              => $this->t('Address'),
-      'source'               => $this->t('How did you hear about us?'),
-      'employment_status'    => $this->t('Employment Status'),
-      'equipment'            => $this->t('PC & Internet'),
-      'experience_online'    => $this->t('Online Work/Education Experience'),
-      'availability'         => $this->t('Availability'),
-      'cover_letter'         => $this->t('Cover Letter'),
-      'role'                 => $this->t('Role'),
+      'full_name'             => $this->t('Full Name'),
+      'email'                 => $this->t('Email'),
+      'phone'                 => $this->t('Phone'),
+      'address'               => $this->t('Address'),
 
-      // IT
-      'skills'               => $this->t('Technical Skills'),
-      'team_experience'      => $this->t('Team Experience'),
-      'proficiency_tools'    => $this->t('Proficiency with Tools'),
-      'education_experience' => $this->t('Education/Experience'),
-      'salary_expectation'   => $this->t('Salary Expectation'),
-      'job_obstacles'        => $this->t('Job Obstacles'),
+      // normalized/human-readable fields
+      'applied_role'          => $this->t('Applied Role'),
+      'employment_status_hr'  => $this->t('Currently Employed?'),
+      'employment_details'    => $this->t('Employment Details'),
 
-      // Content Writer
-      'experience_content'   => $this->t('Writing Experience'),
-      'proficiency_writing'  => $this->t('Writing Proficiency'),
-      'proficiency_media'    => $this->t('Media Proficiency'),
+      'source_hr'             => $this->t('How did you hear about us?'),
+      'source_details'        => $this->t('Source Details'),
 
-      // Customer Service
-      'cs_experience'        => $this->t('Customer Service Experience'),
-      'conflict_resolution'  => $this->t('Conflict Resolution Example'),
-      'crm_tools'            => $this->t('CRM / Helpdesk Tools'),
-      'typing_speed'         => $this->t('Typing Speed (WPM)'),
-      'language'             => $this->t('Primary Language Fluency'),
+      'equipment'             => $this->t('PC & Internet'),
+      'experience_online'     => $this->t('Online Work/Education Experience'),
+      'availability'          => $this->t('Availability'),
+      'cover_letter'          => $this->t('Cover Letter'),
+
+      // IT role specifics
+      'skills'                => $this->t('Technical Skills'),
+      'team_experience'       => $this->t('Team Experience'),
+      'proficiency_tools'     => $this->t('Proficiency with Tools'),
+      'education_experience'  => $this->t('Education/Experience'),
+      'salary_expectation'    => $this->t('Salary Expectation'),
+      'job_obstacles'         => $this->t('Obstacles/Challenges'),
+
+      // Content Writer specifics
+      'experience_content'    => $this->t('Writing Experience'),
+      'proficiency_writing'   => $this->t('Writing Proficiency'),
+      'proficiency_media'     => $this->t('Media Proficiency'),
+
+      // Customer Service specifics
+      'cs_experience'         => $this->t('Customer Service Experience'),
+      'conflict_resolution'   => $this->t('Conflict Resolution'),
+      'crm_tools'             => $this->t('CRM/Helpdesk Tools'),
+      'typing_speed'          => $this->t('Typing Speed (WPM)'),
+      'language'              => $this->t('Language Fluency'),
     ];
 
 
