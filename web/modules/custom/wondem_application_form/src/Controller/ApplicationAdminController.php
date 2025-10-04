@@ -96,26 +96,30 @@ class ApplicationAdminController extends ControllerBase {
       'experience_online'     => $this->t('Online Work/Education Experience'),
       'availability'          => $this->t('Availability'),
       'cover_letter'          => $this->t('Cover Letter'),
+      'salary_expectation'    => $this->t('Salary Expectation'),
+      'job_obstacles'         => $this->t('Obstacles/Challenges'),
 
       // IT role specifics
       'skills'                => $this->t('Technical Skills'),
       'team_experience'       => $this->t('Team Experience'),
-      'proficiency_tools'     => $this->t('Proficiency with Tools'),
       'education_experience'  => $this->t('Education/Experience'),
-      'salary_expectation'    => $this->t('Salary Expectation'),
-      'job_obstacles'         => $this->t('Obstacles/Challenges'),
+      'prof_git'        => $this->t('Git Proficiency'),
+      'prof_cms'        => $this->t('CMS Proficiency'),
+      'prof_linux'      => $this->t('Linux Proficiency'),
 
       // Content Writer specifics
       'experience_content'    => $this->t('Writing Experience'),
       'proficiency_writing'   => $this->t('Writing Proficiency'),
       'proficiency_media'     => $this->t('Media Proficiency'),
+      'cw_samples'      => $this->t('Work Samples / Links'),
 
       // Customer Service specifics
       'cs_experience'         => $this->t('Customer Service Experience'),
       'conflict_resolution'   => $this->t('Conflict Resolution'),
       'crm_tools'             => $this->t('CRM/Helpdesk Tools'),
       'typing_speed'          => $this->t('Typing Speed (WPM)'),
-      'language'              => $this->t('Language Fluency'),
+      'english_written' => $this->t('English (Written)'),
+      'english_spoken'  => $this->t('English (Spoken)'),
     ];
 
 

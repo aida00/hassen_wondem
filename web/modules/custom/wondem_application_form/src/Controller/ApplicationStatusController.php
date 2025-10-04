@@ -71,7 +71,7 @@ class ApplicationStatusController extends ControllerBase {
         '#rows'   => $rows,
       ],
       'note' => [
-        '#markup' => '<p>'.$this->t('If you need to update something, please contact support.').'</p>',
+        '#markup' => '<p>'.$this->t('Your application has been received.').'</p>',
       ],
     ];
   }
