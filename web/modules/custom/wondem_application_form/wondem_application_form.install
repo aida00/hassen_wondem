@@ -13,8 +13,135 @@ function wondem_application_form_schema() {
       'phone' => ['type' => 'varchar', 'length' => 50, 'not null' => FALSE],
       'data' => ['type' => 'blob', 'not null' => FALSE, 'size' => 'big'],
       'created' => ['type' => 'int', 'not null' => TRUE, 'default' => 0],
+
+      // Admin review fields (include for fresh installs).
+      'status' => [
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => 'needs_review',
+        'description' => 'Admin review status.',
+      ],
+      'reviewer_uid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'default' => NULL,
+        'description' => 'User UID of reviewer.',
+      ],
+      'note' => [
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => FALSE,
+        'description' => 'Reviewer/team internal notes.',
+      ],
+      'score' => [
+        'type' => 'int',
+        'size' => 'tiny', // TINYINT on MySQL.
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'default' => NULL,
+        'description' => 'Reviewer score (0–100).',
+      ],
+      'updated' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'default' => NULL,
+        'description' => 'Last update timestamp.',
+      ],
     ],
     'primary key' => ['id'],
+    'indexes' => [
+      'idx_status' => ['status'],
+      'idx_score' => ['score'],
+      'idx_created' => ['created'],
+      'idx_updated' => ['updated'],
+      'idx_reviewer_uid' => ['reviewer_uid'],
+    ],
   ];
+
   return $schema;
+}
+
+
+
+
+/**
+ * Add admin review fields (status, reviewer, note, score, updated) to applications.
+ */
+function wondem_application_form_update_9001() {
+  $conn   = \Drupal::database();
+  $schema = $conn->schema();
+  $table  = 'wondem_applications';
+
+  if (!$schema->tableExists($table)) {
+    throw new \RuntimeException(sprintf('Table %s does not exist.', $table));
+  }
+
+  // Field helper
+  $addField = function ($name, array $spec) use ($schema, $table) {
+    if (!$schema->fieldExists($table, $name)) {
+      $schema->addField($table, $name, $spec);
+    }
+  };
+
+  // a map of field specs used by indexes
+  $indexFieldSpec = [
+    'status'       => ['type' => 'varchar', 'length' => 32],
+    'score'        => ['type' => 'int', 'size' => 'tiny', 'unsigned' => TRUE],
+    'created'      => ['type' => 'int'],
+    'updated'      => ['type' => 'int', 'unsigned' => TRUE],
+    'reviewer_uid' => ['type' => 'int', 'unsigned' => TRUE],
+  ];
+
+  // index helper that supplies the spec for the fields
+  $addIndex = function (string $index_name, array $fields) use ($schema, $table, $indexFieldSpec) {
+    if (!$schema->indexExists($table, $index_name)) {
+      $spec = ['fields' => []];
+      foreach ($fields as $f) {
+        if (!isset($indexFieldSpec[$f])) {
+          throw new \RuntimeException("Missing index spec for field '$f'.");
+        }
+        $spec['fields'][$f] = $indexFieldSpec[$f];
+      }
+      //                 table  name        fields   spec (with field defs)
+      $schema->addIndex($table, $index_name, $fields, $spec);
+    }
+  };
+
+  // Fields 
+  $addField('status', [
+    'type' => 'varchar', 'length' => 32, 'not null' => TRUE,
+    'default' => 'needs_review',
+    'description' => 'Admin review status.',
+  ]);
+  $addField('reviewer_uid', [
+    'type' => 'int', 'unsigned' => TRUE, 'not null' => FALSE, 'default' => NULL,
+    'description' => 'User UID of reviewer.',
+  ]);
+  $addField('note', [
+    'type' => 'text', 'size' => 'medium', 'not null' => FALSE,
+    'description' => 'Reviewer/team internal notes.',
+  ]);
+  $addField('score', [
+    'type' => 'int', 'size' => 'tiny', 'unsigned' => TRUE, 'not null' => FALSE, 'default' => NULL,
+    'description' => 'Reviewer score (0–100).',
+  ]);
+  $addField('updated', [
+    'type' => 'int', 'unsigned' => TRUE, 'not null' => FALSE, 'default' => NULL,
+    'description' => 'Last update timestamp.',
+  ]);
+
+  // Indexes 
+  $addIndex('idx_status',       ['status']);
+  $addIndex('idx_score',        ['score']);
+  $addIndex('idx_created',      ['created']);
+  $addIndex('idx_updated',      ['updated']);
+  $addIndex('idx_reviewer_uid', ['reviewer_uid']);
+
+  // Backfill
+  $now = \Drupal::time()->getRequestTime();
+  $conn->update($table)->fields(['status' => 'needs_review'])->isNull('status')->execute();
+  $conn->update($table)->fields(['updated' => $now])->isNull('updated')->execute();
 }

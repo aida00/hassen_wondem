@@ -1,0 +1,4 @@
+services:
+  wondem_application_form.storage:
+    class: Drupal\wondem_application_form\Service\ApplicationStorage
+    arguments: ['@database']

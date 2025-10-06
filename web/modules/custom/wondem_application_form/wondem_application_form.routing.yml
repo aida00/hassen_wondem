@@ -34,3 +34,29 @@ wondem_application_form.status:
   requirements:
     _permission: 'access content'
 
+waf.admin.list:
+  path: '/admin/content/applications'
+  defaults:
+    _title: 'Applications'
+    _controller: '\Drupal\wondem_application_form\Controller\ApplicationAdminController::list'
+  requirements:
+    _permission: 'access administration pages'
+
+waf.admin.review:
+  path: '/admin/content/applications/{id}/review'
+  defaults:
+    _title: 'Review application'
+    _form: '\Drupal\wondem_application_form\Form\ApplicationReviewForm'
+  requirements:
+    _permission: 'access administration pages'
+    id: '\d+'
+
+waf.admin.export:
+  path: '/admin/content/applications/export'
+  defaults:
+    _controller: '\Drupal\wondem_application_form\Controller\ApplicationAdminController::exportCsv'
+    _title: 'Export applications'
+  requirements:
+    _permission: 'administer site content'
+  options:
+    _admin_route: TRUE

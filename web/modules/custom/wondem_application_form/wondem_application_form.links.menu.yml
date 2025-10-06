@@ -1,0 +1,6 @@
+waf.admin.link:
+  title: 'Applications'
+  description: 'Review and manage job applications'
+  route_name: waf.admin.list
+  parent: system.admin_people
+  weight: 20

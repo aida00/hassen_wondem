@@ -346,7 +346,7 @@ class ApplicationForm extends FormBase {
         <details class="wa-help">
           <summary>ⓘ More info</summary>
           <div>
-            <strong>Scenario:</strong> TScenario: Picture yourself in this role. How many hours per day 
+            <strong>Scenario:</strong> Scenario: Picture yourself in this role. How many hours per day 
             can you realistically dedicate, and during which parts of the day (morning, afternoon, evening)? 
             Share how you would structure your routine to stay consistent across a 5–6 day workweek.
           </div>
@@ -978,12 +978,6 @@ class ApplicationForm extends FormBase {
       ])
       ->execute();
 
-
-    $output = '<div class="p-6 bg-green-100 text-green-800 rounded-lg"><h2>Application Submitted</h2><ul>';
-    foreach ($pretty as $label => $value) {
-      $output .= '<li><strong>' . $label . ':</strong> ' . ($value !== '' ? $value : '-') . '</li>';
-    }
-    $output .= '</ul></div>';
 
     $this->messenger()->addMessage(['#markup' => $output]);
 
