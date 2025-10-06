@@ -14,3 +14,4 @@ web/sites/default/files/php/
 # DDEV (optional – ignore generated stuff; keep config.yaml if you want)
 /.ddev/.snapshot/
 /.ddev/db/
+/backups/
