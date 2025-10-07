@@ -36,10 +36,10 @@ class ApplicationAdminFilterForm extends FormBase {
       '#type' => 'select',
       '#title' => $this->t('Status'),
       '#options' => [
-        'all' => $this->t('All'),
-        'needs_review' => $this->t('Needs review'),
-        'accepted' => $this->t('Accepted'),
-        'rejected' => $this->t('Rejected'),
+        'All' => $this->t('All'),
+        'Needs Review' => $this->t('Needs review'),
+        'Accepted' => $this->t('Accepted'),
+        'Rejected' => $this->t('Rejected'),
       ],
       '#default_value' => $status,
     ];
@@ -71,6 +71,21 @@ class ApplicationAdminFilterForm extends FormBase {
       '#attributes' => ['class' => ['button']],
     ];
 
+    $per_page = (int) ($req->query->get('per_page') ?? 20);
+
+    $form['per_page'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Per page'),
+      '#options' => [
+        10 => '10',
+        20 => '20',
+        50 => '50',
+      ],
+      '#default_value' => in_array($per_page, [10,20,50], TRUE) ? $per_page : 20,
+      '#attributes' => ['class' => ['w-24']],
+    ];
+
+
     return $form;
   }
 
@@ -79,13 +94,13 @@ class ApplicationAdminFilterForm extends FormBase {
     $vals = $form_state->getValues();
     $params = [];
 
-    foreach (['q','status','min_score','max_score'] as $k) {
+    foreach (['q','status','min_score','max_score','per_page'] as $k) {
       if ($vals[$k] !== '' && $vals[$k] !== NULL) {
         $params[$k] = $vals[$k];
       }
     }
 
-
     $form_state->setRedirect('waf.admin.list', [], ['query' => $params]);
+
   }
 }

@@ -5,6 +5,7 @@ namespace Drupal\wondem_application_form\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Render\Markup;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Drupal\wondem_application_form\Service\ApplicationStorage;
@@ -27,6 +28,31 @@ class ApplicationAdminController extends ControllerBase {
   }
 
 
+    private function colorStatus(string $status): string {
+    switch ($status) {
+      case 'Accepted':
+        $color = '#2e7d32'; // green
+        $bg = '#e8f5e9';
+        break;
+      case 'Rejected':
+        $color = '#c62828'; // red
+        $bg = '#ffebee';
+        break;
+      case 'Needs Review':
+      default:
+        $color = '#2528dfff'; // orange
+        $bg = '#e0e0e6ff';
+        break;
+    }
+
+    return sprintf(
+      '<span style="display:inline-block;padding:4px 8px;border-radius:6px;font-weight:600;color:%s;background-color:%s;text-transform:capitalize;">%s</span>',
+      $color,
+      $bg,
+      htmlspecialchars($status)
+    );
+  }
+
 
   /**
    * Compact list of applications.
@@ -45,7 +71,10 @@ public function list() {
   ];
 
   // Pager setup.
-  $limit  = 50;
+  $per_page = (int) ($req->query->get('per_page') ?? 20);
+  $allowed = [10, 20, 50];
+  $limit = in_array($per_page, $allowed, TRUE) ? $per_page : 20;
+
   $page   = max(0, (int) $req->query->get('page', 0));
   $offset = $page * $limit;
 
@@ -62,7 +91,13 @@ public function list() {
       'email'     => $record['email'],
       'phone'     => $record['phone'],
       'created'   => \Drupal::service('date.formatter')->format($record['created'], 'short'),
+      'status' => [
+        'data' => [
+          '#markup' => Markup::create($this->colorStatus($record['status'] ?? 'needs_review')),
+        ],
+      ],
       
+
             // ✅ One "operations" column with both links:
       'operations' => [
         'data' => [
@@ -105,6 +140,7 @@ public function list() {
       'email' => $this->t('Email'),
       'phone' => $this->t('Phone'),
       'created' => $this->t('Submitted'),
+      'status'    => $this->t('Status'),
       'operations' => $this->t('Operations'),
     ],
     '#rows' => $rows,
@@ -122,6 +158,18 @@ public function list() {
   // we can fake it with the pager manager service.)
   $pager = \Drupal::service('pager.manager');
   $pager->createPager($total, $limit);
+
+  $build['pager'] = [
+    '#type' => 'pager',
+    '#element' => 0,
+    '#quantity' => 9, // how many page numbers to show
+    '#tags' => [
+      $this->t('« first'),
+      $this->t('‹ previous'),
+      $this->t('next ›'),
+      $this->t('last »'),
+    ],
+  ];
 
   return $build;
 }

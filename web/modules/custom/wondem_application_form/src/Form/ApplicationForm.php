@@ -979,7 +979,7 @@ class ApplicationForm extends FormBase {
       ->execute();
 
 
-    $this->messenger()->addMessage(['#markup' => $output]);
+    
 
     $form_state->set('step', 'review_complete');
 
