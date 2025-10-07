@@ -112,7 +112,7 @@ class ApplicationReviewForm extends FormBase {
       '#type' => 'select',
       '#title' => $this->t('Status'),
       '#options' => [
-        'Needs Review' => $this->t('Needs review'),
+        'Needs Review' => $this->t('Needs Review'),
         'Accepted' => $this->t('Accepted'),
         'Rejected' => $this->t('Rejected'),
       ],

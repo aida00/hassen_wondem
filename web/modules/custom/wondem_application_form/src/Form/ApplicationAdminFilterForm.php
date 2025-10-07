@@ -15,7 +15,7 @@ class ApplicationAdminFilterForm extends FormBase {
     // Read current query values to prefill the form.
     $req = \Drupal::request();
     $q         = $req->query->get('q') ?? '';
-    $status    = $req->query->get('status') ?? 'all';
+    $status    = $req->query->get('status') ?? 'All';
     $min_score = $req->query->get('min_score') ?? '';
     $max_score = $req->query->get('max_score') ?? '';
     $me_only   = (bool) $req->query->get('me_only', FALSE);
@@ -36,12 +36,12 @@ class ApplicationAdminFilterForm extends FormBase {
       '#type' => 'select',
       '#title' => $this->t('Status'),
       '#options' => [
-        'All' => $this->t('All'),
-        'Needs Review' => $this->t('Needs review'),
-        'Accepted' => $this->t('Accepted'),
-        'Rejected' => $this->t('Rejected'),
+        'all'          => $this->t('All'),
+        'needs_review' => $this->t('Needs Review'),
+        'accepted'     => $this->t('Accepted'),
+        'rejected'     => $this->t('Rejected'),
       ],
-      '#default_value' => $status,
+      '#default_value' => in_array($status, ['all','needs_review','accepted','rejected'], TRUE) ? $status : 'all',
     ];
 
     $form['min_score'] = [

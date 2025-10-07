@@ -28,20 +28,21 @@ class ApplicationAdminController extends ControllerBase {
   }
 
 
-    private function colorStatus(string $status): string {
-    switch ($status) {
-      case 'Accepted':
-        $color = '#2e7d32'; // green
-        $bg = '#e8f5e9';
+  private function colorStatus(string $status): string {
+    // Normalize: accept either machine or label values
+    $s = strtolower(trim($status));
+    if ($s === 'needs review') { $s = 'needs_review'; }
+
+    switch ($s) {
+      case 'accepted':
+        $color = '#2e7d32'; $bg = '#e8f5e9';
         break;
-      case 'Rejected':
-        $color = '#c62828'; // red
-        $bg = '#ffebee';
+      case 'rejected':
+        $color = '#c62828'; $bg = '#ffebee';
         break;
-      case 'Needs Review':
+      case 'needs_review':
       default:
-        $color = '#2528dfff'; // orange
-        $bg = '#e0e0e6ff';
+        $color = '#0014f5ff'; $bg = '#fff3e0';
         break;
     }
 
@@ -49,9 +50,10 @@ class ApplicationAdminController extends ControllerBase {
       '<span style="display:inline-block;padding:4px 8px;border-radius:6px;font-weight:600;color:%s;background-color:%s;text-transform:capitalize;">%s</span>',
       $color,
       $bg,
-      htmlspecialchars($status)
+      htmlspecialchars($status, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')
     );
   }
+
 
 
   /**
