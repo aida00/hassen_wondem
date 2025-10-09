@@ -1,0 +1,12 @@
+registration-styles:
+  version: 1.x
+  css:
+    theme:
+      https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css: {}
+
+password-meter:
+  js:
+    js/password-meter.js: {}
+  css:
+    theme:
+      css/password-meter.css: {}

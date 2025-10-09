@@ -1,0 +1,7 @@
+loginpage.form:
+  path: '/user/login'
+  defaults:
+    _form: '\Drupal\loginpage\Form\LoginForm'
+    _title: 'Log in'
+  requirements:
+    _permission: 'access content'

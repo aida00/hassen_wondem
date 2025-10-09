@@ -852,10 +852,20 @@ class ApplicationForm extends FormBase {
     // Keep a single leading + if present; strip all other non-digits.
     $phone_normalized = preg_replace('/(?!^\+)\D+/', '', $phone_raw);
 
-    if (!preg_match('/^\+?[1-9]\d{6,14}$/', $phone_normalized)) {
-      $form_state->setErrorByName('phone', $this->t('Please enter a valid international phone number (e.g., +251911234567).'));
+    // Accepted patterns:
+    //  - E.164: +[1-9][0-9]{6,14}
+    //  - Local: 0 followed by 9 digits (e.g. 0911223344)
+    $valid_e164 = (bool) preg_match('/^\+?[1-9]\d{6,14}$/', $phone_normalized);
+    $valid_local = (bool) preg_match('/^0\d{9}$/', $phone_normalized);
+
+    if (!$valid_e164 && !$valid_local) {
+      $form_state->setErrorByName(
+        'phone',
+        $this->t('Please enter a valid phone number, e.g. +251911223344 or 0911223344.')
+      );
     } else {
-      // Save back the normalized value so we store clean data.
+      // Keep whatever the user typed (so both formats are allowed).
+      // If you prefer to normalize to one format, do it here before saving.
       $form_state->setValue('phone', $phone_normalized);
     }
 

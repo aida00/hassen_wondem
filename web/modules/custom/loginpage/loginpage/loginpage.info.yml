@@ -1,0 +1,7 @@
+name: Login Page
+type: module
+description: Replaces the default Drupal login page with a custom one.
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - user

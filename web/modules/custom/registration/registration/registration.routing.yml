@@ -1,0 +1,7 @@
+registration.form:
+  path: '/user/register'
+  defaults:
+    _form: '\Drupal\registration\Form\RegistrationForm'
+    _title: 'Create Account'
+  requirements:
+    _permission: 'access content'

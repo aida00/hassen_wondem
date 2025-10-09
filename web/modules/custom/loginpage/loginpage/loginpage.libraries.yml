@@ -1,0 +1,7 @@
+auth:
+  css:
+    theme:
+      # Option A (simple): ship a tiny local stylesheet.
+      css/auth.css: {}
+      # Option B (if you insist on CDN; not ideal): uncomment next line
+      # https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css: {}
