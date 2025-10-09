@@ -138,6 +138,7 @@ class RegistrationForm extends FormBase {
       return;
     }
 
+    
     // 2) Uniqueness: fail if an account already uses this email
     $existing_by_mail = \Drupal::entityTypeManager()
       ->getStorage('user')
