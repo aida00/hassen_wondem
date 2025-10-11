@@ -1,0 +1,5 @@
+tailwind:
+  version: 1.0
+  css:
+    theme:
+      'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css': { type: external, minified: true }

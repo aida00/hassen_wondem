@@ -1,0 +1,6 @@
+homepage.link:
+  title: 'Homepage'
+  description: 'Link to Hello World homepage'
+  route_name: homepage.content
+  parent: system.admin_content
+  weight: 10
