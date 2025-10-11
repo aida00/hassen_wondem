@@ -28,3 +28,30 @@
 .lp-links { margin-top: 12px; font-size: 13px; color: #6b7280; text-align: center; }
 .lp-links a { color: #2563eb; text-decoration: none; }
 .lp-links a:hover { text-decoration: underline; }
+
+/* Make layout bullet-proof on mobile */
+html, body { overflow-x: hidden; }
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+.lp-wrap { padding: 16px; background: #f7f8fa; } /* adds safe gutters on small screens */
+
+/* Keep card within viewport width with comfy gutters */
+.lp-card {
+  width: 420px;
+  max-width: min(100%, 540px);
+  margin: 0 auto;
+}
+
+/* Ensure reCAPTCHA never causes sideways scroll */
+.lp-card iframe,
+.g-recaptcha { max-width: 100%; }
+
+/* Match Login button text-case across pages */
+.lp-btn { text-transform: none; }
+
+/* Optional minor vertical rhythm */
+.lp-card .form-item { margin-bottom: 12px; }
+

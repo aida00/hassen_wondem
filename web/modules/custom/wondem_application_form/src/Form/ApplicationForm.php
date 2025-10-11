@@ -5,7 +5,10 @@ namespace Drupal\wondem_application_form\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+
 
 class ApplicationForm extends FormBase {
 
@@ -25,6 +28,51 @@ class ApplicationForm extends FormBase {
     return 'wondem_application_form';
   }
 
+  /**
+   * Render a pretty alert box.
+   *
+   * @param string $variant info|success|warning|error
+   * @param string $title
+   * @param string $body Plain text or small HTML.
+   * @param array  $actions e.g. [['label'=>'View status','url'=>'/application/status','primary'=>true]]
+   */
+    private function renderAlert(string $variant, string $title, string $body, array $actions = []): string {
+      $palette = [
+        'info'    => ['bg'=>'bg-blue-50','border'=>'border-blue-200','text'=>'text-blue-800'],
+        'success' => ['bg'=>'bg-green-50','border'=>'border-green-200','text'=>'text-green-800'],
+        'warning' => ['bg'=>'bg-amber-50','border'=>'border-amber-200','text'=>'text-amber-900'],
+        'error'   => ['bg'=>'bg-red-50','border'=>'border-red-200','text'=>'text-red-800'],
+      ];
+      $p = $palette[$variant] ?? $palette['info'];
+
+      // Build actions (buttons/links).
+      $actions_html = '';
+      if (!empty($actions)) {
+        $btns = [];
+        foreach ($actions as $a) {
+          $label   = htmlspecialchars($a['label'] ?? 'Learn more', ENT_QUOTES, 'UTF-8');
+          $url     = htmlspecialchars($a['url'] ?? '#', ENT_QUOTES, 'UTF-8');
+          $primary = !empty($a['primary']);
+          $cls = $primary
+            ? 'inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80'
+            : 'inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold border border-black/10 bg-white/70 hover:bg-white';
+          $btns[] = '<a href="'.$url.'" class="'.$cls.'">'.$label.'</a>';
+        }
+        $actions_html = '<div class="mt-4 flex flex-wrap gap-2">'.implode('', $btns).'</div>';
+      }
+
+      return '
+      <div class="mx-auto w-full max-w-3xl">
+        <div class="rounded-xl '.$p['bg'].' border '.$p['border'].' p-4 md:p-5 shadow-sm">
+          <h3 class="font-semibold '.$p['text'].' text-base">'.htmlspecialchars($title, ENT_QUOTES, 'UTF-8').'</h3>
+          <div class="mt-1 text-sm text-gray-700 leading-relaxed">'.$body.'</div>
+          '.$actions_html.'
+        </div>
+      </div>';
+    }
+
+
+
   // To provide additional help details for the questions
 
   /**
@@ -34,14 +82,13 @@ class ApplicationForm extends FormBase {
     $step = $form_state->get('step');
     $values = $form_state->getValues();
 
-    // 🔒 Require login
+    // 🔒 If not logged in, send to /user/login and come back here after.
     if ($this->currentUser->isAnonymous()) {
-      $form['message'] = [
-        '#markup' => '<div class="p-6 bg-red-100 text-red-800 rounded-lg">' .
-          $this->t('You must <a href="/user/login?destination=/application-form" class="underline">log in</a> to apply.') .
-          '</div>',
-      ];
-      return $form;
+      $login = Url::fromUserInput('/user/login', [
+        'query' => ['destination' => '/application-form'],
+      ]);
+      $form_state->setResponse(new TrustedRedirectResponse($login->toString()));
+      return []; // stop building the form
     }
 
     $defaults = $form_state->get('saved_values') ?? [];    
@@ -61,14 +108,19 @@ class ApplicationForm extends FormBase {
 
     if ($exists && $step !== 'review_complete') {
       $form['message'] = [
-        '#markup' => '<div class="p-6 bg-yellow-100 text-yellow-800 rounded-lg">' .
-          $this->t('You have already submitted an application. View your <a href=":status">application status</a>.', [
-            ':status' => '/application/status',
-          ]) .
-          '</div>',
+        '#markup' => $this->renderAlert(
+          'warning',
+          $this->t('Application already submitted'),
+          $this->t('It looks like you’ve already submitted an application with the email <strong>@mail</strong>. You can view the latest status using the link below.', ['@mail' => $email]),
+          [
+            ['label' => $this->t('View application status'), 'url' => '/application/status', 'primary' => TRUE],
+            ['label' => $this->t('Go to dashboard'), 'url' => '/', 'primary' => FALSE],
+          ]
+        ),
       ];
       return $form;
     }
+
 
     // --- STEP 2: Review Screen ---
     if ($step === 'review') {
@@ -180,10 +232,14 @@ class ApplicationForm extends FormBase {
     $textarea_classes = ['w-full', 'rounded-md', 'border-gray-300', 'shadow-sm', 'focus:border-blue-500', 'focus:ring-blue-500', 'h-32'];
 
     $form['welcome'] = [
-      '#markup' => '<div class="p-6 bg-blue-100 text-blue-800 rounded-lg">' .
-        $this->t('Welcome @name! Please fill out the application form below.', ['@name' => $username]) .
-        '</div>',
+      '#markup' => $this->renderAlert(
+        'info',
+        $this->t('Welcome, @name!', ['@name' => $username]),
+        $this->t('Please fill out the application form below. You can review everything on the next step before submitting.')
+      ),
+      '#weight' => -100,
     ];
+
 
     // Attach the CSS library
     $form['#attached']['library'][] = 'wondem_application_form/form_styles';
@@ -827,7 +883,6 @@ class ApplicationForm extends FormBase {
       '#attributes' => ['class' => ['px-6','py-3','bg-blue-600','text-white','rounded-lg']],
     ];
 
-
     return $form;
   }
 
@@ -992,6 +1047,8 @@ class ApplicationForm extends FormBase {
     
 
     $form_state->set('step', 'review_complete');
+
+    $this->messenger()->addStatus($this->t('Thanks! Your application was submitted. We’ll email you with updates.'));
 
     $form_state->setRedirect('wondem_application_form.status');
 

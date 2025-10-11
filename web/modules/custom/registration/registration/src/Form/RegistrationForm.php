@@ -25,21 +25,22 @@ class RegistrationForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
 
+    // Use the SAME CSS as login for identical look & feel
+    $form['#attached']['library'][] = 'loginpage/auth';   
+
     $form['#attached']['library'][] = 'registration/registration-styles';
 
-    // Light card container
-    $form['#prefix'] = '<div class="min-h-[calc(100vh-140px)] flex items-center justify-center bg-slate-50">
-      <div class="w-[420px] max-w-[calc(100vw-2rem)] bg-white border border-slate-200 rounded-xl shadow-lg p-6">';
+    // Wrap form in a centered dark box
+    $form['#prefix'] = '<div class="lp-wrap"><div class="lp-card">';
     $form['#suffix'] = '</div></div>';
 
     // Form title
     $form['title'] = [
-      '#markup' => '<h2 class="text-xl font-bold text-slate-900 text-center mb-4">'.$this->t('Create Account').'</h2>',
+      '#markup' => '<div class="lp-title">'.$this->t('Create Account').'</div>',
     ];
 
-    $label = 'text-[13px] text-slate-700 mb-1 block';
-    $input = 'w-full px-3 py-2 rounded-lg border border-slate-300 text-[14px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500';
-
+    $label = 'lp-label';
+    $input = 'lp-input';
 
 
     // Username field
@@ -89,17 +90,15 @@ class RegistrationForm extends FormBase {
     // Sign Up button
     $form['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('SIGN UP'),
-      '#attributes' => ['class' => ['w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg']],
+      '#value' => $this->t('Sign up'),
+      '#attributes' => ['class' => ['lp-btn']],
     ];
 
     // Login link
     $form['login_link'] = [
-      '#markup' => '<div class="text-center mt-3 text-[13px] text-slate-600">'.$this->t('Already have an account?').' <a href="/user/login" class="text-blue-600 hover:underline">'.$this->t('Sign In').'</a></div>',
+      '#markup' => '<div class="lp-links">'.$this->t('Already have an account?').' <a href="/user/login">'.$this->t('Sign In').'</a></div>',
     ];
 
-    // Attach Tailwind CSS
-    $form['#attached']['library'][] = 'registration/registration-styles';
 
     return $form;
   }
@@ -129,17 +128,22 @@ class RegistrationForm extends FormBase {
       $form_state->setErrorByName('name', $this->t('That username is already taken. Please choose a different one.'));
     }
 
-    // --- Email: format + uniqueness -----------------------------------------
-    $email = trim((string) $form_state->getValue('email'));
+    // --- Email: format + uniqueness (strict) -------------------------------
+    $email = strtolower(trim((string) $form_state->getValue('email')));
 
-    // 1) Basic format
+    // 1) Basic RFC check (Drupal service)
     if (!\Drupal::service('email.validator')->isValid($email)) {
       $form_state->setErrorByName('email', $this->t('Please enter a valid email address.'));
       return;
     }
 
+    // 2) Stricter “has dot in domain and TLD >= 2 letters” rule
+    if (!preg_match('/^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/', $email)) {
+      $form_state->setErrorByName('email', $this->t('Please enter a full email address with a valid domain (e.g. name@example.com).'));
+      return;
+    }
     
-    // 2) Uniqueness: fail if an account already uses this email
+    // 3) Uniqueness: fail if an account already uses this email
     $existing_by_mail = \Drupal::entityTypeManager()
       ->getStorage('user')
       ->loadByProperties(['mail' => $email]);
@@ -190,7 +194,7 @@ class RegistrationForm extends FormBase {
     }
 
 
-    $email = $form_state->getValue('email');
+    $email = strtolower(trim((string) $form_state->getValue('email')));
     $password = $form_state->getValue('password');
 
     $user = User::create();
@@ -202,19 +206,17 @@ class RegistrationForm extends FormBase {
 
 
     user_login_finalize($user);
-    $form_state->setRedirectUrl(\Drupal\Core\Url::fromUserInput('/application-form'));
 
-
-
-    user_login_finalize($user);
-    $dest = \Drupal::request()->query->get('destination') ?: '/application-form';
-    return $form_state->setRedirectUrl(Url::fromUserInput($dest));
-
-
-    $this->messenger()->addMessage($this->t(
+    // Show a success message first before redirect.
+    $this->messenger()->addStatus($this->t(
       'User %name has been registered successfully.',
       ['%name' => $username]
     ));
+
+    //redirect
+    $dest = \Drupal::request()->query->get('destination') ?: '/application-form';
+    return $form_state->setRedirectUrl(Url::fromUserInput($dest));
+
   }
 
 }

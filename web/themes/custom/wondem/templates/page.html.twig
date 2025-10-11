@@ -1,33 +1,83 @@
-{# 
-  File: page.html.twig
-  Base page template for all pages.
-#}
-<div class="min-h-screen flex flex-col bg-gray-50">
+{# Page wrapper: full viewport height so footer sits at bottom #}
+<div id="site-wrapper"
+     class="min-h-[100dvh] sm:min-h-screen flex flex-col bg-gray-50"
+     style="min-height:100vh; display:flex; flex-direction:column;">
 
   {# --- Header --- #}
-  <header class="bg-blue-700 text-white shadow-md">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="text-2xl font-extrabold">
-        <a href="{{ path('<front>') }}" class="hover:text-yellow-300">
-          {{ site_name }}
+  <header class="bg-blue-700 text-white shadow-md sticky top-0 z-40">
+    <div class="container mx-auto px-4">
+      {# auto | 1fr | auto keeps the center flexible (single line) #}
+      <div class="grid items-center gap-3 py-3 md:py-4"
+           style="grid-template-columns:auto 1fr auto;">
+
+        {# Left: Logo #}
+        <a href="{{ path('<front>') }}" aria-label="{{ site_name }}"
+           class="inline-flex items-center gap-2">
+          {% if logo %}
+            <img src="{{ logo }}" alt="{{ site_name }} logo"
+                 class="w-auto" style="height:56px;max-height:56px;display:block;" />
+          {% else %}
+            <span class="font-semibold">{{ site_name }}</span>
+          {% endif %}
         </a>
+
+        {# Center: Title #}
+        <div class="text-center">
+          <span class="font-bold tracking-wide block leading-tight
+                       text-base sm:text-lg md:text-2xl lg:text-3xl
+                       sm:whitespace-nowrap"
+                style="font-family:'Times New Roman', Times, serif;">
+            Job Application Form
+          </span>
+        </div>
+
+        {# Right: Auth buttons #}
+        <div class="flex items-center justify-end gap-2">
+          {% if logged_in %}
+            <a href="{{ path('user.logout') }}"
+               class="inline-flex items-center rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold
+                      bg-white/10 hover:bg-white/20">
+              Log out
+            </a>
+          {% else %}
+            <a href="{{ path('user.login', {}, {'query': {'destination': path('<current>')}}) }}"
+               class="inline-flex items-center rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold
+                      bg-white/10 hover:bg-white/20">
+              Log in
+            </a>&nbsp;&nbsp;&nbsp;
+            <a href="{{ path('user.register') }}"
+               class="inline-flex items-center rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold
+                      border border-white/60 hover:bg-white/10">
+              Sign up
+            </a>
+          {% endif %}
+        </div>
       </div>
-      {% if page.primary_menu %}
-        <nav class="space-x-6">
-          {{ page.primary_menu }}
-        </nav>
-      {% endif %}
     </div>
+
+    {# Optional menu row #}
+    {% if page.primary_menu %}
+      <div class="border-t border-white/10">
+        <div class="container mx-auto px-4 py-2">
+          <nav class="text-sm">
+            {{ page.primary_menu }}
+          </nav>
+        </div>
+      </div>
+    {% endif %}
   </header>
 
-  {# --- Content --- #}
-  <main id="main-content" class="flex-grow container mx-auto px-6 py-12">
+  {# --- Main fills the whole middle area --- #}
+  <main id="main-content"
+        class="flex-1 container mx-auto px-4 py-8 md:py-12"
+        style="flex:1 1 auto;">
     {{ page.content }}
   </main>
 
-  {# --- Footer --- #}
-  <footer class="bg-gray-900 text-gray-300 py-8 mt-12">
-    <div class="container mx-auto px-6 text-center space-y-4">
+
+  {# --- Footer sticking to the bottom --- #}
+  <footer class="bg-gray-900 text-gray-300 py-4">
+    <div class="container mx-auto px-6 text-center space-y-2">
       <div class="text-lg font-semibold">{{ site_name }}</div>
       <div class="text-sm text-gray-500">
         &copy; {{ "now"|date("Y") }} {{ site_name }}. All rights reserved.

@@ -1,70 +1,114 @@
 <?php
+
 namespace Drupal\homepage\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
 
-/**
- * Controller for the homepage route.
- */
 class HomepageController extends ControllerBase {
 
-  /**
-   * Returns a page with a full-screen hero banner and Times New Roman text.
-   */
   public function content() {
     $module_path = \Drupal::service('extension.path.resolver')->getPath('module', 'homepage');
 
     $html = '
-      <div class="fixed inset-0 w-screen h-screen overflow-hidden">
+      <style>
+        /* Hide sitewide header/footer just on this route */
+        header, footer { display:none !important; visibility:hidden !important; }
 
-        <!-- Hero Image -->
-        <img 
-          src="/' . $module_path . '/src/Controller/desi.png" 
-          alt="Banner" 
-          class="absolute inset-0 w-full h-full object-cover" 
+        /* Nuke any page-level margins/padding from the theme */
+        html, body { margin:0 !important; padding:0 !important; height:100%; overflow-x:hidden; }
+        .layout-container, .page-content, .region-content, main, .page, .node, .block {
+          margin:0 !important; padding:0 !important;
+        }
+
+        /* Full-viewport layer that ignores theme spacing */
+        .homepage-viewport {
+          position: fixed;      /* sit on top of page chrome */
+          inset: 0;             /* top:0; right:0; bottom:0; left:0 */
+          width: 100vw;
+          height: 100vh;
+          overflow-y: auto;     /* scroll only if content exceeds viewport */
+          overflow-x: hidden;
+          z-index: 10;          /* above theme wrappers */
+          background: #000;     /* prevents flash of white while image loads */
+        }
+      </style>
+
+      <div class="homepage-viewport">
+        <!-- Background image -->
+        <img
+          src="/' . $module_path . '/src/Controller/desi.png"
+          alt="Sky Medical Supplies storefront"
+          class="absolute inset-0 w-full h-full object-cover"
         />
 
-        <!-- Black Overlay -->
+        <!-- Overlay for readability -->
         <div class="absolute inset-0 bg-black bg-opacity-70"></div>
 
-        <!-- Content Container -->
-        <div class="relative z-10 text-center text-white px-4 max-w-6xl mx-auto pt-20 md:pt-32" style="font-family: \'Times New Roman\', Times, serif;">
+        <!-- Content -->
+        <main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-16 md:py-24 text-white">
+          <div class="w-full max-w-5xl text-center" style="font-family:\'Times New Roman\', Times, serif;">
+            <h1 class="mb-4 md:mb-6 font-bold tracking-wide uppercase text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+              Welcome to
+            </h1>
 
-          <!-- First Line - Headline -->
-          <h1 class="text-9xl sm:text-6xl md:text-9xl lg:text-8xl font-bold mb-4 sm:mb-6 md:mb-8" style="margin-bottom: 2rem;">
-            WELL COME
-          </h1>
+            <p class="mb-6 md:mb-8 font-bold text-xl sm:text-2xl md:text-3xl">
+              Sky Medical Supplies Job Application Portal
+            </p>
 
-          <!-- Second Line -->
-          <p class="text-base sm:text-4xl md:text-4xl lg:text-4xl font-bold mb-2 sm:mb-4 md:mb-6" style="margin-bottom: 1.5rem;">
-            To Sky Medical Supplies job application form
-          </p>
+            <p class="mb-6 md:mb-8 text-base sm:text-lg md:text-xl opacity-90">
+              Log in or Sign up to apply for a job.
+            </p>
 
-          <!-- Third Line -->
-          <p class="text-sm sm:text-xl md:text-xl lg:text-xl mb-4 sm:mb-6 md:mb-8 opacity-90" style="margin-bottom: 3rem;">
-            To apply for a job, you must sign up first
-          </p>
+            <nav aria-label="Authentication actions"
+                class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 md:mb-14">
+              <a href="/user/login"
+                role="button"
+                class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-3 text-base sm:text-lg font-semibold shadow-md hover:bg-blue-700 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 transition"
+                aria-label="Log in to your account">
+                Log in
+              </a>
+              <span class="hidden sm:inline opacity-80">or</span>
+              <a href="/user/register"
+                role="button"
+                class="inline-flex items-center justify-center rounded-lg bg-white/10 px-8 py-3 text-base sm:text-lg font-semibold shadow-md hover:bg-white/20 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 transition"
+                aria-label="Create a new account">
+                Sign up
+              </a>
+            </nav>
 
-          <!-- Sign Up Button -->
-          <div>
-            <a href="/registration" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 sm:py-4 sm:px-10 md:py-4 md:px-10 lg:py-4 lg:px-10 rounded transition transform hover:scale-105 text-sm sm:text-xl md:text-xl lg:text-xl" style="font-family: \'Times New Roman\', Times, serif;">
-              Sign Up
-            </a>
+            <section aria-labelledby="discover-sms" class="mx-auto w-full max-w-3xl">
+              <div class="rounded-xl bg-white/10 backdrop-blur-sm px-5 py-5 md:px-6 md:py-6 shadow-lg">
+                <h2 id="discover-sms" class="mb-3 md:mb-4 text-lg md:text-xl font-semibold">
+                  Discover Sky Medical Supplies
+                </h2>
+      <!--      <p class="mb-4 opacity-90 text-sm md:text-base">
+                  Learn more about our products, rentals, and support.
+                </p>
+      -->                
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
+                  <a href="https://simplyrenting.com" target="_blank" rel="noopener"
+                    class="inline-flex items-center justify-center rounded-lg border border-white/40 bg-white/5 px-6 py-3 text-sm md:text-base font-medium hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 transition">
+                    Visit website
+                  </a>
+      <!--        <a href="https://info.simplyrenting.com" target="_blank" rel="noopener"
+                    class="inline-flex items-center justify-center rounded-lg border border-white/40 bg-white/5 px-6 py-3 text-sm md:text-base font-medium hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 transition">
+                    info.SimplyRenting.com  
+      -->
+                  </a>
+                </div>
+              </div>
+            </section>
           </div>
-
-        </div>
+        </main>
       </div>
     ';
 
     return [
       '#markup' => Markup::create($html),
       '#attached' => [
-        'library' => [
-          'homepage/tailwind',
-        ],
+        'library' => ['homepage/tailwind'],
       ],
     ];
   }
-
 }

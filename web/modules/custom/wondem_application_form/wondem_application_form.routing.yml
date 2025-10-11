@@ -1,7 +1,7 @@
 wondem_application_form.form:
   path: '/application-form'
   defaults:
-    _form: '\Drupal\wondem_application_form\Form\ApplicationForm'
+    _controller: '\Drupal\wondem_application_form\Controller\ApplicationPageController::page'
     _title: 'Application Form'
   requirements:
     _permission: 'access content'

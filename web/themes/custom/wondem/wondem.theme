@@ -53,3 +53,44 @@ function wondem_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_st
 function wondem_twig_namespace(\Twig\Loader\FilesystemLoader $loader) {
   $loader->addPath(drupal_get_path('theme', 'wondem') . '/templates/patterns', 'organisms');
 }
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function wondem_preprocess_page(array &$variables) {
+  // Only set a fallback if no logo was configured in Appearance settings.
+  if (empty($variables['logo'])) {
+    // Resolve the active theme’s filesystem path.
+    $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
+    // Point to an image that lives inside your theme.
+    $relative = $theme_path . '/templates/sky-logo.png';  // adjust if you move it
+    // Only set it if the file exists to avoid broken URLs.
+    if (file_exists(DRUPAL_ROOT . '/' . $relative)) {
+      $variables['logo'] = base_path() . $relative;
+    }
+  }
+
+  $route = \Drupal::routeMatch()->getRouteName();
+  if (in_array($route, ['wondem_application_form.form','loginpage.form', 'registration.form'], true)) {
+    // Remove any instance of the core page title block in all regions.
+    foreach ($variables['page'] as &$region) {
+      if (is_array($region)) {
+        foreach ($region as $key => $element) {
+          if (is_array($element) && !empty($element['#plugin_id']) && $element['#plugin_id'] === 'page_title_block') {
+            unset($region[$key]);
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_page_title_alter().
+ */
+function wondem_page_title_alter(&$title) {
+  $route = \Drupal::routeMatch()->getRouteName();
+  if (in_array($route, ['wondem_application_form.form','loginpage.form', 'registration.form'], true)) {
+    $title = '';
+  }
+}
