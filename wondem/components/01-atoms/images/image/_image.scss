@@ -1,0 +1,12 @@
+img,
+picture {
+    @apply block h-auto max-w-full;
+}
+
+figure {
+    @apply m-0;
+}
+
+.figure__caption {
+    @apply italic;
+}

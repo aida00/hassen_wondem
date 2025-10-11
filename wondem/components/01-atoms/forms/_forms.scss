@@ -1,0 +1,21 @@
+// Forms error
+.error {
+    &.form-text,
+    &.form-textarea,
+    &.form-date,
+    &.form-email,
+    &.form-number,
+    &.form-radio,
+    &.form-checkbox,
+    &.form-select,
+    &.form-search,
+    &.form-url {
+       @apply focus:ring-red-500 focus:border-red-500 border-red-300;
+    }
+}
+
+
+// Form description
+.form-item__description {
+    @apply mt-2 text-sm text-gray-500;
+}

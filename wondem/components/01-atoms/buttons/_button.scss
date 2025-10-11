@@ -1,0 +1,15 @@
+/**
+ * @file
+ * Visual styles for buttons.
+ */
+
+.button,
+.image-button {
+  @apply mx-4;
+}
+
+.button:first-child,
+.image-button:first-child,
+.address-book-edit-button {
+  @apply mx-0;
+}

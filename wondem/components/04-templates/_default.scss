@@ -1,0 +1,108 @@
+/*
+* General Layout
+*/
+
+$sidebar-width: 33%;
+$gutter: $space;
+$main-width: calc(100% - (#{$sidebar-width} + #{$gutter}));
+
+/*
+* Layout Using Flexbox (IE11+).
+* Remove this and uncomment Grid code below to use CSS Grid.
+*/
+
+/* .main {
+    // @include wrapper;
+    @apply max-w-7xl mx-auto;
+    @apply mb-16;
+
+    @include sm {
+        @apply px-6;
+    }
+
+    @include lg {
+        @apply px-8;
+        @apply flex;
+    }
+}
+
+.main-sidebar {
+    @apply mb-8;
+
+    @include lg {
+        order: 2;
+        width: $sidebar-width;
+
+        @apply mb-0;
+    }
+}
+
+.main-content {
+    @apply w-full;
+
+    @include lg {
+        &--with-sidebar {
+            margin-right: $gutter;
+            width: $main-width;
+        }
+    }
+} */
+
+/*
+* Layout Using CSS Grid (NO IE11 support)
+* Remove Flexbox code above and uncomment this section to use CSS Grid.
+*/
+
+#block-shilajit-breadcrumbs,
+#block-shilajit-page-title,
+#block-shilajit-local-tasks {
+  @apply mt-8;
+
+  @include sm {
+    @apply px-6;
+  }
+
+  @include lg {
+    @apply px-8;
+  }
+}
+
+#block-shilajit-local-tasks {
+  @apply mt-16;
+}
+
+.main {
+  // @include wrapper;
+
+  @apply max-w-7xl mx-auto;
+  @apply mb-16;
+
+  // @include sm {
+  //   @apply px-6;
+  // }
+  //
+  // @include lg {
+  //   @apply px-8;
+  // }
+
+  &--with-sidebar {
+    @include lg {
+      display: grid;
+      grid-gap: $gutter;
+      grid-template-areas: 'content sidebar';
+      grid-template-columns: $main-width #{$sidebar-width};
+    }
+  }
+}
+
+.main-sidebar {
+  grid-area: sidebar;
+
+  @apply mb-8;
+}
+
+.main-content {
+  grid-area: content;
+
+  @apply w-full;
+}

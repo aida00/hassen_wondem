@@ -1,0 +1,25 @@
+/**
+ * @file
+ * Styles for breadcrumbs.
+ */
+
+.breadcrumb {
+  @apply pb-2;
+}
+.breadcrumb ol {
+  @apply m-0 p-0;
+}
+[dir="rtl"] .breadcrumb ol {
+  /* This is required to win over specificity of [dir="rtl"] ol */
+  @apply mr-0;
+}
+.breadcrumb li {
+  @apply inline-block m-0 p-0 list-none;
+}
+/* IE8 does not support :not() and :last-child. */
+.breadcrumb li:before {
+  content: " \BB ";
+}
+.breadcrumb li:first-child:before {
+  @apply content-none;
+}

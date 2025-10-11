@@ -1,0 +1,53 @@
+{# 
+  File: page--node--5.html.twig
+  Custom front page template for node/5.
+  Layout: 2 columns × 3 rows grid
+#}
+{% extends "page.html.twig" %}
+
+{% block content %}
+  {{ attach_library('wondem/frontpage') }}
+
+  <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16">
+    <div class="container mx-auto text-center mb-12">
+      <h1 class="text-5xl font-extrabold mb-4">Welcome to Our Platform 🚀</h1>
+      <p class="text-lg opacity-90">
+        Explore opportunities and join our community of creators and innovators.
+      </p>
+    </div>
+
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+      {# --- Row 1 --- #}
+      <div class="bg-white text-gray-800 rounded-xl shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-2">Column 1 - Row 1</h2>
+        <p class="text-gray-600">This is a sample block of content.</p>
+      </div>
+      <div class="bg-white text-gray-800 rounded-xl shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-2">Column 2 - Row 1</h2>
+        <p class="text-gray-600">This is a sample block of content.</p>
+      </div>
+
+      {# --- Row 2 --- #}
+      <div class="bg-white text-gray-800 rounded-xl shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-2">Column 1 - Row 2</h2>
+        <p class="text-gray-600">This is a sample block of content.</p>
+      </div>
+      <div class="bg-white text-gray-800 rounded-xl shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-2">Column 2 - Row 2</h2>
+        <p class="text-gray-600">This is a sample block of content.</p>
+      </div>
+<div class="bg-red-600 text-white p-10 text-4xl">
+  TEST FRONT PAGE TEMPLATE NODE 5
+</div>
+      {# --- Row 3 --- #}
+      <div class="bg-white text-gray-800 rounded-xl shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-2">Column 1 - Row 3</h2>
+        <p class="text-gray-600">This is a sample block of content.</p>
+      </div>
+      <div class="bg-white text-gray-800 rounded-xl shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-2">Column 2 - Row 3</h2>
+        <p class="text-gray-600">This is a sample block of content.</p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

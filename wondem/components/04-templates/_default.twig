@@ -1,0 +1,36 @@
+<div>
+
+    {% block page_header %}
+        {% include "@organisms/site/site-header/site-header.twig" %}
+    {% endblock %}
+    {% block page_system %}
+    {% endblock %}
+
+    <main role="main">
+        <span id="main-content" tabindex="-1"></span>{# link is in html.html.twig #}
+
+        <div class="md:flex">
+            <div class="pb-4 md:flex-1 md:pb-0">
+                {% block page_content %}{% endblock %}
+            </div>{# /.layout-content #}
+
+            {% if page.sidebar %}
+            <aside class="px-4 md:w-1/4" role="complementary">
+                {% block page_sidebar %}{% endblock %}
+            </aside>
+            {% endif %}
+
+            {# {% if page.sidebar_second %}
+            <aside class="md:w-1/4" role="complementary">
+                {{ page.sidebar_second }}
+            </aside>
+            {% endif %} #}
+
+        </div>
+    </main>
+
+    {% block page_footer %}
+        {% include "@organisms/site/site-footer/site-footer.twig" %}
+    {% endblock %}
+
+</div>

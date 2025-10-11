@@ -1,0 +1,57 @@
+{# 
+  File: page.html.twig
+  Base page template for all pages.
+#}
+<div class="min-h-screen flex flex-col">
+
+  {# --- Header --- #}
+  <header class="bg-blue-700 text-white shadow-md relative z-50" style="margin:0; padding:0;">
+    <div class="container mx-auto relative z-50" style="padding:0 20px; height:60px; display:flex; align-items:center; justify-content:space-between;">
+      
+      <!-- Left: Logo + Site Name -->
+      <div class="flex items-center relative z-50" style="gap:10px;">
+        <a href="{{ path('<front>') }}">
+          <!-- Small logo with fixed px size -->
+         <img 
+  src="{{ base_path ~ directory }}/images/myimage.png" 
+  alt="Logo" 
+  style="height:250px; width:auto; display:block;" 
+/>
+
+        </a>                   
+        <span style="font-weight:bold; font-size:38px; font-family:'Times New Roman', Times, serif; margin-left:20px; display:inline-block;" class="relative z-50">
+          Job Application Form
+        </span>
+
+        <a href="{{ path('<front>') }}" class="text-xl font-extrabold hover:text-yellow-300 relative z-50">
+          {{ site_name }}
+        </a>
+      </div>
+
+      <!-- Right: Primary Menu -->
+      {% if page.primary_menu %}
+        <nav style="gap:15px;" class="relative z-50">
+          {{ page.primary_menu }}
+        </nav>
+      {% endif %}
+      
+    </div>
+  </header>
+
+  {# --- Content --- #}
+  <main id="main-content" class="flex-grow container mx-auto px-6 py-12 relative z-40">
+    <div class="relative z-40">
+      {{ page.content }}
+    </div>
+  </main>
+
+  {# --- Footer --- #}
+  <footer class="bg-gray-900 text-gray-300 py-4 relative z-50">
+    <div class="container mx-auto px-6 text-center space-y-2 relative z-50">
+      <div class="text-lg font-semibold">{{ site_name }}</div>
+      <div class="text-sm text-gray-500">
+        &copy; {{ "now"|date("Y") }} {{ site_name }}. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</div>

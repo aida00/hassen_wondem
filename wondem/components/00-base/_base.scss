@@ -1,0 +1,591 @@
+[x-cloak=''] {
+  display: none;
+}
+
+// Helper classes.
+// TODO: does Tailwind have this now.
+.custom-opactity-50 {
+  opacity: 0.5;
+}
+
+// Algolia
+.aa-SubmitButton {
+  @apply ring-0 ring-transparent focus:ring-0 focus:ring-transparent;
+}
+.aa-SubmitIcon {
+  @apply hidden;
+}
+.aa-Input {
+  @apply focus:ring-transparent focus:border-transparent;
+}
+.aa-Panel {
+  @apply z-20 max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all;
+}
+.aa-PanelLayout {
+  @apply max-h-96 scroll-py-3 p-3 border-none shadow-none;
+}
+
+.aa-Item mark {
+  @apply bg-quaternary-200;
+}
+
+// Five stars
+// TODO: see if this is needed after changes - chris b
+// .votingapi-widgets.fivestar > form {
+//   @apply flex space-y-0 sm:space-x-4 sm:divide-x;
+// }
+
+// Product gallery
+.image-gallery {
+  > div {
+    @apply grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8;
+
+    > div {
+      @apply hidden bg-gray-100 rounded-lg first:lg:col-span-2 first:lg:row-span-2 first:block lg:block;
+    }
+  }
+}
+
+// Product flag
+.flag {
+  .ajax-progress .throbber {
+    @apply hidden;
+  }
+
+  &.flag-wishlist {
+    @apply flex;
+
+    &::before {
+      content: '';
+      @apply absolute inset-0 block mr-1 w-6 h-6;
+    }
+
+    &.action-flag::before {
+      mask-image: url('/themes/custom/sky/images/icons/heroicons/outline-heart.svg');
+      @apply bg-gray-400 hover:bg-gray-500;
+    }
+
+    &.action-unflag::before {
+      mask-image: url('/themes/custom/sky/images/icons/heroicons/solid-heart.svg');
+      @apply bg-pink-500 hover:bg-pink-400;
+    }
+  }
+}
+
+// Commerce Cart
+.path-cart {
+  [data-drupal-selector='order-total-summary'] {
+    @apply bg-white rounded-md shadow-custom-1 py-5 px-6 lg:absolute lg:right-0 lg:top-0 lg:h-52 lg:w-[357px] xl:w-[472px];
+  }
+
+  #edit-actions,
+  #edit-actions--2 {
+    @apply m-0 py-5 px-6 lg:col-span-2 mt-10 lg:mt-56;
+  }
+}
+
+// Commerce checkout progress
+.checkout-progress--step {
+  @apply border-gray-200;
+
+  &__current,
+  &__previous {
+    @apply border-primary-600;
+  }
+
+  &:before {
+    content: 'Step ' counter(checkout-progress);
+    counter-increment: checkout-progress;
+
+    @apply text-gray-500 text-sm font-medium;
+  }
+
+  &__current:before,
+  &__previous:before {
+    @apply text-primary-600;
+  }
+}
+
+#shipping-information-wrapper {
+  @apply mb-6 pb-6 border-b border-gray-300 border-dashed;
+}
+
+.layout-checkout-form .checkout-pane-payment-information,
+#edit-shipping-information,
+#edit-review-contact-information,
+#edit-review-shipping-information,
+#edit-review-payment-information {
+  > legend {
+    @apply mb-1;
+    > span {
+      @apply text-black font-semibold text-xl lg:text-2xl;
+    }
+  }
+}
+
+#edit-review-contact-information,
+#edit-review-shipping-information,
+#edit-review-payment-information {
+  .fieldset-wrapper,
+  .field--name-shipping-method .field__item,
+  .field--name-label,
+  .field--name-expires {
+    @apply text-sm text-gray-600 leading-4;
+  }
+  .field--name-label,
+  .field--name-expires {
+    @apply py-1;
+  }
+  > legend {
+    > span a {
+      @apply text-base;
+    }
+  }
+}
+
+#edit-review-shipping-information .fieldset-wrapper {
+  @apply lg:pr-4;
+}
+
+.checkout-pane-payment-information .credit-card-form {
+  @apply py-2.5;
+}
+
+.layout-checkout-form .fieldset-legend {
+  margin-bottom: 8px;
+}
+
+.layout-checkout-form .fieldset-wrapper input {
+  margin-bottom: 4px;
+}
+
+.layout-checkout-form .form-wrapper__guest-checkout {
+  #edit-login-register-name {
+    @apply mb-0;
+  }
+  #edit-login-register-password {
+    @apply mt-1.5;
+  }
+  .password-strength__title {
+    @apply text-sm text-gray-600 leading-4;
+  }
+}
+
+.checkout-pane-payment-information .credit-card-form {
+  .text-field-wrapper {
+    margin-top: 0;
+  }
+
+  [type='text'] {
+    @apply filter-none rounded border border-gray-200 focus:ring-gray-400 focus:border-gray-400 text-sm text-gray-600 leading-8;
+  }
+
+  select {
+    @apply w-16 rounded border border-gray-200 focus:ring-gray-400 focus:border-gray-400 text-sm text-gray-600 leading-8 mb-1.5 pr-6;
+  }
+}
+
+#edit-payment-information-add-payment-method-billing-information {
+  .form-item-payment-information-add-payment-method-billing-information-select-address {
+    @apply py-2.5;
+  }
+
+  [type='text'] {
+    @apply filter-none rounded border border-gray-200 focus:ring-gray-400 focus:border-gray-400 text-sm text-gray-600 leading-8;
+  }
+
+  select {
+    @apply rounded border border-gray-200 focus:ring-gray-400 focus:border-gray-400 text-sm text-gray-600 leading-8 mb-1.5 pr-6;
+  }
+
+  .field--name-address {
+    margin-bottom: 8px;
+  }
+}
+
+// Hide Checkout Complete page h1.
+.checkout-complete .page-title {
+  display: none;
+}
+
+// Commerce rendered attributes
+.product--rendered-attribute {
+  .control-label {
+    @apply shadow-sm cursor-pointer;
+  }
+
+  /* @todo fix upsteam in commerce */
+  input:checked ~ label.option {
+    @apply border-primary-500;
+  }
+
+  .form-item-purchased-entity-attributes-attribute-color {
+    @apply relative mr-2;
+
+    input.form-radio {
+      @apply absolute -z-10 h-8 w-8 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-700;
+
+      &:checked {
+        @apply ring-2 ring-offset-2 ring-gray-500;
+      }
+    }
+
+    .control-label {
+      @apply border-none p-0 shadow-none focus:outline-none bg-transparent;
+
+      .field--name-field-color {
+        .color_field__swatch--circle {
+          @apply cursor-pointer;
+          // @apply border border-black border-opacity-10 -m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-500 ring ring-offset-1;
+        }
+      }
+    }
+  }
+}
+
+// Icons
+.stats-split-with-image,
+.feature-item {
+  svg {
+    @apply w-8 h-8;
+  }
+}
+
+#block-shilajit-content
+  > article
+  > div
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > div {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+
+  small {
+    @apply pt-4 block text-xs leading-4;
+  }
+}
+
+// Bef links
+.bef-link {
+  @apply block w-full px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100;
+}
+.bef-link--selected {
+  @apply bg-gray-100;
+}
+
+.bef-links:hover {
+  .bef-link--selected {
+    @apply bg-transparent;
+
+    &:hover {
+      @apply bg-gray-100;
+    }
+  }
+}
+
+// Facets checkbox
+.facets-checkbox {
+  @apply h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500;
+}
+
+// Cart Flyout
+body.toolbar-fixed .cart-offcanvas {
+  padding-top: 39px;
+}
+
+body.toolbar-fixed.toolbar-tray-open .cart-offcanvas {
+  padding-top: 79px;
+}
+
+.cart-offcanvas {
+  @apply block fixed bg-white top-0 overflow-y-scroll shadow-xl;
+  min-height: 100%;
+  max-height: none;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.6, 1);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  // overflow: hidden;
+  z-index: 501;
+}
+
+.cart-offcanvas--left {
+  @apply w-screen max-w-md;
+  height: 100%;
+  transform: translate3d(-17em, 0, 0);
+}
+
+.cart-offcanvas--right {
+  height: 100%;
+  @apply w-screen max-w-md;
+  right: 0;
+  transform: translate3d(17em, 0, 0);
+}
+
+.cart-offcanvas.is-open {
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+}
+
+.cart-offcanvas.is-closed {
+  max-height: 100%;
+  visibility: hidden;
+  box-shadow: none;
+}
+
+.cart-offcanvas-bg {
+  @apply fixed z-40;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  left: -100%;
+  background-color: transparent;
+  transition: background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s;
+}
+
+.cart-offcanvas-bg.is-animating,
+.cart-offcanvas-bg.is-open {
+  @apply bg-gray-500 bg-opacity-75 transition-opacity;
+  left: 0;
+  visibility: visible;
+}
+
+.cart-offcanvas-bg.is-closed {
+  visibility: hidden;
+}
+
+// Mailchimp block
+.mailchimp-newsletter-mergefields {
+  @apply w-full;
+}
+
+// Rentals View Page.
+.view-rentals-page {
+  // Exposed form button flicker CLS fix.
+  .view-filters .form-actions {
+    display: none;
+  }
+  .views-row {
+    @apply mb-2 xl:mb-0;
+  }
+  .views-row:nth-child(6n + 1) {
+    background-color: #fff3ce;
+  }
+  .views-row:nth-child(6n + 2) {
+    background-color: #e6f3ff;
+  }
+  .views-row:nth-child(6n + 3) {
+    background-color: #d5ffea;
+  }
+  .views-row:nth-child(6n + 4) {
+    background-color: #c7f5ff;
+  }
+  .views-row:nth-child(6n + 5) {
+    background-color: #e6fffd;
+  }
+  .views-row:nth-child(6n + 6) {
+    background-color: #fff2fc;
+  }
+
+  // Rentals Node.
+  .node--type-service .field--name-field-ratings form {
+    .form-type-select {
+      // Need to hide the stars on the rental view page.
+      display: none;
+    }
+  }
+
+  // Desktop Views Attachment Sidebar links.
+  .attachment .item-list {
+    ul {
+      li {
+        @apply relative mb-5 pl-7;
+        &:before {
+          background-color: #105790;
+          border-radius: 50%;
+          content: '';
+          display: inline-block;
+          height: 15px;
+          position: absolute;
+          top: 5px;
+          left: 0;
+          width: 15px;
+        }
+      }
+      li:last-child {
+        @apply mb-0;
+      }
+    }
+    a {
+      @apply text-black uppercase font-semibold text-base leading-none transition duration-300 hover:opacity-50;
+    }
+  }
+}
+
+// Rentals Node.
+.node--type-service .field--name-field-ratings form {
+  .vote-result {
+    margin-left: 0;
+  }
+
+  .results-average {
+    &:before {
+      content: '\2605';
+      @apply text-black;
+    }
+  }
+}
+
+.node--type-service.node--view-mode-full {
+  .field--name-field-ratings {
+    @apply mb-4 lg:mb-6;
+  }
+
+  .vote-form {
+    @apply flex flex-row;
+
+    .br-theme-css-stars {
+      @apply lg:pt-1.5;
+    }
+  }
+
+  // Need to hide the stars on the related products.
+  .field--name-field-related-products {
+    #service-related-products {
+      .form-type-select {
+        display: none;
+      }
+    }
+  }
+
+  form .vote-result {
+    margin-right: 15px;
+    // This is here because of messy code somewhere else.
+    margin-top: 0 !important;
+    padding-top: 4px;
+    @apply order-first;
+  }
+
+  // Gliderjs.
+  .glider-controls {
+    @apply relative h-[30px] mt-3;
+    @apply lg:h-[70px] lg:mt-5;
+
+    .glider-next,
+    .glider-prev {
+      @apply w-[25px] h-[25px] top-0 rounded-full bg-gray-800;
+      @apply lg:w-[70px] lg:h-[70px];
+      svg {
+        @apply mx-auto;
+      }
+    }
+    .glider-prev {
+      @apply left-0;
+    }
+    .glider-next {
+      @apply right-0;
+    }
+
+    .glider-dots {
+      @apply pt-2.5 lg:pt-[26px];
+      .glider-dot {
+        @apply bg-black opacity-10 w-2.5 h-1 rounded m-0.5;
+        @apply lg:w-8 lg:h-2.5 m-1;
+        &.active {
+          @apply bg-black opacity-100;
+        }
+      }
+    }
+  }
+
+  // Pricing Tiers.
+  .price-tier-tab {
+    @apply relative basis-1/3 border border-custom-grey-1 bg-custom-white-1;
+    @apply flex flex-col pt-[18px] px-4 pb-3;
+    &.popular-tab {
+      @apply border-b-[3px];
+      border-bottom-style: solid;
+      border-bottom-color: #105790;
+      @apply lg:border-b-[5px];
+    }
+    > div {
+      text-align: center;
+    }
+  }
+
+  .price-tier-popular {
+    @apply m-auto w-28 absolute -top-[0.9rem] left-0 right-0;
+    @apply rounded-full bg-custom-green-1 py-1.5 px-4 text-center text-xs font-semibold text-white;
+  }
+  .price-tier-calendar {
+    @apply text-black opacity-50 uppercase font-semibold text-xs tracking-wide;
+    @apply lg:text-base;
+  }
+  .price-tier-price {
+    @apply text-black font-semibold text-2xl;
+    @apply lg:text-4xl;
+  }
+  .price-tier-per {
+    @apply text-black opacity-50 font-semibold text-sm leading-4;
+    @apply lg:text-base;
+  }
+
+  // FAQs.
+  .faq {
+    .field--name-field-faq-question {
+      @apply text-black font-semibold text-xl mb-4;
+      @apply lg:text-3xl lg:mb-5;
+    }
+    .field--name-field-faq-answer {
+      p {
+        @apply text-black text-base mb-3 lg:text-lg lg:mb-4;
+      }
+      ul,
+      ol {
+        @apply mb-4 list-inside lg:mb-5;
+        li {
+          @apply text-black text-base my-5 lg:text-lg lg:my-6;
+        }
+      }
+      ul {
+        @apply list-disc;
+      }
+      ol {
+        @apply list-decimal;
+      }
+    }
+  }
+}
+
+// Related Products Slider
+.field--name-field-related-products {
+  #service-related-products .glider-track {
+    > .field__item:nth-child(6n + 1) {
+      background-color: #fff3ce;
+    }
+    > .field__item:nth-child(6n + 2) {
+      background-color: #e6f3ff;
+    }
+    > .field__item:nth-child(6n + 3) {
+      background-color: #d5ffea;
+    }
+    > .field__item:nth-child(6n + 4) {
+      background-color: #c7f5ff;
+    }
+    > .field__item:nth-child(6n + 5) {
+      background-color: #e6fffd;
+    }
+    > .field__item:nth-child(6n + 6) {
+      background-color: #fff2fc;
+    }
+  }
+
+  .glider-dots {
+    @apply pt-2.5;
+    @apply lg:justify-start lg:pt-6;
+    .glider-dot {
+      @apply bg-black opacity-10 w-8 h-2.5 rounded m-1;
+      &.active {
+        @apply bg-black opacity-100;
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+/**
+ * @file
+ * Visual styles for menu.
+ */
+
+ul.menu {
+    @apply ml-4 p-0 list-none list-outside text-left; /* LTR */
+}
+[dir="rtl"] ul.menu {
+    @apply mr-4 ml-0 text-right
+}
+.menu-item--expanded {
+    @apply list-disc;
+    list-style-image: url(../../images/icons/menu-expanded.png);
+}
+.menu-item--collapsed {
+    @apply list-disc;
+    list-style-image: url(../../images/icons/menu-collapsed.png); /* LTR */
+}
+[dir="rtl"] .menu-item--collapsed {
+    list-style-image: url(../../images/icons/menu-collapsed-rtl.png);
+}
+.menu-item {
+    @apply m-0 pt-1;
+}
+ul.menu a.is-active {
+    @apply text-black;
+}

@@ -1,0 +1,137 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.hasField('field_example') returns TRUE if the node bundle includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   - node.isPublished() will return whether the node is published or not.
+ *   Calling other methods, such as node.delete(), will result in an exception.
+ *   See \Drupal\node\Entity\Node for a full list of public properties and
+ *   methods for the node object.
+ * - label: (optional) The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: (optional) Themed creation date field.
+ * - author_name: (optional) Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'mx-auto',
+    'max-w-7xl',
+    'px-4',
+    'pt-5',
+    'pb-12',
+    'sm:px-6',
+    'lg:px-8',
+    'lg:pt-6',
+    'lg:pb-15',
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+	<div class="lg:grid lg:grid-cols-5 lg:gap-5 xl:gap-6">
+		<div class=" bg-white rounded-md shadow-custom-1 py-5 px-6 lg:pt-8 lg:pb-7 lg:px-10 mb-8 lg:mb-0 lg:col-span-3">
+			<h2 class="text-black font-semibold text-2xl lg:text-3xl mb-2">Renter/Patient details </h2>
+			<div class="grid grid-cols-1 gap-y-3 lg:grid-cols-4 lg:gap-x-5">
+				<div class="field--label-above lg:col-span-2">
+					<div class="text-sm font-medium text-gray-900 leading-5">Renters Name</div>
+					<div class="text-sm text-gray-600 leading-6">{{ label|field_value }}</div>
+				</div>
+				{{ content.field_name_of_patient }}
+				{{ content.field_phone }}
+				{{ content.field_email }}
+				<div class="lg:col-span-2 grid grid-cols-1 gap-y-3 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-0">
+					{{ content.field_height }}
+					{{ content.field_weight_ }}
+				</div>
+				{{ content.field_date_of_birth }}
+				{{ content.field_major_credit_card_holder }}
+				<div class="lg:col-span-4 mt-5 pt-6 border-t border-gray-300 border-dashed">
+					<h2 class="mb-1 text-black font-semibold text-2xl lg:text-3xl form-required">Address</h2>
+					{{ content.field_address }}
+				</div>
+				<div class="lg:col-span-4 mt-5 pt-6 border-t border-gray-300 border-dashed">
+					<h2 class="text-black font-semibold text-2xl lg:text-3xl mb-2 form-required">Aggreement details</h2>
+					{{ content.field_notes }}
+					{{ content.field_authorize_dealer_to_charge }}
+					{{ content.field_adult }}
+				</div>
+			</div>
+		</div>
+		<div class="mb-8 xl:mb-10 lg:col-span-2">
+			<div class="bg-white rounded-md shadow-custom-1 py-5 px-6">
+				<div class="flex product-teaser">
+					{{ content.field_reference_product }}
+  				<p class="font-sans text-black text-xl leading-6 custom-opactity-50">From {{ content.field_price|field_value  }}/{{ content.field_pricing_tier|field_value  }}</p>
+					</div>
+				</div>
+				{{ content.field_date }}
+				{{ content.field_i_am_renting }}
+				{{ content.field_customer_signature}}
+				{% if preview is not null %}
+					<button type="button" id="rental-edit-button" class="flex w-full justify-center border rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 p-3.5 border-transparent text-lg leading-5 font-medium text-white bg-primary-600 hover:bg-primary-700 focus:ring-primary-500">
+						Back to Edit
+					</button>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</article>

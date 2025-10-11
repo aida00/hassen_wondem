@@ -1,0 +1,11 @@
+/**
+ * @file
+ * Table sort indicator.
+ */
+
+th.is-active img {
+  @apply inline;
+}
+td.is-active {
+  @apply bg-gray-200;
+}

@@ -1,0 +1,20 @@
+/**
+ * @file
+ * Collapsible details.
+ *
+ * @see collapse.js
+ * @see http://nicolasgallagher.com/css-background-image-hacks/
+ */
+
+details {
+  @apply my-4 border border-gray-300;
+}
+details > .details-wrapper {
+  @apply py-2 py-6;
+}
+/* @todo Regression: The summary of uncollapsible details are no longer
+     vertically aligned with the .details-wrapper in browsers without native
+     details support. */
+summary {
+  @apply py-1 px-2 cursor-pointer;
+}

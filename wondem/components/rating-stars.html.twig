@@ -1,0 +1,7 @@
+<div class="flex">
+	{% for i in 1..5 %}
+		<svg class="h-5 w-5 {{ i <= rating ? 'text-yellow-400' : 'text-gray-300' }} transition duration-300 ease-in-out" fill="currentColor" viewbox="0 0 20 20">
+			<path d="M10 15l-5.878 3.09L5.64 12.18 1 7.91l6.061-.89L10 2l2.939 5.02 6.061.89-4.64 4.27 1.518 5.91z"/>
+		</svg>
+	{% endfor %}
+</div>

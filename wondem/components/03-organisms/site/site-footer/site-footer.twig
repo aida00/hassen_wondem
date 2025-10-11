@@ -1,0 +1,156 @@
+{#
+  /**
+   * @file
+   * Site Footer Component.
+   *
+   */
+  #}
+  
+  {# Need the current path for some logic below. #}
+  {% set current_path = path('<current>') %}
+  
+  {# Array of paths to check against below. #}
+  {% set site_paths = ['/node/add/renting',] %}
+  
+  <footer aria-labelledby="footer-heading" class="footerWrapper bg-white border-t border-gray-200">
+    <div class="sm:pt-8 pt-2 pb-10">
+
+      <div class='custom-section'>
+            <div class='container mx-auto max-w-7xl'>
+              <div class='grid'>
+                <div class='contact-info'>
+                  <span>Call us</span>
+                  <p>+720 350 4073</p>
+                </div>
+                <div class='logo'>
+                  <img
+                    src='/themes/custom/sky/images/img/footer-logo.png'
+                    alt='sky medical logo'
+                    width='44'
+                    height='40'
+                    class="footerLogo1"
+                  />
+                   <img
+                    src='/themes/custom/sky/images/img/footer-logo1.png'
+                    alt='sky medical logo'
+                    width='44'
+                    height='40'
+                    class="footerLogo2"
+                  />
+                </div>
+                <div class='working-hours'>
+                  <p>6 Days a week</p>
+                  <span>10:00 am to 6:00 pm</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      <div class="fotFeature sm:py-4 py-2 pt-4 sm:pt-8 bg-[#f5fffe] border-t-2 border-b-2">
+        <div class="container max-w-7xl m-auto px-5">
+          <h3 class="text-sm font-medium text-gray-900">Featured Products</h3>
+          <ul class="flex lg:flex-row flex-col justify-start items-center lg:gap-x-5 gap-x-3 sm:gap-y-0 gap-y-1.5 py-3 text-sm">
+            <li><a href="/product-category/lift-chair">Lift Chairs</a></li>
+            <li><a href="/product-category/scooter">Scooters</a></li>
+            <li><a href="/product-category/socks">Compression</a></li>
+            <li><a href="/product-category/bed">Hospital Beds</a></li>
+            <li><a href="/product-category/bathroom">Bathroom Safety</a></li>
+            <li><a href="/product-category/knee-scooter">more</a></li>
+            <li class="listButton sm:mt-0 mt-2 sm:ml-auto sm:mr-0 ml-0 mr-auto tracking-widest font-semibold px-6 !py-2.5 rounded-full"><a href="#">OFFERS</a></li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- footer loop -->
+      <div class="container mx-auto max-w-7xl footerLoopWrapper">
+        <div class="sm:mt-8 mt-6 px-5 [&_li]:text-sm">
+          <div class="grid grid-cols-2 gap-8 xl:col-span-2">
+            <div class="space-y-4 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
+              <div>
+                <h3 class="text-sm font-medium text-gray-900">
+                  {{ 'Products'|trans }}
+                </h3>
+                {# Get menu items #}
+                {% set items_products = simplify_menu('footer-products') %}
+                <ul role="list" class="mt-2 space-y-1.5">
+                  {% for menu_item in items_products.menu_tree %}
+                    <li>
+                      <a href="{{ menu_item.url }}" class="text-gray-500 hover:text-gray-600">{{ menu_item.text }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-sm font-medium text-gray-900">
+                  {{ 'Customer Service'|trans }}
+                </h3>
+                {# Get menu items #}
+                {% set items_customer = simplify_menu('footer-customer') %}
+                <ul role="list" class="mt-2 space-y-1.5">
+                  {% for menu_item in items_customer.menu_tree %}
+                    <li>
+                      <a href="{{ menu_item.url }}" class="text-gray-500 hover:text-gray-600">{{ menu_item.text }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
+              <div>
+                <h3 class="text-sm font-medium text-gray-900">
+                  {{ 'Company'|trans }}
+                </h3>
+                {# Get menu items #}
+                {% set items_company = simplify_menu('footer-company') %}
+                <ul role="list" class="mt-2 space-y-1.5">
+                  {% for menu_item in items_company.menu_tree %}
+                    <li>
+                      <a href="{{ menu_item.url }}" class="text-gray-500 hover:text-gray-600">{{ menu_item.text }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-sm font-medium text-gray-900">
+                  {{ 'Legal'|trans }}
+                </h3>
+                {# Get menu items #}
+                {% set items_legal = simplify_menu('footer-legal') %}
+                <ul role="list" class="mt-2 space-y-1.5">
+                  {% for menu_item in items_legal.menu_tree %}
+                    <li>
+                      <a href="{{ menu_item.url }}" class="text-gray-500 hover:text-gray-600">{{ menu_item.text }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end loop -->
+    </div>
+  
+    <div class="container mx-auto max-w-7xl footerBottomWrap">
+      <div class="custom-grid">
+        <div class="newsletter-container">
+          <h3>{{ 'Sign up for our newsletter'|trans }}</h3>
+          <p>{{ 'The latest news, articles, and resources, sent to your inbox weekly.'|trans }}</p>
+          <div class="form-container">
+            {{ bamboo_render_block('mailchimp_signup_subscribe_block:maichimp_footer_signup') }}
+          </div>
+        </div>
+        <div class="newsLetterRight">
+          <div class="relative mx-auto max-w-sm text-center">
+            {{ bamboo_render_block('block_content:0dcdaaf3-f083-4360-8e7f-bb72bbecba73') }}
+            {# <!-- <h3 class="!font-semibold py-2 !text-white">Get early access</h3>
+            <p class="text-sm leading-4">Did you sign up to the newsletter? If so, use the keyword we sent you to get access.<a href="/contact" class="font-bold"> Go now <span class="text-xl font-bold align-sub">→</span></a></p> --> #}
+          </div>
+        </div>
+      </div>
+  
+      <div class="text-center md:text-left px-5 sm:py-6 py-4">
+        <p class="sm:text-base text-sm text-gray-500 sm:font-semibold font-medium">©&nbsp;{{ "now"|date('Y') }}&nbsp;{{ bamboo_token('site:name') }}.&nbsp;{{ 'All rights reserved'|trans }}</p>
+      </div>
+    </div>
+  </footer>

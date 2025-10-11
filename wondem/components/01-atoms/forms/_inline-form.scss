@@ -1,0 +1,27 @@
+/**
+ * @file
+ * Visual styles for inline forms.
+ */
+
+.form--inline .form-item {
+  @apply float-left mr-2; /* LTR */
+}
+[dir="rtl"] .form--inline .form-item {
+  @apply float-right mr-0 ml-2;
+}
+/* This is required to win over specificity of [dir="rtl"] .form--inline .form-item */
+[dir="rtl"] .views-filterable-options-controls .form-item {
+  @apply mr-[2%];
+}
+.form--inline .form-item-separator {
+  @apply mt-10 mr-4 ml-2; /* LTR */
+}
+[dir="rtl"] .form--inline .form-item-separator {
+  @apply mr-2 ml-4;
+}
+.form--inline .form-actions {
+  @apply clear-left; /* LTR */
+}
+[dir="rtl"] .form--inline .form-actions {
+  @apply clear-right;
+}

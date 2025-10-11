@@ -1,0 +1,44 @@
+<div
+    x-data="{ open: true }"
+    class="fixed bottom-0 inset-x-0 pb-2 sm:pb-5">
+
+    <div x-show="open" class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div class="p-2 rounded-lg bg-primary-600 shadow-lg sm:p-3">
+            <div class="flex items-center justify-between flex-wrap">
+                <div class="w-0 flex-1 flex items-center">
+                <span class="flex p-2 rounded-lg bg-primary-800">
+                    <!-- Iconic name: announcement -->
+                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke="currentColor" stroke-width="1.5" d="M19.25 10C19.25 12.7289 17.85 15.25 16.5 15.25C15.15 15.25 13.75 12.7289 13.75 10C13.75 7.27106 15.15 4.75 16.5 4.75C17.85 4.75 19.25 7.27106 19.25 10Z"></path>
+                        <path stroke="currentColor" stroke-width="1.5" d="M16.5 15.25C16.5 15.25 8 13.5 7 13.25C6 13 4.75 11.6893 4.75 10C4.75 8.31066 6 7 7 6.75C8 6.5 16.5 4.75 16.5 4.75"></path>
+                        <path stroke="currentColor" stroke-width="1.5" d="M6.75 13.5V17.25C6.75 18.3546 7.64543 19.25 8.75 19.25H9.25C10.3546 19.25 11.25 18.3546 11.25 17.25V14.5"></path>
+                    </svg>
+                </span>
+                <p class="ml-3 font-medium text-white truncate">
+                    <span class="md:hidden">
+                        Orders temporarily suspended.
+                    </span>
+                    <span class="hidden md:inline">
+                        Orders temporarily suspended due to covid situation.
+                    </span>
+                </p>
+                </div>
+                {# <div class="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
+                <a href="#" class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-primary-600 bg-white hover:bg-primary-50">
+                    Learn more
+                </a>
+                </div> #}
+                <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-2">
+                    <button @click="open = false" type="button" class="-mr-1 flex p-2 rounded-md hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-white">
+                        <span class="sr-only">Dismiss</span>
+                        <!-- Iconic name: close -->
+                        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.25 6.75L6.75 17.25"></path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 6.75L17.25 17.25"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

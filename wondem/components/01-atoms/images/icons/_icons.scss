@@ -1,0 +1,17 @@
+/**
+ * @file
+ * Visual styles for icons.
+ */
+
+.icon-help {
+  background-image: url(../../images/icons/help.png);
+  @apply py-px pr-0 pl-5 bg-left bg-no-repeat; /* LTR */
+}
+[dir="rtl"] .icon-help {
+  @apply py-px pr-5 pl-0 bg-right;;
+}
+.feed-icon {
+    text-indent: -9999px;
+  background-image: url(../../images/icons/feed.svg);
+  @apply block overflow-hidden w-4 h-4 bg-no-repeat ; /* LTR */
+}

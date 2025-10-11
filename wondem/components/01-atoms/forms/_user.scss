@@ -1,0 +1,57 @@
+/**
+ * @file
+ * Theme styling for user module.
+ */
+
+/* Visual styling for the Password strength indicator */
+.password-strength__meter {
+    @apply mt-2 bg-gray-200;
+}
+.password-strength__indicator {
+    transition: width 0.5s ease-out;
+    @apply bg-lime-600;
+}
+.password-strength__indicator.is-weak {
+    @apply bg-red-600;
+}
+.password-strength__indicator.is-fair {
+    @apply bg-amber-500;
+}
+.password-strength__indicator.is-good {
+    @apply bg-tertiary-600;
+}
+.password-strength__indicator.is-strong {
+    @apply bg-lime-600;
+}
+
+.password-confirm,
+.password-field,
+.password-strength,
+.password-confirm-match,
+.password-confirm-message {
+    @apply w-[55%];
+}
+
+.password-suggestions {
+    @apply max-w-lg my-3 mx-0 py-1 px-2 border border-gray-400;
+}
+.password-suggestions ul {
+    @apply mb-0;
+}
+
+.confirm-parent,
+.password-parent {
+    @apply clear-left overflow-hidden max-w-lg m-0;
+}
+[dir="rtl"] .confirm-parent,
+[dir="rtl"] .password-parent {
+    @apply clear-right;
+}
+
+/* Styling for the status indicator of the passwords match test.  */
+.password-confirm .ok {
+    @apply text-lime-800 font-bold;
+}
+.password-confirm .error {
+    @apply text-red-800 font-bold;
+}

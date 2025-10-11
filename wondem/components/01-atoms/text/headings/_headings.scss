@@ -1,0 +1,120 @@
+/*
+ * Generic header styles:
+ * All arguments are optional. If not defined, the defaults below will be used
+*/
+
+@mixin heading-xl {
+  @apply text-gray-900 text-4xl font-sans font-bold leading-none not-italic sm:text-5xl md:text-6xl;
+
+  &__link {
+    @apply text-primary-500;
+
+    &:hover {
+      @apply text-primary-400;
+    }
+  }
+}
+
+@mixin heading-large {
+  @apply text-gray-900 text-3xl font-sans font-bold leading-none not-italic sm:text-4xl md:text-5xl;
+
+  &__link {
+    @apply text-primary-500;
+
+    &:hover {
+      @apply text-primary-400;
+    }
+  }
+}
+
+@mixin heading-medium {
+  @apply text-gray-900 text-2xl font-sans font-bold leading-none not-italic sm:text-3xl md:text-4xl;
+
+  &__link {
+    @apply text-primary-500;
+
+    &:hover {
+      @apply text-primary-400;
+    }
+  }
+}
+
+@mixin heading-small {
+  @apply text-gray-900 text-xl font-sans font-bold leading-none not-italic sm:text-2xl md:text-3xl;
+
+  &__link {
+    @apply text-primary-500;
+
+    &:hover {
+      @apply text-primary-400;
+    }
+  }
+}
+
+@mixin heading-xs {
+  @apply text-gray-900 text-lg font-sans font-bold leading-none not-italic sm:text-xl md:text-2xl;
+
+  &__link {
+    @apply text-primary-500;
+
+    &:hover {
+      @apply text-primary-400;
+    }
+  }
+}
+
+.h1 {
+  @include heading-xl;
+}
+
+.h2 {
+  @include heading-large;
+}
+
+.h3 {
+  @include heading-medium;
+}
+
+.h4 {
+  @include heading-small;
+}
+
+.h5,
+.h6 {
+  @include heading-xs;
+}
+
+.text-long {
+  h1 {
+    @extend .h1;
+  }
+
+  h2 {
+    @extend .h2;
+  }
+
+  h3 {
+    @extend .h3;
+  }
+
+  h4 {
+    @extend .h4;
+  }
+
+  h5 {
+    @extend .h5;
+  }
+
+  h6 {
+    @extend .h6;
+  }
+}
+
+
+.page-node-type-blog {
+    .field--name-body  {
+        h2 a {
+            @apply font-bold;
+        }
+    }
+}

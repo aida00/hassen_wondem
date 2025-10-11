@@ -1,0 +1,28 @@
+/**
+ * @file
+ * Styles for link buttons and action links.
+ */
+
+[dir="rtl"] .action-links {
+  /* This is required to win over specificity of [dir="rtl"] ul */
+  @apply mr-0;
+}
+.action-links li {
+  @apply inline-block my-0 mx-1;
+}
+.action-links li:first-child {
+  @apply ml-0;
+}
+[dir="rtl"] .action-links li:first-child {
+  @apply mr-0 ml-1;
+}
+.button-action {
+  @apply inline-block py-1 px-2 no-underline leading-relaxed;
+}
+.button-action:before {
+  content: "+";
+  @apply -ml-0.5 pr-1 font-extrabold;
+}
+[dir="rtl"] .button-action:before {
+  @apply -mr-0.5 ml-0 pr-0 pl-1;
+}

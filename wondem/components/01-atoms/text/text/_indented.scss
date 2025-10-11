@@ -1,0 +1,14 @@
+/**
+ * @file
+ * Basic styling for comment module.
+ */
+
+/**
+ * Indent threaded comments.
+ */
+.indented {
+  @apply ml-6; /* LTR */
+}
+[dir="rtl"] .indented {
+  @apply mr-6 ml-0;
+}

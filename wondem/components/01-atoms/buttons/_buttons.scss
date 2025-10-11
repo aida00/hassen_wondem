@@ -1,0 +1,103 @@
+button[type='button'] {
+  &.button {
+    @apply inline-flex items-center border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply bg-white py-2 px-4 border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-primary-500;
+  }
+
+  &.button--primary {
+    @apply inline-flex items-center border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply px-4 py-2 border-transparent text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:ring-primary-500;
+  }
+
+  &.is-disabled {
+    @apply px-4 py-2 border-transparent text-sm font-medium rounded-md text-gray-500 bg-gray-100;
+  }
+}
+
+input {
+  &#edit-preview {
+    @apply inline-flex items-center border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply bg-white border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-primary-500;
+  }
+
+  &#edit-submit,
+  &#edit-actions-next {
+    @apply inline-flex items-center border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply border-transparent text-white bg-primary-600 hover:bg-primary-700 focus:ring-primary-500;
+  }
+
+  &.is-disabled {
+    @apply cursor-not-allowed px-4 py-2 border-transparent text-sm font-medium rounded-md text-gray-500 bg-gray-100;
+  }
+}
+
+// Cart / Checkout
+.path-checkout,
+.path-cart {
+  .delete-order-item {
+    @apply border-0 shadow-none focus:ring-0 focus:ring-offset-0 p-0 ml-4 text-sm font-medium text-primary-600 hover:text-primary-500 sm:ml-0 sm:mt-3;
+  }
+
+  #edit-actions,
+  #edit-actions--2 {
+    #edit-submit,
+    #edit-submit--2,
+    .link--previous {
+      @apply w-full flex justify-center items-center border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2;
+      @apply bg-white py-3 px-4 border-gray-300 text-base font-medium text-gray-700 hover:bg-gray-50 focus:ring-primary-500;
+    }
+    #edit-actions-next,
+    #edit-checkout,
+    #edit-checkout--2 {
+      @apply capitalize ml-0 mt-8 flex justify-center w-full rounded-md border border-transparent bg-primary-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-50 [&>*]:mx-auto;
+    }
+    .link--previous {
+      // This button is hidden.
+      @apply ml-0 mt-4 capitalize hidden;
+    }
+  }
+  #edit-login-returning-customer-submit {
+    @apply mb-6;
+  }
+  #edit-login-returning-customer-submit,
+  #edit-login-register-register {
+    @apply mt-9 w-full capitalize flex justify-center rounded-md border border-transparent bg-primary-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-50;
+  }
+  #edit-login-returning-customer-forgot-password {
+    @apply w-full capitalize flex justify-center items-center border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply bg-white py-3 px-4 border-gray-300 text-base font-medium text-gray-700 hover:bg-gray-50 focus:ring-primary-500;
+  }
+}
+
+// Checkout
+input.address-book-edit-button {
+  @apply p-0 border-0 shadow-none focus:ring-0 focus:ring-offset-0 p-0 text-sm font-medium text-primary-600 hover:text-primary-500 sm:ml-0 sm:mt-3;
+}
+
+// User Login / Register / Password
+.path-user {
+  #edit-actions {
+    #edit-submit {
+      @apply capitalize mt-8 flex justify-center w-full rounded-md border border-transparent bg-primary-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-50 [&>*]:mx-auto;
+    }
+  }
+}
+
+// Node Renting Form Buttons.
+#node-renting-form #edit-actions,
+#node-renting-edit-form #edit-actions {
+  @apply mt-12 lg:mt-14 lg:flex lg:justify-start lg:flex-row;
+
+  #edit-submit,
+  #edit-preview {
+    @apply w-full max-w-[300px] flex justify-center items-center cursor-pointer py-3 px-4 border text-lg font-medium leading-4;
+  }
+
+  #edit-preview {
+    @apply ml-0 mt-4 lg:mt-0 lg:ml-4;
+  }
+
+  #edit-delete {
+    display: none;
+  }
+}
