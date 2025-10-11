@@ -1,7 +1,7 @@
 loginpage.form:
   path: '/user/login'
   defaults:
-    _form: '\Drupal\loginpage\Form\LoginForm'
+    _controller: '\Drupal\loginpage\Controller\LoginPageController::login'
     _title: 'Log in'
   requirements:
     _permission: 'access content'

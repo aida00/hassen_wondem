@@ -86,15 +86,10 @@ class LoginForm extends FormBase {
 
       $this->messenger()->addStatus($this->t('Login successful! Welcome @name.', ['@name' => $user->getAccountName()]));
 
-    $request = \Drupal::request();
-    $destination = $request->query->get('destination');
-    $url = Url::fromRoute('<front>'); // fallback
-    if ($destination && \Drupal::service('path.validator')->isValid($destination)) {
-      // fromUserInput ensures it’s treated as internal and sanitized
+      // Honor ?destination=… or default to the application form.
+      $destination = \Drupal::request()->query->get('destination') ?: '/application-form';
       $url = Url::fromUserInput($destination);
-    }
-
-      $form_state->setResponse(new TrustedRedirectResponse(Url::fromRoute('<front>')->toString()));
+      $form_state->setResponse(new TrustedRedirectResponse($url->toString()));
     }
     else {
       $this->messenger()->addError($this->t('Invalid username or password.'));
