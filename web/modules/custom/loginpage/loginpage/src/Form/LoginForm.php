@@ -84,7 +84,7 @@ class LoginForm extends FormBase {
       $user = User::load($uid);
       user_login_finalize($user);
 
-      $this->messenger()->addStatus($this->t('Login successful! Welcome @name.', ['@name' => $user->getAccountName()]));
+      // $this->messenger()->addStatus($this->t('Login successful! Welcome @name.', ['@name' => $user->getAccountName()]));
 
       // Honor ?destination=… or default to the application form.
       $destination = \Drupal::request()->query->get('destination') ?: '/application-form';

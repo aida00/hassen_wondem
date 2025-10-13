@@ -37,7 +37,7 @@ class HomepageController extends ControllerBase {
       <div class="homepage-viewport">
         <!-- Background image -->
         <img
-          src="/' . $module_path . '/src/Controller/desi.png"
+          src="/' . $module_path . '/src/Controller/Sky-Medical-Supplies-Front.webp"
           alt="Sky Medical Supplies storefront"
           class="absolute inset-0 w-full h-full object-cover"
         />

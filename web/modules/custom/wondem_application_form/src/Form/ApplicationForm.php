@@ -114,7 +114,7 @@ class ApplicationForm extends FormBase {
           $this->t('It looks like you’ve already submitted an application with the email <strong>@mail</strong>. You can view the latest status using the link below.', ['@mail' => $email]),
           [
             ['label' => $this->t('View application status'), 'url' => '/application/status', 'primary' => TRUE],
-            ['label' => $this->t('Go to dashboard'), 'url' => '/', 'primary' => FALSE],
+            ['label' => $this->t('Go to home'), 'url' => '/', 'primary' => FALSE],
           ]
         ),
       ];
