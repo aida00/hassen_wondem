@@ -2,6 +2,7 @@
 .DS_Store
 *.swp
 *.swo
+.tmp-*.HEIC
 
 # Composer
 /vendor/
@@ -15,6 +16,7 @@ web/sites/*/files/*
 web/sites/*/files/**
 !web/sites/*/files/.htaccess
 !web/sites/*/files/.gitignore
+web/sites/default/files/.htaccess
 web/sites/*/private/
 web/sites/*/tmp/
 web/sites/*/translations/
