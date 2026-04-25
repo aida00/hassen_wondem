@@ -59,46 +59,46 @@ class HomepageController extends ControllerBase {
 
             <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               <article x-show="activeTrack === \"all\" || activeTrack === \"engineering\" || activeTrack === \"leadership\"" class="bg-white/95 rounded-2xl border border-slate-200 shadow-sm p-5 text-slate-900">
-                <a href="/themes/custom/wondem/images/profile-hussien.jpg?v=6" target="_blank" rel="noopener" class="block">
+                <a href="https://hhassen.wondem.net" target="_blank" rel="noopener noreferrer" class="block">
                   <img src="/themes/custom/wondem/images/profile-hussien.jpg?v=6" alt="Hussien Hassen" class="w-full aspect-square object-cover rounded-xl">
                 </a>
-                <h3 class="mt-4 text-lg font-bold"><a href="/themes/custom/wondem/images/profile-hussien.jpg?v=6" target="_blank" rel="noopener" class="hover:text-blue-700 transition">Hussien Hassen</a></h3>
+                <h3 class="mt-4 text-lg font-bold"><a href="https://hhassen.wondem.net" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700 transition">Hussien Hassen</a></h3>
                 <p class="text-sm text-blue-700 font-semibold mt-1">Drupal Developer | Team Leader</p>
               </article>
 
               <article x-show="activeTrack === \"all\" || activeTrack === \"engineering\"" class="bg-white/95 rounded-2xl border border-slate-200 shadow-sm p-5 text-slate-900">
                 <div class="w-full aspect-square rounded-xl bg-gradient-to-br from-cyan-600 to-blue-700 flex items-center justify-center text-white text-4xl font-bold">IM</div>
-                <h3 class="mt-4 text-lg font-bold">Ishak Mohammed</h3>
+                <h3 class="mt-4 text-lg font-bold"><a href="https://ishak.wondem.net" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700 transition">Ishak Mohammed</a></h3>
                 <p class="text-sm text-blue-700 font-semibold mt-1">Drupal Platform Engineer</p>
               </article>
 
               <article x-show="activeTrack === \"all\" || activeTrack === \"security\"" class="bg-white/95 rounded-2xl border border-slate-200 shadow-sm p-5 text-slate-900">
                 <div class="w-full aspect-square rounded-xl bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-white text-4xl font-bold">MW</div>
-                <h3 class="mt-4 text-lg font-bold">Mikias Worku</h3>
+                <h3 class="mt-4 text-lg font-bold"><a href="https://mikiyas.wondem.net" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700 transition">Mikias Worku</a></h3>
                 <p class="text-sm text-blue-700 font-semibold mt-1">Security Professional</p>
               </article>
 
               <article x-show="activeTrack === \"all\" || activeTrack === \"advocacy\"" class="bg-white/95 rounded-2xl border border-slate-200 shadow-sm p-5 text-slate-900">
                 <div class="w-full aspect-square rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center text-white text-4xl font-bold">ET</div>
-                <h3 class="mt-4 text-lg font-bold">Enksilase Teshome</h3>
+                <h3 class="mt-4 text-lg font-bold"><a href="https://enkut.wondem.net" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700 transition">Enksilase Teshome</a></h3>
                 <p class="text-sm text-blue-700 font-semibold mt-1">Health Information Advocate</p>
               </article>
 
               <article x-show="activeTrack === \"all\" || activeTrack === \"advocacy\"" class="bg-white/95 rounded-2xl border border-slate-200 shadow-sm p-5 text-slate-900">
                 <div class="w-full aspect-square rounded-xl bg-gradient-to-br from-violet-600 to-purple-700 flex items-center justify-center text-white text-4xl font-bold">AH</div>
-                <h3 class="mt-4 text-lg font-bold">Abigale Hunda</h3>
+                <h3 class="mt-4 text-lg font-bold"><a href="https://abigya.wondem.net" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700 transition">Abigale Hunda</a></h3>
                 <p class="text-sm text-blue-700 font-semibold mt-1">AHIMA & Community Outreach</p>
               </article>
 
               <article x-show="activeTrack === \"all\" || activeTrack === \"security\" || activeTrack === \"leadership\"" class="bg-white/95 rounded-2xl border border-slate-200 shadow-sm p-5 text-slate-900">
                 <div class="w-full aspect-square rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white text-4xl font-bold">TB</div>
-                <h3 class="mt-4 text-lg font-bold">Tadesse Bekele</h3>
+                <h3 class="mt-4 text-lg font-bold"><a href="https://tadese.wondem.net" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700 transition">Tadesse Bekele</a></h3>
                 <p class="text-sm text-blue-700 font-semibold mt-1">Quality & Compliance Lead</p>
               </article>
 
               <article x-show="activeTrack === \"all\" || activeTrack === \"leadership\"" class="bg-white/95 rounded-2xl border border-slate-200 shadow-sm p-5 text-slate-900">
                 <div class="w-full aspect-square rounded-xl bg-gradient-to-br from-rose-600 to-pink-700 flex items-center justify-center text-white text-4xl font-bold">DN</div>
-                <h3 class="mt-4 text-lg font-bold">Daniel Nigus</h3>
+                <h3 class="mt-4 text-lg font-bold"><a href="https://daniel.wondem.net" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700 transition">Daniel Nigus</a></h3>
                 <p class="text-sm text-blue-700 font-semibold mt-1">Operations & Team Coordination</p>
               </article>
 
