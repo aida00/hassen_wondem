@@ -1,17 +1,35 @@
+# OS/editor
+.DS_Store
+*.swp
+*.swo
+
 # Composer
 /vendor/
 
-# Drupal public files (generated)
-web/sites/*/files/
-web/sites/*/files/**
+# Local Drupal overrides and secrets
+web/sites/*/settings.local.php
+web/sites/*/services.local.yml
 
-# Aggregated CSS/JS and profiler artifacts
+# Drupal writable/runtime artifacts
+web/sites/*/files/*
+web/sites/*/files/**
+!web/sites/*/files/.htaccess
+!web/sites/*/files/.gitignore
+web/sites/*/private/
+web/sites/*/tmp/
+web/sites/*/translations/
+
+# Generated frontend/runtime folders
 web/sites/default/files/css/
 web/sites/default/files/js/
-web/sites/default/files/profiler/
 web/sites/default/files/php/
+web/sites/default/files/styles/
+web/sites/default/files/profiler/
 
 # DDEV (optional – ignore generated stuff; keep config.yaml if you want)
 /.ddev/.snapshot/
 /.ddev/db/
 /backups/wondem/
+
+# Local frontend dependency cache
+**/node_modules/
