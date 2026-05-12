@@ -169,7 +169,7 @@ class ApplicationForm extends FormBase {
         ],
         'role' => [
           'title'  => $this->t('Additional Questions'),
-          'fields' => ['equipment_specs', 'education_experience', 'cs_experience',
+          'fields' => ['equipment_specs', 'ai_proficiency', 'education_experience', 'cs_experience',
                       'conflict_resolution', 'typing_speed', 'english_written', 'english_spoken'],
         ],
       ];
@@ -488,6 +488,33 @@ class ApplicationForm extends FormBase {
       '#type' => 'details',
       '#title' => $this->t('Additional Questions'),
       '#open' => TRUE,
+    ];
+
+    $proficiency_levels = [
+      'beginner' => $this->t('Beginner'),
+      'intermediate' => $this->t('Intermediate'),
+      'advanced' => $this->t('Advanced'),
+      'expert' => $this->t('Expert'),
+    ];
+
+    $form['additional_questions']['ai_proficiency'] = [
+      '#type' => 'select',
+      '#title' => $this->t('How would you describe your proficiency with AI tools?'),
+      '#options' => $proficiency_levels,
+      '#required' => TRUE,
+      '#default_value' => $defaults['ai_proficiency'] ?? NULL,
+      '#description' => '
+        <details class="wa-help">
+          <summary>ⓘ More info</summary>
+          <div>
+            <strong>Scenario:</strong> Think about tools such as ChatGPT, Gemini, Claude,
+            Microsoft Copilot, Canva AI, Grammarly, or other AI-assisted tools you have used.
+            How comfortable are you using AI to research, write, summarize, solve problems,
+            create content, support customers, or improve your daily work?
+          </div>
+        </details>
+      ',
+      '#description_display' => 'before',
     ];
 
     $form['additional_questions']['education_experience'] = [

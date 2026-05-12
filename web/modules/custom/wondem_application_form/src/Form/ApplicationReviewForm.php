@@ -66,6 +66,7 @@ class ApplicationReviewForm extends FormBase {
         'cover_letter'         => $this->t('Cover Letter'),
         'salary_expectation'   => $this->t('Salary Expectation'),
         'job_obstacles'        => $this->t('Obstacles/Challenges'),
+        'ai_proficiency'       => $this->t('AI Tools Proficiency'),
         // IT role
         'skills'               => $this->t('Technical Skills'),
         'team_experience'      => $this->t('Team Experience'),

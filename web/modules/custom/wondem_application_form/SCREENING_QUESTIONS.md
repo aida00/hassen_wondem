@@ -39,23 +39,28 @@ ________________________________________
 Scenario: Think of a challenge you faced at work, school, or in a project. Describe the situation, what made it difficult, the steps you took to address it, and the result. What did you learn from the experience that could help you in this job?
 ________________________________________
 
-9. Tell us about any relevant education, work experience, or hobbies related to content creation.
+9. How would you describe your proficiency with AI tools?
+Scenario: Think about tools such as ChatGPT, Gemini, Claude, Microsoft Copilot, Canva AI, Grammarly, or other AI-assisted tools you have used. How comfortable are you using AI to research, write, summarize, solve problems, create content, support customers, or improve your daily work?
+Options: Beginner / Intermediate / Advanced / Expert
+________________________________________
+
+10. Tell us about any relevant education, work experience, or hobbies related to content creation.
 Scenario: Imagine you are pitching yourself as a content creator. Which experiences, studies, or personal projects best show your skills in writing, storytelling, or content design?
 ________________________________________
 
-10. Tell us about your experience working with customers.
+11. Tell us about your experience working with customers.
 Scenario: Picture yourself describing your customer-facing experience to a new employer. Which industries have you worked in, what type of customers did you handle, and what communication channels did you use?
 ________________________________________
 
-11. Tell us about a time you faced a difficult customer situation and how you resolved it.
+12. Tell us about a time you faced a difficult customer situation and how you resolved it.
 Scenario: Think of a challenging customer case. What made the situation difficult? How did you listen, respond, and solve the issue? What was the customer's reaction afterward?
 ________________________________________
 
-12. What is your average typing speed (WPM)?
+13. What is your average typing speed (WPM)?
 Scenario: Many customer service roles require fast and accurate typing. Please share your average typing speed in words per minute. If possible, mention how you tested it.
 ________________________________________
 
-13. Tell us about your proficiency level in written and spoken English.
+14. Tell us about your proficiency level in written and spoken English.
 Scenario: Imagine handling a customer query both by email and on a live call. How comfortable are you writing professional messages and speaking fluently in English? Rate your proficiency in both written and spoken English.
 Written: Basic / Conversational / Fluent / Native-like
 Spoken: Basic / Conversational / Fluent / Native-like
