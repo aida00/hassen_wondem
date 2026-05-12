@@ -9,8 +9,13 @@ class ApplicationStorage {
   public function __construct(private Connection $db) {}
 
   public function fetch(array $filters, int $limit = 50, int $offset = 0): array {
+    $fields = ['id','full_name','email','phone','status','score','reviewer_uid','created','updated'];
+    if ($this->db->schema()->fieldExists('wondem_applications', 'application_version')) {
+      $fields[] = 'application_version';
+    }
+
     $q = $this->db->select('wondem_applications', 'wa')
-      ->fields('wa', ['id','full_name','email','phone','status','score','reviewer_uid','created','updated'])
+      ->fields('wa', $fields)
       ->orderBy('created', 'DESC')
       ->range($offset, $limit);
 

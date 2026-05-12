@@ -54,6 +54,14 @@ class ApplicationAdminController extends ControllerBase {
     );
   }
 
+  private function versionLabel(?string $version): string {
+    return match ($version) {
+      'unified_v2' => (string) $this->t('Unified application'),
+      'role_based_v1' => (string) $this->t('Role-based legacy'),
+      default => (string) $this->t('Role-based legacy'),
+    };
+  }
+
 
 
   /**
@@ -92,6 +100,7 @@ public function list() {
       'full_name' => $record['full_name'],
       'email'     => $record['email'],
       'phone'     => $record['phone'],
+      'application_version' => $this->versionLabel($record['application_version'] ?? 'role_based_v1'),
       'created'   => \Drupal::service('date.formatter')->format($record['created'], 'short'),
       'status' => [
         'data' => [
@@ -141,6 +150,7 @@ public function list() {
       'full_name' => $this->t('Full Name'),
       'email' => $this->t('Email'),
       'phone' => $this->t('Phone'),
+      'application_version' => $this->t('Application Type'),
       'created' => $this->t('Submitted'),
       'status'    => $this->t('Status'),
       'operations' => $this->t('Operations'),
@@ -195,11 +205,13 @@ public function list() {
     $values = is_array($values) ? $values : [];
 
     // Normalized labels.
+    $values['application_type'] = $this->versionLabel($record->application_version ?? ($values['application_version'] ?? 'role_based_v1'));
     $values['applied_role'] = $values['role_label'] ?? $values['role'] ?? '';
     $values['employment_status_hr'] = $values['employment_status_label'] ?? $values['employment_status'] ?? '';
     $values['source_hr'] = $values['source_label'] ?? $values['source'] ?? '';
 
     $labels = [
+      'application_type'      => $this->t('Application Type'),
       'full_name'             => $this->t('Full Name'),
       'email'                 => $this->t('Email'),
       'phone'                 => $this->t('Phone'),
@@ -210,6 +222,7 @@ public function list() {
       'source_hr'             => $this->t('How did you hear about us?'),
       'source_details'        => $this->t('Source Details'),
       'equipment'             => $this->t('PC & Internet'),
+      'equipment_specs'       => $this->t('Computer Specifications'),
       'experience_online'     => $this->t('Online Work/Education Experience'),
       'availability'          => $this->t('Availability'),
       'cover_letter'          => $this->t('Cover Letter'),

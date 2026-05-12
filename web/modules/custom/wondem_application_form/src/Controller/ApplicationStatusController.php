@@ -77,7 +77,7 @@ class ApplicationStatusController extends ControllerBase {
     // Look up the latest application by this user's email.
     $email  = $account->getEmail();
     $record = \Drupal::database()->select('wondem_applications', 'wa')
-      ->fields('wa', ['id', 'full_name', 'email', 'phone', 'created', 'data'])
+      ->fields('wa')
       ->condition('email', $email)
       ->orderBy('created', 'DESC')
       ->range(0, 1)
@@ -106,6 +106,12 @@ class ApplicationStatusController extends ControllerBase {
     // Decode saved values (was stored with serialize()).
     $values = @unserialize($record->data) ?: [];
 
+    $version_labels = [
+      'unified_v2' => $this->t('Unified application'),
+      'role_based_v1' => $this->t('Role-based legacy'),
+    ];
+    $application_type = $version_labels[$record->application_version ?? 'role_based_v1'] ?? $this->t('Role-based legacy');
+
     $role_labels = [
       'it' => $this->t('IT Applicant / Developer'),
       'cw' => $this->t('Content Creator and Writer'),
@@ -132,9 +138,16 @@ class ApplicationStatusController extends ControllerBase {
               </div>
 
               <div>
+                <dt class="text-xs uppercase tracking-wide text-slate-500">'.$this->t('Application Type').'</dt>
+                <dd class="text-slate-900">'.htmlspecialchars((string) $application_type, ENT_QUOTES, 'UTF-8').'</dd>
+              </div>
+
+              '.(($record->application_version ?? 'role_based_v1') === 'role_based_v1' ? '
+              <div>
                 <dt class="text-xs uppercase tracking-wide text-slate-500">'.$this->t('Role').'</dt>
                 <dd class="text-slate-900">'.htmlspecialchars((string) $role_label, ENT_QUOTES, 'UTF-8').'</dd>
               </div>
+              ' : '').'
 
               <div>
                 <dt class="text-xs uppercase tracking-wide text-slate-500">'.$this->t('Full Name').'</dt>

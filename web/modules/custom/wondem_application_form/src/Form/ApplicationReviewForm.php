@@ -19,6 +19,14 @@ class ApplicationReviewForm extends FormBase {
     return 'waf_review_form';
   }
 
+  private function versionLabel(?string $version): string {
+    return match ($version) {
+      'unified_v2' => (string) $this->t('Unified application'),
+      'role_based_v1' => (string) $this->t('Role-based legacy'),
+      default => (string) $this->t('Role-based legacy'),
+    };
+  }
+
   public function buildForm(array $form, FormStateInterface $form_state, $id = NULL) {
     $app = $this->storage->load((int) $id);
     if (!$app) {
@@ -35,11 +43,13 @@ class ApplicationReviewForm extends FormBase {
     $values = is_array($values) ? $values : [];
 
     // Normalize a few human-readable fields (same mapping as your view page).
+    $values['application_type']     = $this->versionLabel($app['application_version'] ?? ($values['application_version'] ?? 'role_based_v1'));
     $values['applied_role']         = $values['role_label'] ?? $values['role'] ?? '';
     $values['employment_status_hr'] = $values['employment_status_label'] ?? $values['employment_status'] ?? '';
     $values['source_hr']            = $values['source_label'] ?? $values['source'] ?? '';
 
     $labels = [
+        'application_type'     => $this->t('Application Type'),
         'full_name'            => $this->t('Full Name'),
         'email'                => $this->t('Email'),
         'phone'                => $this->t('Phone'),
@@ -50,6 +60,7 @@ class ApplicationReviewForm extends FormBase {
         'source_hr'            => $this->t('How did you hear about us?'),
         'source_details'       => $this->t('Source Details'),
         'equipment'            => $this->t('PC & Internet'),
+        'equipment_specs'      => $this->t('Computer Specifications'),
         'experience_online'    => $this->t('Online Work/Education Experience'),
         'availability'         => $this->t('Availability'),
         'cover_letter'         => $this->t('Cover Letter'),

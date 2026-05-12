@@ -135,22 +135,6 @@ class ApplicationForm extends FormBase {
         ],
         'employment_status' => ['yes' => $this->t('Yes'), 'no' => $this->t('No')],
         'equipment'         => ['yes' => $this->t('Yes'), 'no' => $this->t('No')],
-        'role'              => [
-          'it' => $this->t('IT Applicant / Developer'),
-          'cw' => $this->t('Content Creator and Writer'),
-          'cs' => $this->t('Customer Service'),
-        ],
-        // proficiency levels
-        'prof_git'          => ['beginner'=>$this->t('Beginner'),'intermediate'=>$this->t('Intermediate'),
-                                'advanced'=>$this->t('Advanced'),'expert'=>$this->t('Expert')],
-        'prof_cms'          => ['beginner'=>$this->t('Beginner'),'intermediate'=>$this->t('Intermediate'),
-                                'advanced'=>$this->t('Advanced'),'expert'=>$this->t('Expert')],
-        'prof_linux'        => ['beginner'=>$this->t('Beginner'),'intermediate'=>$this->t('Intermediate'),
-                                'advanced'=>$this->t('Advanced'),'expert'=>$this->t('Expert')],
-        'proficiency_writing'=> ['beginner'=>$this->t('Beginner'),'intermediate'=>$this->t('Intermediate'),
-                                'advanced'=>$this->t('Advanced'),'expert'=>$this->t('Expert')],
-        'proficiency_media'  => ['beginner'=>$this->t('Beginner'),'intermediate'=>$this->t('Intermediate'),
-                                'advanced'=>$this->t('Advanced'),'expert'=>$this->t('Expert')],
         'english_written'    => ['basic'=>$this->t('Basic'),'conversational'=>$this->t('Conversational'),
                                 'fluent'=>$this->t('Fluent'),'native_like'=>$this->t('Native-like')],
         'english_spoken'     => ['basic'=>$this->t('Basic'),'conversational'=>$this->t('Conversational'),
@@ -184,11 +168,9 @@ class ApplicationForm extends FormBase {
                       'salary_expectation','job_obstacles'],
         ],
         'role' => [
-          'title'  => $this->t('Role-Specific Questions'),
-          'fields' => ['role','skills','team_experience','prof_git','prof_cms','prof_linux',
-                      'education_experience','proficiency_writing','cw_samples','proficiency_media',
-                      'cs_experience','conflict_resolution','crm_tools','typing_speed',
-                      'english_written','english_spoken'],
+          'title'  => $this->t('Additional Questions'),
+          'fields' => ['equipment_specs', 'education_experience', 'cs_experience',
+                      'conflict_resolution', 'typing_speed', 'english_written', 'english_spoken'],
         ],
       ];
 
@@ -365,6 +347,31 @@ class ApplicationForm extends FormBase {
       '#description_display' => 'before',
     ];
 
+    $form['equipment_specs'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Please describe your computer quality/specifications.'),
+      '#default_value' => $defaults['equipment_specs'] ?? '',
+      '#states' => [
+        'visible' => [
+          ':input[name="equipment"]' => ['value' => 'yes'],
+        ],
+        'required' => [
+          ':input[name="equipment"]' => ['value' => 'yes'],
+        ],
+      ],
+      '#attributes' => ['class' => $textarea_classes],
+      '#description' => '
+        <details class="wa-help">
+          <summary>ⓘ More info</summary>
+          <div>
+            Include details like RAM, processor type/version/speed, hard disk or storage type,
+            and any other information that helps us understand whether your computer can support online work.
+          </div>
+        </details>
+      ',
+      '#description_display' => 'before',
+    ];
+
 
     // Q4 - Online experience
     $form['experience_online'] = [
@@ -477,163 +484,13 @@ class ApplicationForm extends FormBase {
       ];
 
 
-    // ✅ Role selector
-    $form['role'] = [
-      '#type' => 'radios',
-      '#title' => $this->t('Which role are you applying for?'),
-      '#options' => [
-        'it' => $this->t('IT Applicant / Developer'),
-        'cw' => $this->t('Content Creator and Writer'),
-        'cs' => $this->t('Customer Service'),
-      ],
-      '#required' => TRUE,
-      '#default_value' => $defaults['role'] ?? NULL,
-      '#ajax' => [
-        'callback' => '::updateRoleFields',
-        'wrapper' => 'role-specific-fields',
-        'effect' => 'fade',
-      ],
+    $form['additional_questions'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Additional Questions'),
+      '#open' => TRUE,
     ];
 
-    // ✅ Role-specific container
-    $form['role_fields'] = [
-      '#type' => 'container',
-      '#attributes' => ['id' => 'role-specific-fields'],
-    ];
-
-    $selected_role = $form_state->getValue('role') ?? ($defaults['role'] ?? NULL);
-
-  if ($selected_role === 'it') {
-    $form['role_fields']['it_group'] = [
-      '#type'  => 'details',
-      '#title' => $this->t('IT Applicant Details'),
-      '#open'  => TRUE,
-    ];
-
-    // IT 1. Technical skills
-    $form['role_fields']['it_group']['skills'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Tell us about any IT-related technical skills you have.'),
-      '#default_value' => $defaults['skills'] ?? '',
-      '#attributes' => ['class' => $textarea_classes],
-      '#description' => '
-        <details class="wa-help">
-          <summary>ⓘ More info</summary>
-          <div>
-            <strong>Scenario:</strong> Imagine you’re introducing yourself 
-            to a technical team on your first day. What IT-related skills would you highlight 
-            (e.g., programming languages, networking, databases, security, cloud platforms)? 
-            Describe your strongest areas and how you’ve applied them in real projects.
-          </div>
-        </details>
-      ',
-      '#description_display' => 'before',
-      ];
-
-    // IT 2. Team experience in resolving an IT issue
-    $form['role_fields']['it_group']['team_experience'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Tell us about a time you worked with a team to resolve an IT issue.'),
-      '#default_value' => $defaults['team_experience'] ?? '',
-      '#attributes' => ['class' => $textarea_classes],
-      '#description' => '
-        <details class="wa-help">
-          <summary>ⓘ More info</summary>
-          <div>
-            <strong>Scenario:</strong> Think of a situation where an IT issue 
-            affected a system, team, or customer. How did you and your team diagnose the problem, 
-            what role did you play, and what steps did you take together to resolve it?
-          </div>
-        </details>
-      ',
-      '#description_display' => 'before',
-      ];
-
-      // IT 3. Proficiency levels
-      $levels = [
-        'beginner'     => $this->t('Beginner'),
-        'intermediate' => $this->t('Intermediate'),
-        'advanced'     => $this->t('Advanced'),
-        'expert'       => $this->t('Expert'),
-      ];
-
-      // Intro + inline (i) help — define the element first
-      $form['role_fields']['it_group']['prof_intro'] = [
-        '#markup' => '
-          <br>
-          <p>
-            Please select your proficiency level for each technology below. </p>
-          <p class="text-sm text-gray-700 mb-2">
-            <details class="wa-help inline">
-              <summary>ⓘ More info</summary>
-              <div>
-                <strong>Scenario:</strong> Imagine you are starting a new project. How comfortable would you be
-                setting up a Git repository, deploying a Drupal or WordPress site, or configuring a
-                Linux server? Describe your hands-on experience, and rate your proficiency
-                (Beginner, Intermediate, Advanced, Expert).
-              </div>
-            </details>
-          </p>
-        ',
-      ];
-
-      // The three selects
-      $form['role_fields']['it_group']['prof_git'] = [
-        '#type' => 'select',
-        '#title' => $this->t('Version control (e.g., Git) proficiency'),
-        '#options' => $levels,
-        '#required' => TRUE,
-        '#default_value' => $defaults['prof_git'] ?? NULL,
-      ];
-
-      $form['role_fields']['it_group']['prof_cms'] = [
-        '#type' => 'select',
-        '#title' => $this->t('CMS platforms (Drupal, WordPress) proficiency'),
-        '#options' => $levels,
-        '#required' => TRUE,
-        '#default_value' => $defaults['prof_cms'] ?? NULL,
-      ];
-
-      $form['role_fields']['it_group']['prof_linux'] = [
-        '#type' => 'select',
-        '#title' => $this->t('Linux distributions proficiency'),
-        '#options' => $levels,
-        '#required' => TRUE,
-        '#default_value' => $defaults['prof_linux'] ?? NULL,
-      ];
-
-
-    // IT 4. Relevant education/work/hobbies
-    $form['role_fields']['it_group']['education_experience'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Tell us about any relevant education, work experience, or hobbies related to programming/development.'),
-      '#default_value' => $defaults['education_experience'] ?? NULL,
-      '#attributes' => ['class' => $textarea_classes],
-      '#description' => '
-        <details class="wa-help">
-          <summary>ⓘ More info</summary>
-          <div>
-            <strong>Scenario:</strong> Picture yourself explaining to 
-            a recruiter why you’re passionate about IT. Share details about your education, 
-            training, work experience, or even personal projects 
-            (e.g., building apps, contributing to open source, running a server) that show your development skills.
-          </div>
-        </details>
-      ',
-      '#description_display' => 'before',
-      ];
-  }
-
-
-  elseif ($selected_role === 'cw') {
-    $form['role_fields']['cw_group'] = [
-      '#type'  => 'details',
-      '#title' => $this->t('Content Creator & Writer Details'),
-      '#open'  => TRUE,
-    ];
-
-    // CW 1. Education/work/hobbies
-    $form['role_fields']['cw_group']['education_experience'] = [
+    $form['additional_questions']['education_experience'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Tell us about any relevant education, work experience, or hobbies related to content creation.'),
       '#required' => TRUE,
@@ -652,102 +509,7 @@ class ApplicationForm extends FormBase {
       '#description_display' => 'before',
       ];
 
-    // CW 2. Writing proficiency (level)
-    $levels = [
-      'beginner'     => $this->t('Beginner'),
-      'intermediate' => $this->t('Intermediate'),
-      'advanced'     => $this->t('Advanced'),
-      'expert'       => $this->t('Expert'),
-    ];
-    $form['role_fields']['cw_group']['proficiency_writing'] = [
-      '#type' => 'select',
-      '#title' => $this->t('What is your level of proficiency in content writing?'),
-      '#options' => $levels,
-      '#required' => TRUE,
-      '#default_value' => $defaults['proficiency_writing'] ?? NULL,
-      '#description' => '
-        <details class="wa-help">
-          <summary>ⓘ More info</summary>
-          <div>
-            <strong>Scenario:</strong> Reflect on your writing experience. 
-            How confident are you in producing clear, engaging, and professional content? 
-            Share the types of content you’ve created (blogs, articles, product descriptions, 
-            social posts) and how comfortable you are with each.
-          </div>
-        </details>
-      ',
-      '#description_display' => 'before',
-      ];
-
-    // CW 3. Samples/links (separate field)
-    $form['role_fields']['cw_group']['cw_samples'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Share samples of your work or links to content you previously created.'),
-      '#default_value' => $defaults['cw_samples'] ?? '',
-      '#attributes' => ['class' => $textarea_classes, 'placeholder' => 'URLs or brief descriptions'],
-      '#description' => '
-        <details class="wa-help">
-          <summary>ⓘ More info</summary>
-          <div>
-            <strong>Scenario:</strong> Provide links, documents, or portfolios that show your best work. 
-            Think about pieces that demonstrate your writing style, creativity, or ability to explain complex ideas clearly.
-          </div>
-        </details>
-      ',
-      '#description_display' => 'before',
-      ];
-
-    // CW 4. Team experience
-    $form['role_fields']['cw_group']['team_experience'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Tell us about a time you worked with a team to create content.'),
-      '#default_value' => $defaults['team_experience'] ?? '',
-      '#attributes' => ['class' => $textarea_classes],
-      '#description' => '
-        <details class="wa-help">
-          <summary>ⓘ More info</summary>
-          <div>
-            <strong>Scenario:</strong> Recall a project where you collaborated with 
-            designers, editors, or other writers. What was your role, how did the team divide 
-            responsibilities, and what was the final outcome?
-          </div>
-        </details>
-      ',
-      '#description_display' => 'before',
-      ];
-
-
-    // CW 5. Image & video editing proficiency (level)
-    $form['role_fields']['cw_group']['proficiency_media'] = [
-      '#type' => 'select',
-      '#title' => $this->t('How would you describe your proficiency in image and video editing?'),
-      '#options' => $levels,
-      '#required' => TRUE,
-      '#default_value' => $defaults['proficiency_media'] ?? '',
-      '#description' => '
-        <details class="wa-help">
-          <summary>ⓘ More info</summary>
-          <div>
-            <strong>Scenario:</strong> Imagine being asked to support content with visuals. 
-            What tools (e.g., Photoshop, Canva, Premiere Pro) can you use, and how confident are you 
-            in creating or editing images and videos to support your writing?
-          </div>
-        </details>
-      ',
-      '#description_display' => 'before',
-      ];
-
-  }
-
-  elseif ($selected_role === 'cs') {
-    $form['role_fields']['cs_group'] = [
-      '#type'  => 'details',
-      '#title' => $this->t('Customer Service Details'),
-      '#open'  => TRUE,
-    ];
-
-    // CS 1. Experience with customers
-    $form['role_fields']['cs_group']['cs_experience'] = [
+    $form['additional_questions']['cs_experience'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Tell us about your experience working with customers.'),
       '#required' => TRUE,
@@ -767,8 +529,7 @@ class ApplicationForm extends FormBase {
       '#description_display' => 'before',
       ];
 
-    // CS 2. Difficult situation
-    $form['role_fields']['cs_group']['conflict_resolution'] = [
+    $form['additional_questions']['conflict_resolution'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Tell us about a time you faced a difficult customer situation and how you resolved it.'),
       '#default_value' => $defaults['conflict_resolution'] ?? '',
@@ -786,28 +547,7 @@ class ApplicationForm extends FormBase {
       '#description_display' => 'before',
       ];
 
-    // CS 3. CRM/Helpdesk tools
-    $form['role_fields']['cs_group']['crm_tools'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('What types of CRM or Helpdesk tools have you used?'),
-      '#required' => TRUE,
-      '#default_value' => $defaults['crm_tools'] ?? '',
-      '#attributes' => ['class' => $text_classes, 'placeholder' => 'e.g., Zendesk, Freshdesk, HubSpot, etc.'],
-      '#description' => '
-        <details class="wa-help">
-          <summary>ⓘ More info</summary>
-          <div>
-            <strong>Scenario:</strong> Imagine you’re joining a new support team. 
-            Which tools have you used before (Zendesk, Freshdesk, HubSpot, GA4, phone systems, 
-            live chat, etc.)? How did they help you manage customer interactions and track performance?
-          </div>
-        </details>
-      ',
-      '#description_display' => 'before',
-      ];
-
-    // CS 4. Typing speed
-    $form['role_fields']['cs_group']['typing_speed'] = [
+    $form['additional_questions']['typing_speed'] = [
       '#type' => 'number',
       '#title' => $this->t('What is your average typing speed (WPM)?'),
       '#required' => TRUE,
@@ -828,7 +568,6 @@ class ApplicationForm extends FormBase {
       '#description_display' => 'before',
       ];
 
-    // CS 5. English proficiency (written & spoken)
     $levels = [
       'basic'          => $this->t('Basic'),
       'conversational' => $this->t('Conversational'),
@@ -836,7 +575,7 @@ class ApplicationForm extends FormBase {
       'native_like'    => $this->t('Native-like'),
     ];
 
-      $form['role_fields']['cs_group']['english_intro'] = [
+      $form['additional_questions']['english_intro'] = [
         '#markup' => '
           <br>
           <p>
@@ -855,7 +594,7 @@ class ApplicationForm extends FormBase {
       ];
 
 
-    $form['role_fields']['cs_group']['english_written'] = [
+    $form['additional_questions']['english_written'] = [
       '#type' => 'select',
       '#title' => $this->t('English proficiency (Written)'),
       '#options' => $levels,
@@ -863,14 +602,13 @@ class ApplicationForm extends FormBase {
       '#default_value' => $defaults['english_written'] ?? NULL,
     ];
 
-    $form['role_fields']['cs_group']['english_spoken'] = [
+    $form['additional_questions']['english_spoken'] = [
       '#type' => 'select',
       '#title' => $this->t('English proficiency (Spoken)'),
       '#options' => $levels,
       '#required' => TRUE,
       '#default_value' => $defaults['english_spoken'] ?? NULL,
     ];
-  }
 
 
 
@@ -941,20 +679,24 @@ class ApplicationForm extends FormBase {
       }
     }
 
+    if ($form_state->getValue('equipment') === 'yes') {
+      $specs = trim((string) $form_state->getValue('equipment_specs'));
+      if ($specs === '') {
+        $form_state->setErrorByName('equipment_specs', $this->t('Please describe your computer specifications.'));
+      }
+    }
+
     // Salary (digits only, >= 0)
     $salary = (string) $form_state->getValue('salary_expectation');
     if (!preg_match('/^\d+$/', $salary)) {
       $form_state->setErrorByName('salary_expectation', $this->t('Salary must be numbers only.'));
     }
 
-    // If CS role, typing speed must be a reasonable integer
-    if ($form_state->getValue('role') === 'cs') {
-      $wpm = (string) $form_state->getValue('typing_speed');
-      if ($wpm === '' || !preg_match('/^\d+$/', $wpm)) {
-        $form_state->setErrorByName('typing_speed', $this->t('Typing speed must be a whole number (WPM).'));
-      } elseif ((int) $wpm > 300) {
-        $form_state->setErrorByName('typing_speed', $this->t('Typing speed seems too high. Please enter a realistic value.'));
-      }
+    $wpm = (string) $form_state->getValue('typing_speed');
+    if ($wpm === '' || !preg_match('/^\d+$/', $wpm)) {
+      $form_state->setErrorByName('typing_speed', $this->t('Typing speed must be a whole number (WPM).'));
+    } elseif ((int) $wpm > 300) {
+      $form_state->setErrorByName('typing_speed', $this->t('Typing speed seems too high. Please enter a realistic value.'));
     }
 
 
@@ -963,14 +705,6 @@ class ApplicationForm extends FormBase {
 
     public function submitForm(array &$form, FormStateInterface $form_state) {
       // Not used. We route submits to custom handlers (goToReview, submitFinal, backToEdit).
-    }
-
-
-    /**
-     * AJAX callback for role-specific fields.
-     */
-    public function updateRoleFields(array &$form, FormStateInterface $form_state) {
-      return $form['role_fields'];
     }
 
 
@@ -995,7 +729,7 @@ class ApplicationForm extends FormBase {
       $values = $form_state->get('saved_values') ?? [];
 
       // Remove internal keys you don’t want to store.
-      foreach (['form_build_id','form_token','form_id','op','submit','role_fields','it_group','cw_group','cs_group'] as $k) {
+      foreach (['form_build_id','form_token','form_id','op','submit','additional_questions','role_fields','it_group','cw_group','cs_group'] as $k) {
         unset($values[$k]);
       }
 
@@ -1009,12 +743,6 @@ class ApplicationForm extends FormBase {
       'referral'         => $this->t('Referral'),
       'other'            => $this->t('Other (please specify)'),
     ];
-    $role_options = [
-      'it' => $this->t('IT Applicant / Developer'),
-      'cw' => $this->t('Content Creator and Writer'),
-      'cs' => $this->t('Customer Service'),
-    ];
-
     // Normalize labels
     $employment_status_value = $values['employment_status'] ?? '';
     $values['employment_status_label'] = $employment_options[$employment_status_value] ?? $employment_status_value;
@@ -1028,19 +756,28 @@ class ApplicationForm extends FormBase {
       $values['source_details'] = '';
     }
 
-    $values['role_label'] = $role_options[$values['role'] ?? ''] ?? ($values['role'] ?? '');
+    if (($values['equipment'] ?? '') !== 'yes') {
+      $values['equipment_specs'] = '';
+    }
+
+    $values['application_version'] = 'unified_v2';
 
 
 
     // 2) Insert into custom table (keep summary columns too).
+    $insert_fields = [
+      'full_name' => $values['full_name'] ?? '',
+      'email'     => $values['email'] ?? '',
+      'phone'     => $values['phone'] ?? '',
+      'data'      => serialize($values),                   // keep schema as-is
+      'created'   => \Drupal::time()->getRequestTime(),
+    ];
+    if (\Drupal::database()->schema()->fieldExists('wondem_applications', 'application_version')) {
+      $insert_fields['application_version'] = 'unified_v2';
+    }
+
     \Drupal::database()->insert('wondem_applications')
-      ->fields([
-        'full_name' => $values['full_name'] ?? '',
-        'email'     => $values['email'] ?? '',
-        'phone'     => $values['phone'] ?? '',
-        'data'      => serialize($values),                   // keep schema as-is
-        'created'   => \Drupal::time()->getRequestTime(),
-      ])
+      ->fields($insert_fields)
       ->execute();
 
 

@@ -13,6 +13,13 @@ function wondem_application_form_schema() {
       'phone' => ['type' => 'varchar', 'length' => 50, 'not null' => FALSE],
       'data' => ['type' => 'blob', 'not null' => FALSE, 'size' => 'big'],
       'created' => ['type' => 'int', 'not null' => TRUE, 'default' => 0],
+      'application_version' => [
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => 'unified_v2',
+        'description' => 'Application form version used for this submission.',
+      ],
 
       // Admin review fields (include for fresh installs).
       'status' => [
@@ -56,12 +63,54 @@ function wondem_application_form_schema() {
       'idx_status' => ['status'],
       'idx_score' => ['score'],
       'idx_created' => ['created'],
+      'idx_application_version' => ['application_version'],
       'idx_updated' => ['updated'],
       'idx_reviewer_uid' => ['reviewer_uid'],
     ],
   ];
 
   return $schema;
+}
+
+/**
+ * Add application version tracking and mark existing rows as legacy.
+ */
+function wondem_application_form_update_9002() {
+  $conn = \Drupal::database();
+  $schema = $conn->schema();
+  $table = 'wondem_applications';
+
+  if (!$schema->tableExists($table)) {
+    throw new \RuntimeException(sprintf('Table %s does not exist.', $table));
+  }
+
+  if (!$schema->fieldExists($table, 'application_version')) {
+    $schema->addField($table, 'application_version', [
+      'type' => 'varchar',
+      'length' => 32,
+      'not null' => TRUE,
+      'default' => 'role_based_v1',
+      'description' => 'Application form version used for this submission.',
+    ]);
+  }
+
+  if (!$schema->indexExists($table, 'idx_application_version')) {
+    $schema->addIndex($table, 'idx_application_version', ['application_version'], [
+      'fields' => [
+        'application_version' => [
+          'type' => 'varchar',
+          'length' => 32,
+          'not null' => TRUE,
+          'default' => 'role_based_v1',
+        ],
+      ],
+    ]);
+  }
+
+  $conn->update($table)
+    ->fields(['application_version' => 'role_based_v1'])
+    ->condition('application_version', '', '=')
+    ->execute();
 }
 
 
