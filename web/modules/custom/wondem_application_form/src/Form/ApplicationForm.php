@@ -585,7 +585,7 @@ class ApplicationForm extends FormBase {
           <div>
             <strong>Scenario:</strong> The ideal candidate should have strong experience with content
             management systems such as Drupal and WordPress, proficiency with version control using Git,
-            and familiarity with common Linux commands. Please provide at least 50 words.
+            and familiarity with common Linux commands.
           </div>
         </details>
       ',
@@ -789,12 +789,7 @@ class ApplicationForm extends FormBase {
 
     $ai_proficiency = trim((string) $form_state->getValue('ai_proficiency'));
     if ($this->wordCount($ai_proficiency) < 50) {
-      $form_state->setErrorByName('ai_proficiency', $this->t('Please describe your AI tools proficiency in at least 50 words.'));
-    }
-
-    $it_experience = trim((string) $form_state->getValue('it_cms_git_linux_experience'));
-    if ($this->wordCount($it_experience) < 50) {
-      $form_state->setErrorByName('it_cms_git_linux_experience', $this->t('Please describe your CMS, Git, and Linux experience in at least 50 words.'));
+      $form_state->setErrorByName('ai_proficiency', \Drupal\Core\Render\Markup::create('<strong>' . $this->t('Please describe your AI tools proficiency in at least 50 words.') . '</strong>'));
     }
 
 
