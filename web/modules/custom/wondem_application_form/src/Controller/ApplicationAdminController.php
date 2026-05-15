@@ -215,6 +215,7 @@ public function list() {
       'full_name'             => $this->t('Full Name'),
       'email'                 => $this->t('Email'),
       'phone'                 => $this->t('Phone'),
+      'best_time_to_call'     => $this->t('Best Time to Call'),
       'address'               => $this->t('Address'),
       'applied_role'          => $this->t('Applied Role'),
       'employment_status_hr'  => $this->t('Currently Employed?'),
@@ -228,11 +229,12 @@ public function list() {
       'cover_letter'          => $this->t('Cover Letter'),
       'salary_expectation'    => $this->t('Salary Expectation'),
       'job_obstacles'         => $this->t('Obstacles/Challenges'),
-      'ai_proficiency'        => $this->t('AI Tools Proficiency'),
+      'ai_proficiency'        => $this->t('AI Tools Development Proficiency'),
       // IT role
       'skills'                => $this->t('Technical Skills'),
       'team_experience'       => $this->t('Team Experience'),
-      'education_experience'  => $this->t('Education/Experience'),
+      'education_experience'  => $this->t('Media Writing Experience'),
+      'it_cms_git_linux_experience' => $this->t('CMS, Git, and Linux Experience'),
       'prof_git'              => $this->t('Git Proficiency'),
       'prof_cms'              => $this->t('CMS Proficiency'),
       'prof_linux'            => $this->t('Linux Proficiency'),
@@ -330,12 +332,29 @@ public function list() {
       $limit = 500;
       $offset = 0;
       $wroteHeader = FALSE;
+      $detail_fields = [
+        'best_time_to_call',
+        'equipment',
+        'equipment_specs',
+        'ai_proficiency',
+        'education_experience',
+        'it_cms_git_linux_experience',
+      ];
 
       while (TRUE) {
         $batch = $this->storage->fetch($filters, $limit, $offset);
         if (!$batch) break;
 
         foreach ($batch as $row) {
+          $application = $this->storage->load((int) $row['id']);
+          $values = !empty($application['data'] ?? NULL) ? @unserialize($application['data']) : [];
+          $values = is_array($values) ? $values : [];
+
+          foreach ($detail_fields as $field) {
+            $value = $values[$field] ?? '';
+            $row[$field] = is_array($value) ? implode(', ', $value) : $value;
+          }
+
           if (!$wroteHeader) {
             fputcsv($handle, array_keys($row));
             $wroteHeader = TRUE;

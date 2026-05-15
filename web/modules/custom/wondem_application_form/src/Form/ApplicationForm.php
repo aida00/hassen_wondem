@@ -28,6 +28,11 @@ class ApplicationForm extends FormBase {
     return 'wondem_application_form';
   }
 
+  private function wordCount(string $value): int {
+    $words = preg_split('/\s+/', trim(strip_tags($value)));
+    return count(array_filter($words, static fn($word) => $word !== ''));
+  }
+
   /**
    * Render a pretty alert box.
    *
@@ -159,7 +164,7 @@ class ApplicationForm extends FormBase {
       $sections = [
         'personal' => [
           'title'  => $this->t('Personal Information'),
-          'fields' => ['full_name','email','phone','address'],
+          'fields' => ['full_name','email','phone','best_time_to_call','address'],
         ],
         'general' => [
           'title'  => $this->t('General Questions'),
@@ -169,9 +174,37 @@ class ApplicationForm extends FormBase {
         ],
         'role' => [
           'title'  => $this->t('Additional Questions'),
-          'fields' => ['equipment_specs', 'ai_proficiency', 'education_experience', 'cs_experience',
+          'fields' => ['equipment_specs', 'ai_proficiency', 'education_experience',
+                      'it_cms_git_linux_experience', 'cs_experience',
                       'conflict_resolution', 'typing_speed', 'english_written', 'english_spoken'],
         ],
+      ];
+
+      $review_labels = [
+        'full_name' => $this->t('Full Name'),
+        'email' => $this->t('Email'),
+        'phone' => $this->t('Phone Number'),
+        'best_time_to_call' => $this->t('Best Time to Call'),
+        'address' => $this->t('Address'),
+        'source' => $this->t('How did you hear about this job post?'),
+        'source_details' => $this->t('Source Details'),
+        'employment_status' => $this->t('Currently Employed?'),
+        'employment_details' => $this->t('Employment Details'),
+        'equipment' => $this->t('PC & Internet'),
+        'equipment_specs' => $this->t('Computer Specifications'),
+        'experience_online' => $this->t('Online Work/Education Experience'),
+        'availability' => $this->t('Availability'),
+        'cover_letter' => $this->t('Cover Letter'),
+        'salary_expectation' => $this->t('Salary Expectation'),
+        'job_obstacles' => $this->t('Obstacles/Challenges'),
+        'ai_proficiency' => $this->t('AI Tools Development Proficiency'),
+        'education_experience' => $this->t('Media Writing Experience'),
+        'it_cms_git_linux_experience' => $this->t('CMS, Git, and Linux Experience'),
+        'cs_experience' => $this->t('Customer Service Experience'),
+        'conflict_resolution' => $this->t('Conflict Resolution'),
+        'typing_speed' => $this->t('Typing Speed (WPM)'),
+        'english_written' => $this->t('English (Written)'),
+        'english_spoken' => $this->t('English (Spoken)'),
       ];
 
       foreach ($sections as $section_key => $section) {
@@ -180,7 +213,7 @@ class ApplicationForm extends FormBase {
           $val = $display($key, $saved[$key] ?? '');
           if ($val === '') continue;
 
-          $nice = ucwords(str_replace('_',' ', $key));
+          $nice = $review_labels[$key] ?? ucwords(str_replace('_',' ', $key));
           $rows[] = [
             ['data' => ['#markup' => '<strong>'.$nice.'</strong>'], 'style' => 'width:40%;'],
             ['data' => ['#plain_text' => $val], 'style' => 'width:60%;'],
@@ -255,6 +288,19 @@ class ApplicationForm extends FormBase {
         'placeholder' => '+251911234567',
         'inputmode' => 'tel',     // better mobile keyboard
         'autocomplete' => 'tel',  // browser autofill
+      ],
+    ];
+
+    $form['best_time_to_call'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Best time to call'),
+      '#required' => TRUE,
+      '#default_value' => $defaults['best_time_to_call'] ?? '',
+      '#description' => $this->t('Let us know the days and time range when you are usually available for a phone call.'),
+      '#attributes' => [
+        'class' => $text_classes,
+        'placeholder' => 'e.g. Monday-Friday, 9:00 AM-12:00 PM',
+        'autocomplete' => 'off',
       ],
     ];
 
@@ -338,9 +384,8 @@ class ApplicationForm extends FormBase {
         <details class="wa-help">
           <summary>ⓘ More info</summary>
           <div>
-            <strong>Scenario:</strong> This role requires daily online communication and task delivery.
-            Describe your setup — the type of computer you use, internet speed, and whether you have
-            backup options (e.g., mobile hotspot, secondary device) in case of technical issues.
+            Minimum requirement: 16GB RAM, 512GB SSD internal system drive.
+            An additional high performance GPU is a plus.
           </div>
         </details>
       ',
@@ -490,27 +535,19 @@ class ApplicationForm extends FormBase {
       '#open' => TRUE,
     ];
 
-    $proficiency_levels = [
-      'beginner' => $this->t('Beginner'),
-      'intermediate' => $this->t('Intermediate'),
-      'advanced' => $this->t('Advanced'),
-      'expert' => $this->t('Expert'),
-    ];
-
     $form['additional_questions']['ai_proficiency'] = [
-      '#type' => 'select',
+      '#type' => 'textarea',
       '#title' => $this->t('How would you describe your proficiency with AI tools?'),
-      '#options' => $proficiency_levels,
       '#required' => TRUE,
-      '#default_value' => $defaults['ai_proficiency'] ?? NULL,
+      '#default_value' => $defaults['ai_proficiency'] ?? '',
+      '#attributes' => ['class' => $textarea_classes],
       '#description' => '
         <details class="wa-help">
           <summary>ⓘ More info</summary>
           <div>
-            <strong>Scenario:</strong> Think about tools such as ChatGPT, Gemini, Claude,
-            Microsoft Copilot, Canva AI, Grammarly, or other AI-assisted tools you have used.
-            How comfortable are you using AI to research, write, summarize, solve problems,
-            create content, support customers, or improve your daily work?
+            <strong>Scenario:</strong> Describe how you use AI tools to support software development,
+            debugging, code review, documentation, automation, research, or technical problem solving.
+            Include examples of tools and workflows you have used. Please provide at least 50 words.
           </div>
         </details>
       ',
@@ -519,7 +556,7 @@ class ApplicationForm extends FormBase {
 
     $form['additional_questions']['education_experience'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Tell us about any relevant education, work experience, or hobbies related to content creation.'),
+      '#title' => $this->t('Tell us about any relevant education, work experience, or hobbies related to writing for media consumption, social media, news organizations, or similar platforms.'),
       '#required' => TRUE,
       '#default_value' => $defaults['education_experience'] ?? NULL,
       '#attributes' => ['class' => $textarea_classes],
@@ -527,14 +564,33 @@ class ApplicationForm extends FormBase {
         <details class="wa-help">
           <summary>ⓘ More info</summary>
           <div>
-            <strong>Scenario:</strong> Imagine you’re pitching yourself as a content creator. 
-            Which experiences, studies, or personal projects best show your skills in writing, 
-            storytelling, or content design?
+            <strong>Scenario:</strong> Share examples of writing, editing, publishing, social media,
+            news, blogs, captions, newsletters, or other audience-focused content. Mention the audience,
+            platform, organization, or goal when possible.
           </div>
         </details>
       ',
       '#description_display' => 'before',
       ];
+
+    $form['additional_questions']['it_cms_git_linux_experience'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Please describe your experience and knowledge of content management systems such as Drupal and WordPress, your proficiency with version control tools like Git, and your familiarity with Linux systems and commonly used Linux commands.'),
+      '#required' => TRUE,
+      '#default_value' => $defaults['it_cms_git_linux_experience'] ?? '',
+      '#attributes' => ['class' => $textarea_classes],
+      '#description' => '
+        <details class="wa-help">
+          <summary>ⓘ More info</summary>
+          <div>
+            <strong>Scenario:</strong> The ideal candidate should have strong experience with content
+            management systems such as Drupal and WordPress, proficiency with version control using Git,
+            and familiarity with common Linux commands. Please provide at least 50 words.
+          </div>
+        </details>
+      ',
+      '#description_display' => 'before',
+    ];
 
     $form['additional_questions']['cs_experience'] = [
       '#type' => 'textarea',
@@ -689,6 +745,11 @@ class ApplicationForm extends FormBase {
       $form_state->setValue('phone', $phone_normalized);
     }
 
+    $best_time_to_call = trim((string) $form_state->getValue('best_time_to_call'));
+    if ($best_time_to_call === '') {
+      $form_state->setErrorByName('best_time_to_call', $this->t('Please tell us the best time to call you.'));
+    }
+
 
     // Validate employement status form 
     if ($form_state->getValue('employment_status') === 'yes') {
@@ -724,6 +785,16 @@ class ApplicationForm extends FormBase {
       $form_state->setErrorByName('typing_speed', $this->t('Typing speed must be a whole number (WPM).'));
     } elseif ((int) $wpm > 300) {
       $form_state->setErrorByName('typing_speed', $this->t('Typing speed seems too high. Please enter a realistic value.'));
+    }
+
+    $ai_proficiency = trim((string) $form_state->getValue('ai_proficiency'));
+    if ($this->wordCount($ai_proficiency) < 50) {
+      $form_state->setErrorByName('ai_proficiency', $this->t('Please describe your AI tools proficiency in at least 50 words.'));
+    }
+
+    $it_experience = trim((string) $form_state->getValue('it_cms_git_linux_experience'));
+    if ($this->wordCount($it_experience) < 50) {
+      $form_state->setErrorByName('it_cms_git_linux_experience', $this->t('Please describe your CMS, Git, and Linux experience in at least 50 words.'));
     }
 
 
