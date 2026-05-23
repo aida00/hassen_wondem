@@ -5,3 +5,11 @@ homepage.content:
     _title: ''
   requirements:
     _permission: 'access content'
+
+homepage.team:
+  path: '/wondem-team'
+  defaults:
+    _controller: '\Drupal\homepage\Controller\HomepageTeamController::content'
+    _title: 'Wondem Team'
+  requirements:
+    _permission: 'access content'
