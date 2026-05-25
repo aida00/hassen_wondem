@@ -255,6 +255,20 @@ class ApplicationForm extends FormBase {
       '#weight' => -100,
     ];
 
+    $form['job_title_banner'] = [
+      '#markup' => '
+        <div class="mx-auto w-full max-w-3xl mt-6 mb-2">
+          <div class="rounded-xl bg-blue-700 px-6 py-5 shadow-md text-center">
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-200 mb-1">Position</p>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+              MLOps / DevOps for Web Operations
+            </h2>
+          </div>
+        </div>
+      ',
+      '#weight' => -99,
+    ];
+
 
     // Attach the CSS library
     $form['#attached']['library'][] = 'wondem_application_form/form_styles';
